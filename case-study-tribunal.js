@@ -96,7 +96,7 @@ report = merge_and_export(results, judge_scores)`,
 
   // ── Aside — System Specifications ────────────────────────────
   specs: [
-    { key: "Eval Framework",  value: "RAGAS 0.1" },
+    { key: "Eval Framework",  value: "RAGAS 0.4.3" },
     { key: "Judge Models",    value: "GPT-4o + Claude + gemini" },
     { key: "Eval Dimensions", value: "20+ metrics" },
     { key: "Language",        value: "Python 3.11" },
