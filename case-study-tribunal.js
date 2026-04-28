@@ -106,7 +106,7 @@ report = merge_and_export(results, judge_scores)`,
 
   // ── Aside — Key Technologies ──────────────────────────────────
   technologies: [
-    "Python", "RAGAS", "OpenAI API", "Claude API","GEMINI API"
+    "Python", "RAGAS", "OpenAI API", "Claude API", "GEMINI API",
     "LangChain", "Pandas", "SQL",
   ],
 
