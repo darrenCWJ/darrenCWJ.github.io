@@ -1,0 +1,106 @@
+// ╔══════════════════════════════════════════════════════════════╗
+// ║  PROJECTS — add, remove, or edit project cards here.        ║
+// ║  Each object = one card on the portfolio page.              ║
+// ║  Save the file, refresh your browser, changes appear.       ║
+// ╚══════════════════════════════════════════════════════════════╝
+
+window.PROJECTS = [
+
+  {
+    title:        "Tribunal",
+    subtitle:     "LLM Evaluation Framework",
+    date:         "APR 2026 · AI EVAL",
+    description:  '"Judgement as an AI tool" — applies RAGAS practice and LLM test evaluation metrics to systematically measure and benchmark chatbot reply quality.',
+    githubUrl:    "https://github.com/darrenCWJ/tribunal",
+    caseStudyUrl: "case-study-tribunal.html",
+    tags:         ["PYTHON", "RAGAS", "LLM EVAL"],
+    icon:         "gavel",
+    accent:       "amber",
+  },
+
+  {
+    title:        "HomeTongue",
+    subtitle:     "Speech & Language AI",
+    date:         "APR 2026 · HACKATHON",
+    description:  "Language learning app built for a hackathon, leveraging STT/TTS and AI translation to help users connect with their mother tongue. Cloud-deployed on Vercel.",
+    githubUrl:    "https://github.com/darrenCWJ/HomeTongue",
+    caseStudyUrl: null,               // set to "case-study-hometongue.html" when ready
+    tags:         ["TYPESCRIPT", "SPEECH AI", "VERCEL"],
+    icon:         "translate",
+    accent:       "orange",            // "amber" | "orange" | "tertiary"
+  },
+
+  {
+    title:        "Hustle SG",
+    subtitle:     "Singapore Gig Platform",
+    date:         "APR 2026 · PRODUCT",
+    description:  "Singapore-first gig platform featuring verified side hustlers, AI-matched gigs, and async video interviews — reducing friction between talent and opportunity.",
+    githubUrl:    "https://github.com/darrenCWJ/hustle-sg",
+    caseStudyUrl: null,
+    tags:         ["TYPESCRIPT", "AI MATCHING", "SINGAPORE"],
+    icon:         "work",
+    accent:       "tertiary",
+  },
+
+  {
+    title:        "Cantonese STT Benchmark",
+    subtitle:     "STT Provider Comparison",
+    date:         "APR 2026 · RESEARCH",
+    description:  "Web harness that compares Cantonese STT providers — Google, ElevenLabs, OpenAI Whisper, faster-whisper, Tencent — with LLM translation and TTS in a structured benchmark.",
+    githubUrl:    "https://github.com/darrenCWJ/cantonese-translation-comparison",
+    caseStudyUrl: null,
+    tags:         ["TYPESCRIPT", "WHISPER", "BENCHMARK"],
+    icon:         "mic",
+    accent:       "amber",
+  },
+
+  {
+    title:        "Emeritus Capstone",
+    subtitle:     "Imperial College London",
+    date:         "DEC 2022 · ML RESEARCH",
+    description:  "Capstone ML/AI research project from the Emeritus Imperial College London programme, applying machine learning to a real-world problem domain.",
+    githubUrl:    "https://github.com/darrenCWJ/EmeritusCapstone",
+    caseStudyUrl: null,
+    tags:         ["PYTHON", "ML / AI", "JUPYTER"],
+    icon:         "school",
+    accent:       "orange",
+  },
+
+  {
+    title:        "Mini Projects",
+    subtitle:     "Problem-Solving Lab",
+    date:         "ONGOING · EXPLORATION",
+    description:  "A collection of small, focused coding challenges that require creative thinking — algorithms, data problems, and computational puzzles solved in Python and Jupyter.",
+    githubUrl:    "https://github.com/darrenCWJ/mini_projects",
+    caseStudyUrl: null,
+    tags:         ["PYTHON", "JUPYTER", "ALGORITHMS"],
+    icon:         "code",
+    accent:       "tertiary",
+  },
+
+];
+
+// ─────────────────────────────────────────────────────────────────
+// HOW TO ADD A NEW PROJECT
+// ─────────────────────────────────────────────────────────────────
+// Copy one of the objects above, paste it inside the array,
+// and fill in your details. Keys:
+//
+//   title        — project name shown on the card
+//   subtitle     — one-line type label (e.g. "Python · Flask · API")
+//   date         — badge text top-left (e.g. "JAN 2026 · SIDE PROJECT")
+//   description  — 2–3 sentence description of the project
+//   githubUrl    — full GitHub URL for the "open_in_new" icon link
+//   caseStudyUrl — filename of the case study page, or null to hide the button
+//   tags         — array of short tech labels (UPPERCASE recommended)
+//   icon         — any Material Symbols name: https://fonts.google.com/icons
+//   accent       — colour theme: "amber" (gold), "orange" (red-orange), "tertiary" (blue-white)
+//
+// HOW TO REMOVE A PROJECT
+// ─────────────────────────────────────────────────────────────────
+// Delete the entire { ... } object for that project from the array.
+//
+// HOW TO REORDER PROJECTS
+// ─────────────────────────────────────────────────────────────────
+// Cut and paste the objects — cards render in the order listed here.
+// ─────────────────────────────────────────────────────────────────
