@@ -1117,36 +1117,29 @@
   var XLNS = 'http://www.w3.org/1999/xlink';
 
   // ── node definitions — diagonal flow NE-SW ─────────────────────────
-  var nodes = [
-    { id:'src',    cx:800, cy:75,  hw:70, hh:24, depth:20, col:'#dbe6ff',
-      label:'DATA_SOURCES', title:'Where the journey started',
-      body:'GovTech Singapore\'s operational systems, IoT sensors, and public datasets — the real-world signals that shaped the engineering approach.',
-      tools:['GovTech SG','IoT','Public APIs'], target:'#systems', section:'Evolution Log' },
-    { id:'ingest', cx:570, cy:165, hw:62, hh:21, depth:18, col:'#fbbc00',
-      label:'INGEST', title:'The technical toolkit',
-      body:'Python, PySpark, SQL, and streaming pipelines — the full capability matrix powering the data layer.',
-      tools:['Python','PySpark','Kafka'], target:'#certs', section:'Verified Certs' },
-    { id:'ai',     cx:760, cy:205, hw:62, hh:21, depth:18, col:'#ff5625',
-      label:'AI_ENGINE', title:'AI built on solid data',
-      body:'LLM evaluation, RAG pipelines, and agentic systems — AI capabilities grounded in production-grade data engineering.',
-      tools:['LLMs','RAG','Agents'], target:'#skills', section:'Skill Matrix' },
-    { id:'lake',   cx:530, cy:285, hw:72, hh:24, depth:28, col:'#fbbc00',
-      label:'LAKEHOUSE', title:'From pipelines to products',
-      body:'Multi-terabyte Databricks workloads, bronze-to-gold pipelines, and the evolution from ETL to intelligence.',
-      tools:['Databricks','Delta Lake','PySpark'], target:'#projects', section:'Selected Works' },
-    { id:'prod',   cx:330, cy:360, hw:62, hh:21, depth:18, col:'#ff5625',
-      label:'PRODUCTS', title:'Shipped and deployed',
-      body:'LLM evaluation frameworks, facilities management systems, and more — real products built for real users.',
-      tools:['View Works','GitHub','Live'], target:'#projects', section:'Selected Works' },
-    { id:'hist',   cx:170, cy:408, hw:60, hh:18, depth:15, col:'#dbe6ff',
-      label:'TIMELINE', title:'Every step documented',
-      body:'From data engineer to AI builder — each role, milestone, and pivot that shaped the platform.',
-      tools:['GovTech SG','UoL','Imperial'], target:'#timeline', section:'Temporal Logs' },
-    { id:'con',    cx:430, cy:408, hw:60, hh:18, depth:15, col:'#fbbc00',
-      label:'CONTACT', title:'Let\'s build something',
-      body:'Open to data engineering roles, product collaborations, and ambitious problems. Let\'s connect.',
-      tools:['LinkedIn','Email','GitHub'], target:'#contact', section:'Connect' },
+  // Positional data stays here (controls SVG layout)
+  var NODE_POS = [
+    { id:'src',    cx:800, cy:75,  hw:70, hh:24, depth:20, col:'#dbe6ff' },
+    { id:'ingest', cx:570, cy:165, hw:62, hh:21, depth:18, col:'#fbbc00' },
+    { id:'ai',     cx:760, cy:205, hw:62, hh:21, depth:18, col:'#ff5625' },
+    { id:'lake',   cx:530, cy:285, hw:72, hh:24, depth:28, col:'#fbbc00' },
+    { id:'prod',   cx:330, cy:360, hw:62, hh:21, depth:18, col:'#ff5625' },
+    { id:'hist',   cx:170, cy:408, hw:60, hh:18, depth:15, col:'#dbe6ff' },
+    { id:'con',    cx:430, cy:408, hw:60, hh:18, depth:15, col:'#fbbc00' },
   ];
+  // Text / navigation content comes from content.js → pipelineNodes
+  var NODE_CONTENT = (window.SITE && window.SITE.pipelineNodes) || {};
+  var nodes = NODE_POS.map(function(p) {
+    var c = NODE_CONTENT[p.id] || {};
+    return { id:p.id, cx:p.cx, cy:p.cy, hw:p.hw, hh:p.hh, depth:p.depth, col:p.col,
+      label:   c.label   || p.id.toUpperCase(),
+      title:   c.title   || '',
+      body:    c.body    || '',
+      tools:   c.tools   || [],
+      target:  c.target  || '',
+      section: c.section || '',
+    };
+  });
 
   // ── edges — vertices matched to warehouse box (hw=72,hh=24) ────────
   var edges = [

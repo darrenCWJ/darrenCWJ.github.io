@@ -205,6 +205,74 @@ window.SITE = {
     },
   ],
 
+  // ── End-to-End Pipeline Diagram ─────────────────────────────
+  // Each key matches a node id in the SVG diagram.
+  // Edit label, title, body, tools, and target/section here.
+  //   label   : short code shown on the node box (keep ≤ 14 chars)
+  //   title   : bold heading in the hover card
+  //   body    : paragraph text in the hover card
+  //   tools   : up to 3 chips shown at the bottom of the hover card
+  //   target  : anchor to scroll to when the node is clicked (e.g. '#certs')
+  //   section : link label shown in the hover card CTA (e.g. 'Verified Certs')
+  pipelineNodes: {
+    src: {
+      label:   'DATA_SOURCES',
+      title:   'Where the journey started',
+      body:    "GovTech Singapore's operational systems, IoT sensors, and public datasets — the real-world signals that shaped the engineering approach.",
+      tools:   ['GovTech SG', 'IoT', 'Public APIs'],
+      target:  '#systems',
+      section: 'Evolution Log',
+    },
+    ingest: {
+      label:   'INGEST',
+      title:   'The technical toolkit',
+      body:    'Python, PySpark, SQL, and streaming pipelines — the full capability matrix powering the data layer.',
+      tools:   ['Python', 'PySpark', 'Kafka'],
+      target:  '#certs',
+      section: 'Verified Certs',
+    },
+    ai: {
+      label:   'AI_ENGINE',
+      title:   'AI built on solid data',
+      body:    'LLM evaluation, RAG pipelines, and agentic systems — AI capabilities grounded in production-grade data engineering.',
+      tools:   ['LLMs', 'RAG', 'Agents'],
+      target:  '#skills',
+      section: 'Skill Matrix',
+    },
+    lake: {
+      label:   'LAKEHOUSE',
+      title:   'From pipelines to products',
+      body:    'Multi-terabyte Databricks workloads, bronze-to-gold pipelines, and the evolution from ETL to intelligence.',
+      tools:   ['Databricks', 'Delta Lake', 'PySpark'],
+      target:  '#projects',
+      section: 'Selected Works',
+    },
+    prod: {
+      label:   'PRODUCTS',
+      title:   'Shipped and deployed',
+      body:    'LLM evaluation frameworks, facilities management systems, and more — real products built for real users.',
+      tools:   ['View Works', 'GitHub', 'Live'],
+      target:  '#projects',
+      section: 'Selected Works',
+    },
+    hist: {
+      label:   'TIMELINE',
+      title:   'Every step documented',
+      body:    'From data engineer to AI builder — each role, milestone, and pivot that shaped the platform.',
+      tools:   ['GovTech SG', 'UoL', 'Imperial'],
+      target:  '#timeline',
+      section: 'Temporal Logs',
+    },
+    con: {
+      label:   'CONTACT',
+      title:   "Let's build something",
+      body:    "Open to data engineering roles, product collaborations, and ambitious problems. Let's connect.",
+      tools:   ['LinkedIn', 'Email', 'GitHub'],
+      target:  '#contact',
+      section: 'Connect',
+    },
+  },
+
   // ── Certifications (02 section) ──────────────────────────────
   // accent : "amber" | "orange" | "blue"
   // featured: true  → wide card in the first column (use for top cert)
