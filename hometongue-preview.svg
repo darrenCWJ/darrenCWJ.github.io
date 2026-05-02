@@ -1,0 +1,118 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 384" width="800" height="384">
+  <defs>
+    <!-- Background gradient: deep navy → violet -->
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0d1629"/>
+      <stop offset="60%" stop-color="#1a1240"/>
+      <stop offset="100%" stop-color="#2d1b8a"/>
+    </linearGradient>
+    <!-- Purple glow behind icon -->
+    <radialGradient id="glow" cx="50%" cy="48%" r="38%">
+      <stop offset="0%" stop-color="#5b47e0" stop-opacity="0.55"/>
+      <stop offset="100%" stop-color="#5b47e0" stop-opacity="0"/>
+    </radialGradient>
+    <!-- Icon shadow -->
+    <filter id="shadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="4" stdDeviation="12" flood-color="#3d28c9" flood-opacity="0.6"/>
+    </filter>
+    <!-- Soft glow filter -->
+    <filter id="softglow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="6" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="384" fill="url(#bg)"/>
+
+  <!-- Subtle grid dots -->
+  <pattern id="dots" x="0" y="0" width="32" height="32" patternUnits="userSpaceOnUse">
+    <circle cx="1" cy="1" r="0.8" fill="rgba(255,255,255,0.04)"/>
+  </pattern>
+  <rect width="800" height="384" fill="url(#dots)"/>
+
+  <!-- Purple radial glow -->
+  <ellipse cx="400" cy="180" rx="280" ry="180" fill="url(#glow)"/>
+
+  <!-- Waveform bars (background, low opacity) -->
+  <g opacity="0.18">
+    <!-- Left wave bars -->
+    <rect x="60"  y="160" width="7" height="64" rx="3.5" fill="#8b7af5"/>
+    <rect x="74"  y="140" width="7" height="104" rx="3.5" fill="#8b7af5"/>
+    <rect x="88"  y="152" width="7" height="80" rx="3.5" fill="#8b7af5"/>
+    <rect x="102" y="168" width="7" height="48" rx="3.5" fill="#8b7af5"/>
+    <rect x="116" y="155" width="7" height="74" rx="3.5" fill="#8b7af5"/>
+    <rect x="130" y="145" width="7" height="94" rx="3.5" fill="#8b7af5"/>
+    <rect x="144" y="162" width="7" height="60" rx="3.5" fill="#8b7af5"/>
+    <!-- Right wave bars -->
+    <rect x="649" y="162" width="7" height="60" rx="3.5" fill="#8b7af5"/>
+    <rect x="663" y="145" width="7" height="94" rx="3.5" fill="#8b7af5"/>
+    <rect x="677" y="155" width="7" height="74" rx="3.5" fill="#8b7af5"/>
+    <rect x="691" y="168" width="7" height="48" rx="3.5" fill="#8b7af5"/>
+    <rect x="705" y="152" width="7" height="80" rx="3.5" fill="#8b7af5"/>
+    <rect x="719" y="140" width="7" height="104" rx="3.5" fill="#8b7af5"/>
+    <rect x="733" y="160" width="7" height="64" rx="3.5" fill="#8b7af5"/>
+  </g>
+
+  <!-- App icon container (rounded square) -->
+  <rect x="348" y="62" width="104" height="104" rx="22" fill="white" filter="url(#shadow)"/>
+  <!-- Globe icon inner (SVG path approximation of Material globe_asia) -->
+  <g transform="translate(400,114)" filter="url(#softglow)">
+    <!-- Globe circle -->
+    <circle r="34" fill="#4e3fdb" stroke="white" stroke-width="0"/>
+    <!-- Meridian vertical -->
+    <ellipse rx="13" ry="34" fill="none" stroke="white" stroke-width="2" opacity="0.9"/>
+    <!-- Meridian horizontal circles -->
+    <ellipse ry="8"  rx="34" fill="none" stroke="white" stroke-width="1.5" opacity="0.7"/>
+    <ellipse ry="18" rx="34" fill="none" stroke="white" stroke-width="1" opacity="0.5"/>
+    <!-- Horizontal equator -->
+    <line x1="-34" y1="0" x2="34" y2="0" stroke="white" stroke-width="1.5" opacity="0.7"/>
+    <!-- Outer ring -->
+    <circle r="34" fill="none" stroke="white" stroke-width="2" opacity="0.9"/>
+  </g>
+
+  <!-- Star sparkle top-right of icon -->
+  <g transform="translate(456,68)" opacity="0.95">
+    <polygon points="0,-8 1.8,-2.5 7,-2 2.5,1.8 4,8 0,4.5 -4,8 -2.5,1.8 -7,-2 -1.8,-2.5" fill="#fbbf24"/>
+  </g>
+  <!-- Smaller sparkle -->
+  <g transform="translate(468,80)" opacity="0.7">
+    <polygon points="0,-4.5 1,-1.5 4,-1 1.5,1 2.2,4.5 0,2.5 -2.2,4.5 -1.5,1 -4,-1 -1,-1.5" fill="#fbbf24"/>
+  </g>
+
+  <!-- App name -->
+  <text x="400" y="200" font-family="'Inter','Segoe UI',sans-serif" font-size="36" font-weight="800"
+        fill="white" text-anchor="middle" letter-spacing="-0.5">HomeTongue</text>
+
+  <!-- Tagline -->
+  <text x="400" y="228" font-family="'Inter','Segoe UI',sans-serif" font-size="14" font-weight="400"
+        fill="rgba(200,193,255,0.85)" text-anchor="middle" letter-spacing="0.2">Master your dialect, naturally.</text>
+
+  <!-- Bottom chips row -->
+  <g transform="translate(400, 265)">
+    <!-- Chip: STT/TTS -->
+    <rect x="-148" y="0" width="88" height="24" rx="12" fill="rgba(91,71,224,0.3)" stroke="rgba(139,122,245,0.5)" stroke-width="1"/>
+    <text x="-104" y="16" font-family="'Inter','Segoe UI',monospace" font-size="10" font-weight="700"
+          fill="rgba(200,193,255,0.9)" text-anchor="middle" letter-spacing="0.8">STT / TTS</text>
+    <!-- Chip: AI TRANSLATE -->
+    <rect x="-48" y="0" width="96" height="24" rx="12" fill="rgba(91,71,224,0.3)" stroke="rgba(139,122,245,0.5)" stroke-width="1"/>
+    <text x="0" y="16" font-family="'Inter','Segoe UI',monospace" font-size="10" font-weight="700"
+          fill="rgba(200,193,255,0.9)" text-anchor="middle" letter-spacing="0.8">AI TRANSLATE</text>
+    <!-- Chip: VERCEL -->
+    <rect x="60" y="0" width="68" height="24" rx="12" fill="rgba(91,71,224,0.3)" stroke="rgba(139,122,245,0.5)" stroke-width="1"/>
+    <text x="94" y="16" font-family="'Inter','Segoe UI',monospace" font-size="10" font-weight="700"
+          fill="rgba(200,193,255,0.9)" text-anchor="middle" letter-spacing="0.8">VERCEL</text>
+  </g>
+
+  <!-- Bottom fade -->
+  <linearGradient id="btmFade" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0%" stop-color="#0d1629" stop-opacity="0"/>
+    <stop offset="100%" stop-color="#0d1629" stop-opacity="0.5"/>
+  </linearGradient>
+  <rect y="300" width="800" height="84" fill="url(#btmFade)"/>
+
+  <!-- HACKATHON badge top-left (subtle) -->
+  <rect x="20" y="18" width="90" height="20" rx="3" fill="rgba(255,86,37,0.15)" stroke="rgba(255,86,37,0.35)" stroke-width="1"/>
+  <text x="65" y="32" font-family="'Inter','Segoe UI',monospace" font-size="9" font-weight="700"
+        fill="rgba(255,140,80,0.9)" text-anchor="middle" letter-spacing="1">HACKATHON</text>
+</svg>

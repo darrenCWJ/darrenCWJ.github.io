@@ -15,6 +15,7 @@ window.PROJECTS = [
     caseStudyUrl: "case-study-tribunal.html",
     tags:         ["PYTHON", "RAGAS", "LLM EVAL"],
     icon:         "gavel",
+    image:        "tribunal-preview.svg",
     accent:       "amber",
   },
 
@@ -27,6 +28,7 @@ window.PROJECTS = [
     caseStudyUrl: null,               // set to "case-study-hometongue.html" when ready
     tags:         ["TYPESCRIPT", "SPEECH AI", "VERCEL"],
     icon:         "translate",
+    image:        "hometongue-preview.svg",
     accent:       "orange",            // "amber" | "orange" | "tertiary"
   },
 
@@ -39,6 +41,7 @@ window.PROJECTS = [
     caseStudyUrl: null,
     tags:         ["TYPESCRIPT", "AI MATCHING", "SINGAPORE"],
     icon:         "work",
+    image:        "hustlesg-preview.svg",
     accent:       "tertiary",
   },
 

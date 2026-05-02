@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html class="dark" lang="en">
 <head>
 <meta charset="utf-8"/>
@@ -136,7 +136,7 @@
   /* Smooth scroll */
   html { scroll-behavior: smooth; }
 
-  /* Subtle ambient glow — pure CSS radial gradients, no filter to avoid compositing issues */
+  /* Subtle ambient glow â€” pure CSS radial gradients, no filter to avoid compositing issues */
   body::before {
     content:''; position:fixed; top:0; right:0; width:60%; height:60%;
     background: radial-gradient(ellipse at top right, rgba(255,191,0,0.04) 0%, transparent 70%);
@@ -186,7 +186,24 @@
   #back-to-top:hover { box-shadow: 0 0 20px rgba(255,191,0,0.5); transform: translateY(-2px); }
   #back-to-top.visible { display: flex; }
 
-  /* Scroll reveal — elements always start visible, just get a subtle lift */
+  /* Scroll reveal â€” elements always start visible, just get a subtle lift */
+  /* Architecture node hover lift */
+  .arch-node {
+    transition: transform 0.32s cubic-bezier(.2,.7,.2,1), filter 0.28s;
+    transform-box: fill-box;
+    transform-origin: center;
+  }
+  /* Typewriter caret */
+  .arch-tw::after {
+    content: 'â–';
+    display: inline-block;
+    margin-left: 1px;
+    color: #fbbc00;
+    animation: arch-blink 0.85s steps(2) infinite;
+  }
+  .arch-tw.done::after { display: none; }
+  @keyframes arch-blink { 50% { opacity: 0; } }
+
   .reveal-target {
     transition: opacity 0.5s ease, transform 0.5s ease;
   }
@@ -204,9 +221,9 @@
 <body class="bg-background text-on-background font-body-md overflow-x-hidden selection:bg-primary-container selection:text-on-primary">
 
 
-<!-- ════════════════════════════════════
+<!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
      TOP NAV
-════════════════════════════════════ -->
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
 <nav class="fixed top-0 w-full z-50 border-b border-amber-500/20 bg-slate-950/60 backdrop-blur-xl h-16 flex justify-between items-center px-8 shadow-[0_4px_20px_rgba(255,191,0,0.05)]">
   <div class="text-xl font-bold text-primary-fixed-dim drop-shadow-[0_0_8px_rgba(255,191,0,0.4)] font-headline-md tracking-tighter uppercase" style="color:#fbbc00">
     DARREN.CWJ
@@ -216,6 +233,7 @@
     <a href="#skills"    class="text-on-surface/60 hover:text-primary-fixed-dim transition-colors duration-200">Skills</a>
     <a href="#projects"  class="text-on-surface/60 hover:text-primary-fixed-dim transition-colors duration-200">Works</a>
     <a href="#timeline"  class="text-on-surface/60 hover:text-primary-fixed-dim transition-colors duration-200">History</a>
+    <a href="#certs"     class="text-on-surface/60 hover:text-primary-fixed-dim transition-colors duration-200">Certs</a>
     <a href="#contact"   class="text-on-surface/60 hover:text-primary-fixed-dim transition-colors duration-200">Connect</a>
   </div>
   <!-- Mobile hamburger placeholder -->
@@ -236,14 +254,15 @@
   <a href="#skills"   onclick="document.getElementById('mobile-menu').classList.add('hidden')" class="block font-label-caps uppercase text-on-surface/70 hover:text-primary-fixed-dim">Skills</a>
   <a href="#projects" onclick="document.getElementById('mobile-menu').classList.add('hidden')" class="block font-label-caps uppercase text-on-surface/70 hover:text-primary-fixed-dim">Works</a>
   <a href="#timeline" onclick="document.getElementById('mobile-menu').classList.add('hidden')" class="block font-label-caps uppercase text-on-surface/70 hover:text-primary-fixed-dim">History</a>
+  <a href="#certs"    onclick="document.getElementById('mobile-menu').classList.add('hidden')" class="block font-label-caps uppercase text-on-surface/70 hover:text-primary-fixed-dim">Certs</a>
   <a href="#contact"  onclick="document.getElementById('mobile-menu').classList.add('hidden')" class="block font-label-caps uppercase text-on-surface/70 hover:text-primary-fixed-dim">Connect</a>
 </div>
 
 <main class="relative z-10">
 
-<!-- ════════════════════════════════════
+<!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
      HERO
-════════════════════════════════════ -->
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
 <section class="min-h-screen flex items-center pt-16 blueprint-grid overflow-hidden">
   <div class="absolute inset-0 bg-gradient-to-b from-transparent via-background/30 to-background pointer-events-none"></div>
   <div class="relative w-full max-w-7xl mx-auto px-margin grid grid-cols-1 md:grid-cols-12 gap-gutter items-center py-xl">
@@ -255,7 +274,7 @@
         <span class="w-2 h-2 rounded-full bg-primary-fixed-dim animate-pulse"></span>
         <span class="font-label-caps text-label-caps uppercase tracking-widest" style="color:#fbbc00"
               data-s="heroStatus">
-          Data Engineer · GovTech Singapore · Open to Opportunities
+          Data Engineer Â· GovTech Singapore Â· Open to Opportunities
         </span>
       </div>
 
@@ -267,11 +286,11 @@
 
       <!-- Sub -->
       <p class="font-body-lg text-body-lg text-on-surface-variant max-w-xl" data-s="heroBio">
-        I build AI systems that bridge raw data pipelines to intelligent, user-facing products —
+        I build AI systems that bridge raw data pipelines to intelligent, user-facing products â€”
         from LLM evaluation frameworks and speech AI to Singapore's next gig platform.
       </p>
 
-      <!-- Credential chips — edit in content.js → heroChips -->
+      <!-- Credential chips â€” edit in content.js â†’ heroChips -->
       <div id="hero-chips" class="flex flex-wrap gap-2 pt-2"></div>
 
       <!-- CTAs -->
@@ -320,7 +339,7 @@
         <div class="glass-card-bright p-6 w-72 space-y-3 relative overflow-hidden" style="border-top-color:rgba(255,191,0,0.4)">
           <div class="scanning-line"></div>
           <div class="font-mono text-[10px] text-on-surface-variant uppercase tracking-widest">system_log // live</div>
-          <!-- Terminal lines — edit in content.js → terminalLines -->
+          <!-- Terminal lines â€” edit in content.js â†’ terminalLines -->
           <div id="terminal-lines" class="space-y-2 font-mono text-xs"></div>
           <div class="flex gap-2 pt-1 font-mono text-xs">
             <span class="w-2 h-2 rounded-full bg-primary-fixed-dim animate-ping self-center"></span>
@@ -332,9 +351,57 @@
   </div>
 </section>
 
-<!-- ════════════════════════════════════
+<!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+     00. PLATFORM ARCHITECTURE (nav layer)
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+<section id="arch" class="py-10 blueprint-grid relative overflow-hidden">
+  <div class="max-w-7xl mx-auto px-margin">
+
+    <div class="text-center mb-6">
+      <span class="font-label-caps text-label-caps uppercase tracking-widest" style="color:#fbbc00">
+        PLATFORM ARCHITECTURE
+      </span>
+      <h2 class="font-headline-xl text-headline-xl text-on-surface mt-2">End-to-End Pipeline</h2>
+      <p class="font-mono text-xs text-on-surface-variant mt-3 tracking-wider opacity-60">
+        [ hover ] inspect &nbsp;&middot;&nbsp; [ click ] navigate
+      </p>
+    </div>
+
+    <div class="flex justify-center">
+      <div class="relative w-full max-w-5xl" id="arch-container" style="-webkit-mask-image:linear-gradient(to bottom,transparent 0%,black 12%,black 88%,transparent 100%),linear-gradient(to right,transparent 0%,black 5%,black 95%,transparent 100%);-webkit-mask-composite:destination-in;mask-image:linear-gradient(to bottom,transparent 0%,black 12%,black 88%,transparent 100%),linear-gradient(to right,transparent 0%,black 5%,black 95%,transparent 100%);mask-composite:intersect">
+        <svg id="arch-svg" viewBox="0 0 960 460"
+             xmlns="http://www.w3.org/2000/svg"
+             class="w-full h-auto"
+             style="max-height:54vh;filter:drop-shadow(0 0 40px rgba(251,188,0,0.07))"></svg>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- arch hover card — lives outside the masked container so position:fixed works correctly -->
+<div id="arch-detail-card"
+     class="fixed pointer-events-none z-50"
+     style="top:0;left:0;opacity:0;transition:opacity 0.2s,transform 0.2s;transform:translateY(8px) scale(0.97)">
+  <div style="background:rgba(4,10,28,0.93);backdrop-filter:blur(20px);border:1px solid rgba(255,191,0,0.18);border-radius:14px;padding:16px 18px;width:272px;box-shadow:0 24px 60px rgba(0,0,14,0.75)">
+    <div id="arch-card-num"
+         style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.12em;color:rgba(255,191,0,0.6);text-transform:uppercase;margin-bottom:6px"></div>
+    <div id="arch-card-title"
+         class="arch-tw"
+         style="font-size:16px;font-weight:700;color:#d9e2ff;margin-bottom:8px;min-height:20px;letter-spacing:-0.01em;line-height:1.25"></div>
+    <div id="arch-card-body"
+         class="arch-tw"
+         style="font-size:12px;line-height:1.65;color:#6a7a98;min-height:40px"></div>
+    <div id="arch-card-tools"
+         style="display:flex;flex-wrap:wrap;gap:4px;margin-top:10px"></div>
+    <div id="arch-card-cta"
+         style="margin-top:10px;font-size:11px;color:#fbbc00;font-weight:500;opacity:0;transition:opacity 0.3s">Click to explore &rarr;</div>
+  </div>
+</div>
+
+<!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
      01. EVOLUTION LOG
-════════════════════════════════════ -->
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
 <section id="systems" class="py-xl border-y border-amber-500/10 bg-surface-container-lowest/40">
   <div class="max-w-7xl mx-auto px-margin">
     <div class="grid grid-cols-1 md:grid-cols-12 gap-gutter items-start">
@@ -357,7 +424,7 @@
       </div>
 
       <div class="md:col-span-7 space-y-md text-on-surface-variant">
-        <!-- Evolution paragraphs — edit in content.js → evolutionParagraphs -->
+        <!-- Evolution paragraphs â€” edit in content.js â†’ evolutionParagraphs -->
         <div id="evolution-bio"></div>
         <div class="grid grid-cols-2 gap-md pt-4 border-t border-amber-500/10">
           <div>
@@ -374,16 +441,184 @@
   </div>
 </section>
 
-<!-- ════════════════════════════════════
+<!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
      02. CAPABILITY MATRIX
-════════════════════════════════════ -->
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+<!-- CERTIFICATIONS SECTION -->
+<section id="certs" class="py-xl border-t border-amber-500/10 bg-surface-container-lowest/40">
+  <div class="max-w-7xl mx-auto px-margin">
+
+    <!-- Header -->
+    <div class="mb-lg flex flex-col md:flex-row md:items-end justify-between gap-md">
+      <div>
+        <span class="font-label-caps text-label-caps uppercase tracking-widest" style="color:#fbbc00">02. VERIFIED_CERTS</span>
+        <h2 class="font-headline-xl text-headline-xl text-on-surface mt-2">Certifications &amp; Credentials</h2>
+        <p class="font-body-lg text-on-surface-variant mt-2 max-w-xl">Verified credentials across data engineering, AI platforms, and product management.</p>
+      </div>
+      <div class="glass-card p-md hidden lg:flex flex-col justify-center flex-shrink-0" style="border-top-color:rgba(255,191,0,0.3)">
+        <div class="font-label-caps text-[10px] uppercase tracking-widest" style="color:#fbbc00">LINKEDIN_VERIFIED</div>
+        <div class="font-headline-md" style="color:#fbbc00;font-size:20px;font-weight:700">10 CREDENTIALS</div>
+      </div>
+    </div>
+
+    <!-- Row 1: Databricks (featured) + Anthropic -->
+    <div class="grid grid-cols-12 gap-gutter mb-gutter">
+
+      <!-- Databricks — featured cert -->
+      <div class="col-span-12 lg:col-span-7 flex flex-col gap-gutter">
+        <div class="flex items-center gap-sm">
+          <span class="material-symbols-outlined" style="color:#fbbc00">verified</span>
+          <h3 class="font-headline-md text-headline-md uppercase tracking-tight">Databricks</h3>
+        </div>
+        <a href="https://credentials.databricks.com/31af5c22-be6a-4b4d-af9a-e93739e84902" target="_blank" rel="noopener"
+           class="glass-card p-md glow-hover transition-all group block flex-1" style="border-top-color:rgba(255,191,0,0.55);text-decoration:none">
+          <div class="flex justify-between items-start mb-sm">
+            <span class="px-2 py-1 text-[9px] font-bold font-mono tracking-widest" style="background:rgba(255,191,0,0.15);border:1px solid rgba(255,191,0,0.45);color:#fbbc00">CERTIFIED · ASSOCIATE</span>
+            <span class="material-symbols-outlined group-hover:scale-110 transition-transform" style="color:#fbbc00;font-size:18px">open_in_new</span>
+          </div>
+          <h4 class="font-bold text-on-surface mt-sm" style="font-size:16px">Databricks Certified Data Engineer Associate</h4>
+          <p class="text-xs text-on-surface-variant font-mono mt-xs">ISSUED APR 2026 · EXPIRES APR 2028</p>
+        </a>
+      </div>
+
+      <!-- Anthropic -->
+      <div class="col-span-12 lg:col-span-5 flex flex-col gap-gutter">
+        <div class="flex items-center gap-sm">
+          <span class="material-symbols-outlined" style="color:#ff5625">smart_toy</span>
+          <h3 class="font-headline-md text-headline-md uppercase tracking-tight">Anthropic</h3>
+        </div>
+        <a href="https://verify.skilljar.com/c/bmcv4abtz9mz" target="_blank" rel="noopener"
+           class="glass-card p-md glow-hover-orange transition-all group block" style="border-top-color:rgba(255,86,37,0.4);text-decoration:none">
+          <div class="flex justify-between items-start">
+            <div>
+              <h4 class="font-bold text-on-surface mb-xs text-sm">Claude Code in Action</h4>
+              <p class="text-xs text-on-surface-variant font-mono">ISSUED MAR 2026</p>
+            </div>
+            <span class="material-symbols-outlined group-hover:scale-110 transition-transform" style="color:rgba(255,86,37,0.6);font-size:16px">open_in_new</span>
+          </div>
+        </a>
+        <a href="https://verify.skilljar.com/c/aunkrafx24xw" target="_blank" rel="noopener"
+           class="glass-card p-md glow-hover-orange transition-all group block" style="border-top-color:rgba(255,86,37,0.25);text-decoration:none">
+          <div class="flex justify-between items-start">
+            <div>
+              <h4 class="font-bold text-on-surface mb-xs text-sm">Claude 101</h4>
+              <p class="text-xs text-on-surface-variant font-mono">ISSUED FEB 2026</p>
+            </div>
+            <span class="material-symbols-outlined group-hover:scale-110 transition-transform" style="color:rgba(255,86,37,0.6);font-size:16px">open_in_new</span>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <!-- Row 2: Workato + NUS -->
+    <div class="grid grid-cols-12 gap-gutter mb-gutter">
+
+      <!-- Workato -->
+      <div class="col-span-12 lg:col-span-6 flex flex-col gap-gutter">
+        <div class="flex items-center gap-sm">
+          <span class="material-symbols-outlined" style="color:#ff5625">integration_instructions</span>
+          <h3 class="font-headline-md text-headline-md uppercase tracking-tight">Workato</h3>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-gutter">
+          <a href="https://verify.skilljar.com/c/7hwkov8pha45" target="_blank" rel="noopener"
+             class="glass-card p-md glow-hover-orange transition-all group block" style="border-top-color:rgba(255,86,37,0.4);text-decoration:none">
+            <div class="flex justify-between items-start mb-sm">
+              <span class="px-2 py-1 text-[9px] font-bold font-mono tracking-widest" style="background:rgba(255,86,37,0.1);border:1px solid rgba(255,86,37,0.35);color:#ff5625">LEVEL 2</span>
+              <span class="material-symbols-outlined group-hover:scale-110 transition-transform" style="color:rgba(255,86,37,0.5);font-size:16px">open_in_new</span>
+            </div>
+            <h4 class="font-bold text-on-surface mb-xs text-sm">Workato Foundations Level 2</h4>
+            <p class="text-xs text-on-surface-variant font-mono">FEB 2026 · EXP FEB 2028</p>
+          </a>
+          <a href="https://verify.skilljar.com/c/vd3oj9s522eo" target="_blank" rel="noopener"
+             class="glass-card p-md glow-hover-orange transition-all group block" style="border-top-color:rgba(255,86,37,0.25);text-decoration:none">
+            <div class="flex justify-between items-start mb-sm">
+              <span class="px-2 py-1 text-[9px] font-bold font-mono tracking-widest" style="background:rgba(255,86,37,0.1);border:1px solid rgba(255,86,37,0.25);color:#ff5625">LEVEL 1</span>
+              <span class="material-symbols-outlined group-hover:scale-110 transition-transform" style="color:rgba(255,86,37,0.5);font-size:16px">open_in_new</span>
+            </div>
+            <h4 class="font-bold text-on-surface mb-xs text-sm">Workato Foundations Level 1</h4>
+            <p class="text-xs text-on-surface-variant font-mono">DEC 2025 · EXP DEC 2027</p>
+          </a>
+        </div>
+      </div>
+
+      <!-- NUS -->
+      <div class="col-span-12 lg:col-span-6 flex flex-col gap-gutter">
+        <div class="flex items-center gap-sm">
+          <span class="material-symbols-outlined" style="color:#dbe6ff">school</span>
+          <h3 class="font-headline-md text-headline-md uppercase tracking-tight">National University of Singapore</h3>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-gutter">
+          <a href="https://credentials.nus.edu.sg/b07afa1b-207a-426c-9e59-023abeb06766" target="_blank" rel="noopener"
+             class="glass-card p-md glow-hover transition-all group block" style="border-top-color:rgba(219,230,255,0.3);text-decoration:none">
+            <div class="flex justify-between items-start mb-sm">
+              <span class="material-symbols-outlined" style="color:rgba(219,230,255,0.5);font-size:20px">deployed_code</span>
+              <span class="material-symbols-outlined group-hover:scale-110 transition-transform" style="color:rgba(219,230,255,0.4);font-size:16px">open_in_new</span>
+            </div>
+            <h4 class="font-bold text-on-surface mb-xs text-sm">Containers for Deploying &amp; Scaling Apps</h4>
+            <p class="text-xs text-on-surface-variant font-mono">DEC 2025</p>
+          </a>
+          <a href="https://credentials.nus.edu.sg/4d27897d-3090-4781-ad5d-7de69a7dd3b6" target="_blank" rel="noopener"
+             class="glass-card p-md glow-hover transition-all group block" style="border-top-color:rgba(219,230,255,0.3);text-decoration:none">
+            <div class="flex justify-between items-start mb-sm">
+              <span class="material-symbols-outlined" style="color:rgba(219,230,255,0.5);font-size:20px">inventory_2</span>
+              <span class="material-symbols-outlined group-hover:scale-110 transition-transform" style="color:rgba(219,230,255,0.4);font-size:16px">open_in_new</span>
+            </div>
+            <h4 class="font-bold text-on-surface mb-xs text-sm">Managing Digital Products</h4>
+            <p class="text-xs text-on-surface-variant font-mono">OCT 2025</p>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Row 3: GovTech + Emeritus + Coursera -->
+    <div class="grid grid-cols-12 gap-gutter">
+      <div class="col-span-12 flex items-center gap-sm mb-xs">
+        <span class="material-symbols-outlined text-sm" style="color:rgba(212,197,171,0.5);font-size:16px">workspace_premium</span>
+        <span class="font-label-caps text-[10px] uppercase tracking-widest text-on-surface-variant">Earlier Credentials</span>
+      </div>
+
+      <a href="https://stg.trustdocs.gov.sg/li?src=transient-storage-stg.oa.gov.sg/govtech/abc-coc/91f102e4-9f93-4a5d-9e5c-52929e9edb2c&amp;key=eef62f63b789756a88d9e2cfadc75a7a8ca3ef57358efffe03e0fff6a771e326" target="_blank" rel="noopener"
+         class="col-span-12 md:col-span-4 glass-card p-md glow-hover transition-all group block" style="border-top-color:rgba(219,230,255,0.2);text-decoration:none">
+        <div class="flex justify-between items-start mb-sm">
+          <span class="px-2 py-1 text-[9px] font-bold font-mono tracking-widest" style="background:rgba(219,230,255,0.07);border:1px solid rgba(219,230,255,0.2);color:rgba(219,230,255,0.7)">GOVTECH SG</span>
+          <span class="material-symbols-outlined group-hover:scale-110 transition-transform" style="color:rgba(219,230,255,0.4);font-size:16px">open_in_new</span>
+        </div>
+        <h4 class="font-bold text-on-surface mb-xs text-sm">AI Champions Bootcamp</h4>
+        <p class="text-xs text-on-surface-variant font-mono">DEC 2024</p>
+      </a>
+
+      <a href="https://certificates.emeritus.org/248c7de9-44d8-4489-94f2-483054bd4efc" target="_blank" rel="noopener"
+         class="col-span-12 md:col-span-4 glass-card p-md glow-hover transition-all group block" style="border-top-color:rgba(219,230,255,0.2);text-decoration:none">
+        <div class="flex justify-between items-start mb-sm">
+          <span class="px-2 py-1 text-[9px] font-bold font-mono tracking-widest" style="background:rgba(219,230,255,0.07);border:1px solid rgba(219,230,255,0.2);color:rgba(219,230,255,0.7)">EMERITUS · ICL</span>
+          <span class="material-symbols-outlined group-hover:scale-110 transition-transform" style="color:rgba(219,230,255,0.4);font-size:16px">open_in_new</span>
+        </div>
+        <h4 class="font-bold text-on-surface mb-xs text-sm">Professional Certificate in Machine Learning &amp; AI</h4>
+        <p class="text-xs text-on-surface-variant font-mono">DEC 2022</p>
+      </a>
+
+      <a href="https://www.coursera.org/account/accomplishments/certificate/N848HQ4M6955" target="_blank" rel="noopener"
+         class="col-span-12 md:col-span-4 glass-card p-md glow-hover transition-all group block" style="border-top-color:rgba(219,230,255,0.2);text-decoration:none">
+        <div class="flex justify-between items-start mb-sm">
+          <span class="px-2 py-1 text-[9px] font-bold font-mono tracking-widest" style="background:rgba(219,230,255,0.07);border:1px solid rgba(219,230,255,0.2);color:rgba(219,230,255,0.7)">COURSERA</span>
+          <span class="material-symbols-outlined group-hover:scale-110 transition-transform" style="color:rgba(219,230,255,0.4);font-size:16px">open_in_new</span>
+        </div>
+        <h4 class="font-bold text-on-surface mb-xs text-sm">Econometrics: Methods &amp; Applications</h4>
+        <p class="text-xs text-on-surface-variant font-mono">AUG 2020</p>
+      </a>
+    </div>
+
+  </div>
+</section>
+
+
 <section id="skills" class="py-xl">
   <div class="max-w-7xl mx-auto px-margin">
 
     <!-- Header -->
     <div class="mb-lg flex flex-col md:flex-row md:items-end justify-between gap-md">
       <div>
-        <span class="font-label-caps text-label-caps uppercase tracking-widest" style="color:#fbbc00">02. CAPABILITY_MATRIX</span>
+        <span class="font-label-caps text-label-caps uppercase tracking-widest" style="color:#fbbc00">03. CAPABILITY_MATRIX</span>
         <h2 class="font-headline-xl text-headline-xl text-on-surface mt-2">SKILL_MATRIX_V4.0</h2>
         <p class="font-body-lg text-on-surface-variant mt-2 max-w-xl">A multi-dimensional mapping of engineering competencies, algorithmic depth, and product delivery.</p>
       </div>
@@ -396,7 +631,7 @@
     <!-- 3-column skill grid -->
     <div class="grid grid-cols-12 gap-gutter">
 
-      <!-- ── Column 1: Data Engineering ── -->
+      <!-- â”€â”€ Column 1: Data Engineering â”€â”€ -->
       <div class="col-span-12 lg:col-span-4 flex flex-col gap-gutter">
         <div class="flex items-center gap-sm">
           <span class="material-symbols-outlined" style="color:#fbbc00">database</span>
@@ -438,7 +673,7 @@
         </div>
       </div>
 
-      <!-- ── Column 2: AI / LLM Systems (centre highlight) ── -->
+      <!-- â”€â”€ Column 2: AI / LLM Systems (centre highlight) â”€â”€ -->
       <div class="col-span-12 lg:col-span-4 flex flex-col gap-gutter">
         <div class="flex items-center gap-sm">
           <span class="material-symbols-outlined text-secondary-container">neurology</span>
@@ -449,7 +684,7 @@
             <h4 class="font-bold text-on-surface">Cognitive Engine</h4>
             <span class="px-2 py-1 text-[10px] font-bold text-secondary-container" style="background:rgba(255,86,37,0.1);border:1px solid rgba(255,86,37,0.3)">LEVEL_ELITE</span>
           </div>
-          <!-- Dynamic SVG radar — polygon vertices driven by skill percentages below -->
+          <!-- Dynamic SVG radar â€” polygon vertices driven by skill percentages below -->
           <div class="flex-1 flex items-center justify-center py-md">
             <svg id="cognitive-radar" width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"></svg>
           </div>
@@ -458,7 +693,7 @@
         </div>
       </div>
 
-      <!-- ── Column 3: Product & Speech Engineering ── -->
+      <!-- â”€â”€ Column 3: Product & Speech Engineering â”€â”€ -->
       <div class="col-span-12 lg:col-span-4 flex flex-col gap-gutter">
         <div class="flex items-center gap-sm">
           <span class="material-symbols-outlined" style="color:#dbe6ff">terminal</span>
@@ -503,14 +738,14 @@
   </div>
 </section>
 
-<!-- ════════════════════════════════════
+<!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
      03. ACTIVE DEPLOYMENTS (Projects)
-════════════════════════════════════ -->
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
 <section id="projects" class="py-xl border-t border-amber-500/10 bg-surface-container-lowest/30">
   <div class="max-w-7xl mx-auto px-margin">
     <div class="mb-lg flex justify-between items-end">
       <div>
-        <span class="font-label-caps text-label-caps uppercase tracking-widest" style="color:#fbbc00">03. ACTIVE_DEPLOYMENTS</span>
+        <span class="font-label-caps text-label-caps uppercase tracking-widest" style="color:#fbbc00">04. ACTIVE_DEPLOYMENTS</span>
         <h2 class="font-headline-xl text-headline-xl text-on-surface mt-2">Selected Works</h2>
       </div>
     </div>
@@ -529,29 +764,29 @@
   </div>
 </section>
 
-<!-- ════════════════════════════════════
+<!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
      04. TEMPORAL LOGS (Timeline)
-════════════════════════════════════ -->
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
 <section id="timeline" class="py-xl blueprint-grid border-t border-amber-500/10">
   <div class="max-w-7xl mx-auto px-margin">
     <div class="text-center mb-xl">
-      <span class="font-label-caps text-label-caps uppercase tracking-widest" style="color:#fbbc00">04. TEMPORAL_LOGS</span>
+      <span class="font-label-caps text-label-caps uppercase tracking-widest" style="color:#fbbc00">05. TEMPORAL_LOGS</span>
       <h2 class="font-headline-xl text-headline-xl text-on-surface mt-2">The Evolution Path</h2>
     </div>
 
-    <!-- Timeline rendered from content.js → timeline -->
+    <!-- Timeline rendered from content.js â†’ timeline -->
     <div id="timeline-items" class="space-y-sm max-w-4xl mx-auto"></div>
   </div>
 </section>
 
-<!-- ════════════════════════════════════
+<!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
      05. CURRENTLY PROCESSING (Learning)
-════════════════════════════════════ -->
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
 <section class="py-xl bg-surface-container-lowest/40 border-t border-amber-500/10">
   <div class="max-w-7xl mx-auto px-margin">
     <div class="flex items-center justify-between mb-lg flex-wrap gap-md">
       <div>
-        <span class="font-label-caps text-label-caps uppercase tracking-widest" style="color:#fbbc00">05. CURRENTLY_PROCESSING</span>
+        <span class="font-label-caps text-label-caps uppercase tracking-widest" style="color:#fbbc00">06. CURRENTLY_PROCESSING</span>
         <h2 class="font-headline-xl text-headline-xl text-on-surface mt-2">Active Learning</h2>
       </div>
       <div class="flex items-center gap-2">
@@ -560,19 +795,20 @@
       </div>
     </div>
 
-    <!-- Learning cards rendered from content.js → currentlyProcessing -->
+    <!-- Learning cards rendered from content.js â†’ currentlyProcessing -->
     <div id="learning-cards" class="grid grid-cols-1 md:grid-cols-3 gap-gutter"></div>
   </div>
 </section>
 
-<!-- ════════════════════════════════════
+<!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
      06. CONTACT / CTA
-════════════════════════════════════ -->
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+<!-- CONTACT SECTION -->
 <section id="contact" class="py-xl border-t border-amber-500/10" style="background:#070f20;position:relative;z-index:20">
   <div class="max-w-7xl mx-auto px-margin text-center">
     <div class="max-w-3xl mx-auto" style="display:flex;flex-direction:column;gap:24px;align-items:center">
       <span class="material-symbols-outlined text-5xl animate-pulse" style="color:#fbbc00;display:block;font-size:56px">terminal</span>
-      <span class="font-label-caps uppercase tracking-widest" style="color:#fbbc00;font-size:12px;letter-spacing:0.1em;font-weight:600">06. OPEN_PROTOCOL</span>
+      <span class="font-label-caps uppercase tracking-widest" style="color:#fbbc00;font-size:12px;letter-spacing:0.1em;font-weight:600">07. OPEN_PROTOCOL</span>
       <h2 class="font-headline-xl" style="color:#d9e2ff;font-size:clamp(32px,5vw,48px);font-weight:700;line-height:1.1;letter-spacing:-0.02em">
         Let's Build the<br/><span style="color:#ff5625">Next System</span>
       </h2>
@@ -618,13 +854,13 @@
   <span class="material-symbols-outlined" style="font-size:20px">arrow_upward</span>
 </button>
 
-<!-- ════════════════════════════════════
+<!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
      FOOTER
-════════════════════════════════════ -->
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
 <footer class="bg-slate-950 border-t border-amber-500/20 py-6 px-8">
   <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4 font-mono text-[10px] uppercase tracking-widest">
-    <div class="font-bold" style="color:#fbbc00">DARREN.CWJ // DATA ENGINEER · AI BUILDER</div>
-    <div class="text-slate-500">© <span data-s="footerYear">2026</span> · Singapore · Always Learning, Always Improving</div>
+    <div class="font-bold" style="color:#fbbc00">DARREN.CWJ // DATA ENGINEER Â· AI BUILDER</div>
+    <div class="text-slate-500">Â© <span data-s="footerYear">2026</span> Â· Singapore Â· Always Learning, Always Improving</div>
     <div class="flex gap-6">
       <a href="https://github.com/darrenCWJ"                              target="_blank" data-s-href="githubHref"   class="text-slate-500 hover:text-amber-300 transition-colors">GitHub</a>
       <a href="https://www.linkedin.com/in/darren-chua-265879b1/"         target="_blank" data-s-href="linkedinHref" class="text-slate-500 hover:text-amber-300 transition-colors">LinkedIn</a>
@@ -637,7 +873,7 @@
   </div>
 </footer>
 
-<!-- Sparkline bar charts. Edit values in content.js → sparklines -->
+<!-- Sparkline bar charts. Edit values in content.js â†’ sparklines -->
 <script>
 (function () {
   var sl = window.SITE && window.SITE.sparklines;
@@ -661,7 +897,7 @@
 })();
 </script>
 
-<!-- Cognitive Engine — dynamic SVG radar. Edit skills in content.js → cognitiveSkills -->
+<!-- Cognitive Engine â€” dynamic SVG radar. Edit skills in content.js â†’ cognitiveSkills -->
 <script>
 (function () {
   // Read from content.js; fall back to defaults so the page never breaks
@@ -782,12 +1018,12 @@
   }
 </script>
 
-<!-- ── Dynamic renderers — all driven by content.js and projects.js ── -->
+<!-- â”€â”€ Dynamic renderers â€” all driven by content.js and projects.js â”€â”€ -->
 <script>
 (function () {
   var S = window.SITE || {};
 
-  // ── Hero chips ────────────────────────────────────────────────
+  // â”€â”€ Hero chips â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   var chipsEl = document.getElementById('hero-chips');
   if (chipsEl && S.heroChips) {
     chipsEl.innerHTML = S.heroChips.map(function (c) {
@@ -795,15 +1031,15 @@
     }).join('');
   }
 
-  // ── Terminal lines ────────────────────────────────────────────
+  // â”€â”€ Terminal lines â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   var termEl = document.getElementById('terminal-lines');
   if (termEl && S.terminalLines) {
     termEl.innerHTML = S.terminalLines.map(function (l) {
-      return '<div class="flex gap-2"><span style="color:#fbbc00">›</span><span class="text-on-surface">' + l.key + ': ' + l.value + '</span></div>';
+      return '<div class="flex gap-2"><span style="color:#fbbc00">â€º</span><span class="text-on-surface">' + l.key + ': ' + l.value + '</span></div>';
     }).join('');
   }
 
-  // ── Evolution bio paragraphs ──────────────────────────────────
+  // â”€â”€ Evolution bio paragraphs â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   var evoEl = document.getElementById('evolution-bio');
   if (evoEl && S.evolutionParagraphs) {
     evoEl.innerHTML = S.evolutionParagraphs.map(function (p, i) {
@@ -812,7 +1048,7 @@
     }).join('');
   }
 
-  // ── Timeline ──────────────────────────────────────────────────
+  // â”€â”€ Timeline â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   var tlEl = document.getElementById('timeline-items');
   if (tlEl && S.timeline) {
     var TL_STYLES = {
@@ -847,7 +1083,7 @@
     }).join('');
   }
 
-  // ── Currently Processing (learning cards) ─────────────────────
+  // â”€â”€ Currently Processing (learning cards) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   var lcEl = document.getElementById('learning-cards');
   if (lcEl && S.currentlyProcessing) {
     var LC_STYLES = {
@@ -872,7 +1108,7 @@
     }).join('');
   }
 
-  // ── Projects ──────────────────────────────────────────────────
+  // â”€â”€ Projects â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   var pgEl = document.getElementById('projects-grid');
   if (pgEl && window.PROJECTS) {
     var PROJ_STYLES = {
@@ -890,9 +1126,12 @@
       var caseStudy = p.caseStudyUrl
         ? '<div class="flex items-center gap-2 pt-3"><a href="' + p.caseStudyUrl + '" class="flex items-center gap-1 px-3 py-1 font-label-caps text-[10px] uppercase font-bold transition-all hover:shadow-[0_0_14px_rgba(219,230,255,0.3)]" style="background:rgba(219,230,255,0.08);border:1px solid rgba(219,230,255,0.2);color:#dbe6ff"><span class="material-symbols-outlined text-[13px]">article</span> Read Case Study</a></div>'
         : '';
+      var headerInner = p.image
+        ? '<img src="' + p.image + '" alt="' + p.title + ' preview" class="w-full h-full object-cover object-center" />'
+        : '<span class="material-symbols-outlined text-7xl ' + st.iconClass + '" style="' + st.iconStyle + '">' + p.icon + '</span>';
       return '<div class="project-card group relative overflow-hidden glass-card ' + st.glow + ' transition-all" style="border-top-color:' + st.border + '">'
         + '<div class="relative h-48 overflow-hidden bg-surface-container-high flex items-center justify-center">'
-        + '<span class="material-symbols-outlined text-7xl ' + st.iconClass + '" style="' + st.iconStyle + '">' + p.icon + '</span>'
+        + headerInner
         + '<div class="absolute inset-0 bg-gradient-to-t from-surface-container to-transparent"></div>'
         + '<div class="absolute top-3 left-3"><span class="font-mono text-[10px] bg-surface-container/80 px-2 py-1 ' + dateClass + '"' + dateStyle + '>' + p.date + '</span></div>'
         + '<div class="absolute top-3 right-3"><a href="' + p.githubUrl + '" target="_blank" class="material-symbols-outlined text-on-surface/50 ' + st.ghHover + ' transition-colors text-[20px]">open_in_new</a></div>'
@@ -909,6 +1148,465 @@
 })();
 </script>
 
+<!-- Architecture diagram -->
+<script>
+(function buildArch() {
+  'use strict';
+  var svg = document.getElementById('arch-svg');
+  if (!svg) return;
+
+  var NS   = 'http://www.w3.org/2000/svg';
+  var XLNS = 'http://www.w3.org/1999/xlink';
+
+  // ── node definitions — diagonal flow NE-SW ─────────────────────────
+  var nodes = [
+    { id:'src',    cx:800, cy:75,  hw:70, hh:24, depth:20, col:'#dbe6ff',
+      label:'DATA_SOURCES', title:'Where the journey started',
+      body:'GovTech Singapore\'s operational systems, IoT sensors, and public datasets — the real-world signals that shaped the engineering approach.',
+      tools:['GovTech SG','IoT','Public APIs'], target:'#systems', section:'Evolution Log' },
+    { id:'ingest', cx:570, cy:165, hw:62, hh:21, depth:18, col:'#fbbc00',
+      label:'INGEST', title:'The technical toolkit',
+      body:'Python, PySpark, SQL, and streaming pipelines — the full capability matrix powering the data layer.',
+      tools:['Python','PySpark','Kafka'], target:'#certs', section:'Verified Certs' },
+    { id:'ai',     cx:760, cy:205, hw:62, hh:21, depth:18, col:'#ff5625',
+      label:'AI_ENGINE', title:'AI built on solid data',
+      body:'LLM evaluation, RAG pipelines, and agentic systems — AI capabilities grounded in production-grade data engineering.',
+      tools:['LLMs','RAG','Agents'], target:'#skills', section:'Skill Matrix' },
+    { id:'lake',   cx:530, cy:285, hw:72, hh:24, depth:28, col:'#fbbc00',
+      label:'LAKEHOUSE', title:'From pipelines to products',
+      body:'Multi-terabyte Databricks workloads, bronze-to-gold pipelines, and the evolution from ETL to intelligence.',
+      tools:['Databricks','Delta Lake','PySpark'], target:'#projects', section:'Selected Works' },
+    { id:'prod',   cx:330, cy:360, hw:62, hh:21, depth:18, col:'#ff5625',
+      label:'PRODUCTS', title:'Shipped and deployed',
+      body:'LLM evaluation frameworks, facilities management systems, and more — real products built for real users.',
+      tools:['View Works','GitHub','Live'], target:'#projects', section:'Selected Works' },
+    { id:'hist',   cx:170, cy:408, hw:60, hh:18, depth:15, col:'#dbe6ff',
+      label:'TIMELINE', title:'Every step documented',
+      body:'From data engineer to AI builder — each role, milestone, and pivot that shaped the platform.',
+      tools:['GovTech SG','UoL','Imperial'], target:'#timeline', section:'Temporal Logs' },
+    { id:'con',    cx:430, cy:408, hw:60, hh:18, depth:15, col:'#fbbc00',
+      label:'CONTACT', title:'Let\'s build something',
+      body:'Open to data engineering roles, product collaborations, and ambitious problems. Let\'s connect.',
+      tools:['LinkedIn','Email','GitHub'], target:'#contact', section:'Connect' },
+  ];
+
+  // ── edges — vertices matched to warehouse box (hw=72,hh=24) ────────
+  var edges = [
+    { col:'#dbe6ff', pts:[[730,75],[570,75],[570,144]]            },
+    { col:'#dbe6ff', pts:[[800,99],[800,150],[760,150],[760,184]] },
+    { col:'#fbbc00', pts:[[570,186],[570,261],[530,261]]          },
+    { col:'#ff5625', pts:[[698,205],[602,205],[602,285]]          },
+    { col:'#fbbc00', pts:[[458,285],[330,285],[330,339]]          },
+    { col:'#ff5625', pts:[[268,360],[170,360],[170,390]]          },
+    { col:'#ff5625', pts:[[392,360],[430,360],[430,390]]          },
+  ];
+
+  // ── face-gradient lookup ────────────────────────────────────────────
+  var FACE_GRADS = {
+    '#fbbc00': { top:'url(#ft-amber)',  lft:'url(#fl-amber)',  rgt:'url(#fr-amber)',  sk:'rgba(251,188,0,0.8)' },
+    '#ff5625': { top:'url(#ft-orange)', lft:'url(#fl-orange)', rgt:'url(#fr-orange)', sk:'rgba(255,86,37,0.8)' },
+    '#dbe6ff': { top:'url(#ft-blue)',   lft:'url(#fl-blue)',   rgt:'url(#fr-blue)',   sk:'rgba(219,230,255,0.8)' },
+  };
+  function fg(col) {
+    return FACE_GRADS[col] || { top:rgba(col,0.12), lft:rgba(col,0.08), rgt:rgba(col,0.05), sk:rgba(col,0.6) };
+  }
+
+  // ── helpers ─────────────────────────────────────────────────────────
+  function mk(tag, a) {
+    var e = document.createElementNS(NS, tag);
+    if (a) { var keys=Object.keys(a); for(var i=0;i<keys.length;i++) e.setAttribute(keys[i], a[keys[i]]); }
+    return e;
+  }
+  function rgba(hex, al) {
+    var r=parseInt(hex.slice(1,3),16), g=parseInt(hex.slice(3,5),16), b=parseInt(hex.slice(5,7),16);
+    return 'rgba('+r+','+g+','+b+','+al+')';
+  }
+
+  // ── defs ─────────────────────────────────────────────────────────────
+  var defs = mk('defs');
+
+  function addFilter(id, std) {
+    var f = mk('filter', {id:id, x:'-80%', y:'-80%', width:'260%', height:'260%'});
+    var blur = mk('feGaussianBlur', {'in':'SourceGraphic', stdDeviation:String(std), result:'blur'});
+    var fm = mk('feMerge');
+    [mk('feMergeNode',{'in':'blur'}), mk('feMergeNode',{'in':'SourceGraphic'})].forEach(function(n){fm.appendChild(n);});
+    f.appendChild(blur); f.appendChild(fm); defs.appendChild(f);
+  }
+  addFilter('ng', 5);
+  addFilter('sg', 12);
+
+  var bg = mk('radialGradient', {id:'bgrad', cx:'50%', cy:'46%', r:'58%'});
+  [{o:'0%',c:'rgba(8,18,48,0.98)'},{o:'100%',c:'rgba(3,9,26,1)'}].forEach(function(x){
+    var s=mk('stop',{offset:x.o}); s.setAttribute('stop-color',x.c); bg.appendChild(s);
+  });
+  defs.appendChild(bg);
+
+  // Per-color face gradients
+  function addLG(id, x1, y1, x2, y2, stops) {
+    var g = mk('linearGradient', {id:id, x1:String(x1), y1:String(y1), x2:String(x2), y2:String(y2)});
+    stops.forEach(function(s){ var el=mk('stop',{offset:s[0]}); el.setAttribute('stop-color',s[1]); g.appendChild(el); });
+    defs.appendChild(g);
+  }
+  addLG('ft-amber',  0,0,1,1, [['0%','#fff8d6'],  ['100%','#fbdc60']]);
+  addLG('fl-amber',  0,0,0,1, [['0%','#fbbc00'],  ['100%','#6b4d00']]);
+  addLG('fr-amber',  0,0,0,1, [['0%','#b08800'],  ['100%','#2e2000']]);
+  addLG('ft-orange', 0,0,1,1, [['0%','#ffddd0'],  ['100%','#ff7755']]);
+  addLG('fl-orange', 0,0,0,1, [['0%','#ff5625'],  ['100%','#6a1400']]);
+  addLG('fr-orange', 0,0,0,1, [['0%','#bb3010'],  ['100%','#200500']]);
+  addLG('ft-blue',   0,0,1,1, [['0%','#ffffff'],  ['100%','#dbe6ff']]);
+  addLG('fl-blue',   0,0,0,1, [['0%','#dbe6ff'],  ['100%','#5068a8']]);
+  addLG('fr-blue',   0,0,0,1, [['0%','#8898d8'],  ['100%','#1c2860']]);
+
+  // Zone hover glow
+  var zg = mk('radialGradient', {id:'zoneGlow', cx:'0.5', cy:'0.5', r:'0.5'});
+  [[0,'rgba(255,191,0,0.5)'],[100,'rgba(255,191,0,0)']].forEach(function(p){
+    var s=mk('stop',{offset:p[0]+'%'}); s.setAttribute('stop-color',p[1]); zg.appendChild(s);
+  });
+  defs.appendChild(zg);
+
+  svg.appendChild(defs);
+
+  // ── circuit edges ──────────────────────────────────────────────────
+  var eGrp = mk('g');
+  edges.forEach(function(edge, i) {
+    var col=edge.col, pts=edge.pts;
+    var ptStr = pts.map(function(p){return p[0]+','+p[1];}).join(' ');
+    eGrp.appendChild(mk('polyline', {points:ptStr, fill:'none',
+      stroke:rgba(col,0.14), 'stroke-width':'7',
+      'stroke-linecap':'round', 'stroke-linejoin':'round'}));
+    eGrp.appendChild(mk('polyline', {points:ptStr, fill:'none',
+      stroke:rgba(col,0.55), 'stroke-width':'1.5',
+      'stroke-linecap':'round', 'stroke-linejoin':'round', 'stroke-dasharray':'4 6'}));
+    pts.slice(1, pts.length-1).forEach(function(p) {
+      eGrp.appendChild(mk('circle', {cx:p[0],cy:p[1],r:'5',fill:col,opacity:'0.9',filter:'url(#ng)'}));
+    });
+    var pid = 'ep'+i;
+    var d = 'M'+pts[0][0]+','+pts[0][1];
+    pts.slice(1).forEach(function(p){ d += ' L'+p[0]+','+p[1]; });
+    defs.appendChild(mk('path',{id:pid,d:d}));
+    var dot = mk('circle',{r:'4.5',fill:col,opacity:'0.95',filter:'url(#ng)'});
+    var am  = mk('animateMotion',{dur:'2.8s',begin:(i*0.4)+'s',repeatCount:'indefinite'});
+    var mp  = mk('mpath');
+    mp.setAttribute('href','#'+pid);
+    mp.setAttributeNS(XLNS,'xlink:href','#'+pid);
+    am.appendChild(mp); dot.appendChild(am);
+    eGrp.appendChild(dot);
+  });
+  svg.appendChild(eGrp);
+
+  // ── hover card / typewriter system ─────────────────────────────────
+  var card      = document.getElementById('arch-detail-card');
+  var cardNum   = document.getElementById('arch-card-num');
+  var cardTitle = document.getElementById('arch-card-title');
+  var cardBody  = document.getElementById('arch-card-body');
+  var cardTools = document.getElementById('arch-card-tools');
+  var cardCta   = document.getElementById('arch-card-cta');
+  var twTimers  = [];
+
+  function clearTw() {
+    twTimers.forEach(function(t){ clearInterval(t); clearTimeout(t); });
+    twTimers = [];
+  }
+
+  function typewrite(el, text, speed, onDone) {
+    el.textContent = '';
+    el.classList.remove('done');
+    var i = 0;
+    var t = setInterval(function() {
+      i++;
+      el.textContent = text.slice(0, i);
+      if (i >= text.length) {
+        clearInterval(t);
+        twTimers = twTimers.filter(function(x){ return x!==t; });
+        el.classList.add('done');
+        if (onDone) onDone();
+      }
+    }, speed);
+    twTimers.push(t);
+  }
+
+  function posCard(evt) {
+    var x=evt.clientX+22, y=evt.clientY+22, w=280, h=230;
+    if (x+w > window.innerWidth-16)  x = evt.clientX-w-22;
+    if (y+h > window.innerHeight-16) y = evt.clientY-h-22;
+    if (y < 8) y = 8;
+    card.style.left = x+'px';
+    card.style.top  = y+'px';
+  }
+
+  function showCard(evt, n) {
+    clearTw();
+    cardNum.textContent   = n.label;
+    cardTitle.textContent = '';
+    cardTitle.classList.remove('done');
+    cardBody.textContent  = '';
+    cardBody.classList.remove('done');
+    cardTools.innerHTML   = '';
+    cardCta.style.opacity = '0';
+    posCard(evt);
+    card.style.opacity   = '1';
+    card.style.transform = 'translateY(0) scale(1)';
+
+    typewrite(cardTitle, n.title, 22, function() {
+      typewrite(cardBody, n.body, 9, function() {
+        (n.tools||[]).forEach(function(t) {
+          var chip = document.createElement('span');
+          chip.style.cssText = 'font-size:10px;letter-spacing:0.04em;background:rgba(255,191,0,0.08);color:rgba(255,191,0,0.82);padding:3px 8px;border-radius:4px;font-weight:500;border:1px solid rgba(255,191,0,0.18)';
+          chip.textContent = t;
+          cardTools.appendChild(chip);
+        });
+        cardCta.innerHTML = n.section
+          ? 'Go to <span style="text-decoration:underline;text-underline-offset:2px">' + n.section + '</span> &rarr;'
+          : 'Click to explore &rarr;';
+        var d = setTimeout(function(){ cardCta.style.opacity='1'; }, 80);
+        twTimers.push(d);
+      });
+    });
+  }
+
+  function hideCard() {
+    clearTw();
+    card.style.opacity   = '0';
+    card.style.transform = 'translateY(8px) scale(0.97)';
+  }
+
+  // ── node rendering ─────────────────────────────────────────────────
+  var nGrp = mk('g');
+  nodes.forEach(function(n) {
+    var g = mk('g', {'class':'arch-node', style:'cursor:pointer'});
+    var cx=n.cx, cy=n.cy, hw=n.hw, hh=n.hh, depth=n.depth, col=n.col, id=n.id;
+    var grads = fg(col);
+
+    if (id === 'lake') {
+      drawHub(g, n);
+    } else {
+      // Zone hover glow
+      var glowEll = mk('ellipse', {
+        cx:cx, cy:cy+hh+2, rx:hw+14, ry:hh+8, fill:'url(#zoneGlow)', opacity:'0',
+      });
+      glowEll.style.transition = 'opacity 0.3s';
+      g.appendChild(glowEll);
+
+      // Ambient ground shadow
+      g.appendChild(mk('ellipse', {
+        cx:cx, cy:cy+hh+2, rx:hw+16, ry:hh+10,
+        fill:rgba(col,0.04), stroke:rgba(col,0.1), 'stroke-width':'1',
+      }));
+      // Left face (lit)
+      g.appendChild(mk('polygon', {
+        points:(cx-hw)+','+cy+' '+cx+','+(cy+hh)+' '+cx+','+(cy+hh+depth)+' '+(cx-hw)+','+(cy+depth),
+        fill:grads.lft, stroke:rgba(col,0.22), 'stroke-width':'0.8',
+      }));
+      // Right face (shadow)
+      g.appendChild(mk('polygon', {
+        points:cx+','+(cy+hh)+' '+(cx+hw)+','+cy+' '+(cx+hw)+','+(cy+depth)+' '+cx+','+(cy+hh+depth),
+        fill:grads.rgt, stroke:rgba(col,0.15), 'stroke-width':'0.8',
+      }));
+      // Top face
+      var top = mk('polygon', {
+        points:cx+','+(cy-hh)+' '+(cx+hw)+','+cy+' '+cx+','+(cy+hh)+' '+(cx-hw)+','+cy,
+        fill:grads.top, stroke:grads.sk, 'stroke-width':'1.5',
+      });
+      g.appendChild(top);
+
+      drawIcon(g, n);
+
+      var lbl = mk('text', {
+        x:cx, y:cy+hh+depth+16, 'text-anchor':'middle',
+        'font-family':'JetBrains Mono,ui-monospace,monospace',
+        'font-size':'9.5', 'font-weight':'700',
+        fill:col, 'letter-spacing':'0.07em', 'pointer-events':'none',
+      });
+      lbl.textContent = n.label;
+      g.appendChild(lbl);
+
+      g.addEventListener('mouseenter', function(evt) {
+        g.style.transform    = 'translateY(-4px)';
+        g.style.filter       = 'drop-shadow(0 8px 20px '+rgba(col,0.35)+')';
+        glowEll.style.opacity = '0.9';
+        top.setAttribute('filter','url(#ng)');
+        showCard(evt, n);
+      });
+      g.addEventListener('mousemove', function(evt){ posCard(evt); });
+      g.addEventListener('mouseleave', function() {
+        g.style.transform    = '';
+        g.style.filter       = '';
+        glowEll.style.opacity = '0';
+        top.removeAttribute('filter');
+        hideCard();
+      });
+    }
+
+    g.addEventListener('click', function() {
+      if (n.target) { var d=document.querySelector(n.target); if(d) d.scrollIntoView({behavior:'smooth'}); }
+      else window.scrollTo({top:0,behavior:'smooth'});
+    });
+    nGrp.appendChild(g);
+  });
+  svg.appendChild(nGrp);
+
+  // ── hub: lakehouse warehouse complex ───────────────────────────────
+  function drawHub(g, n) {
+    var cx=n.cx, cy=n.cy, col=n.col;
+    var grads=fg(col);
+    function pstr(a){return a.map(function(p){return p[0]+','+p[1];}).join(' ');}
+
+    function box(bx,by,bhw,bhh,bH,useGrad,tA,lA,rA){
+      var tF=useGrad?grads.top  :rgba(col,tA!==undefined?tA:0.52);
+      var lF=useGrad?grads.lft  :rgba(col,lA!==undefined?lA:0.26);
+      var rF=useGrad?grads.rgt  :rgba(col,rA!==undefined?rA:0.14);
+      g.appendChild(mk('polygon',{points:pstr([[bx-bhw,by],[bx,by+bhh],[bx,by+bhh-bH],[bx-bhw,by-bH]]),
+        fill:lF,stroke:rgba(col,0.38),'stroke-width':'0.7','stroke-linejoin':'round','pointer-events':'none'}));
+      g.appendChild(mk('polygon',{points:pstr([[bx,by+bhh],[bx+bhw,by],[bx+bhw,by-bH],[bx,by+bhh-bH]]),
+        fill:rF,stroke:rgba(col,0.25),'stroke-width':'0.7','stroke-linejoin':'round','pointer-events':'none'}));
+      g.appendChild(mk('polygon',{points:pstr([[bx,by-bhh-bH],[bx+bhw,by-bH],[bx,by+bhh-bH],[bx-bhw,by-bH]]),
+        fill:tF,stroke:rgba(col,0.78),'stroke-width':'1','stroke-linejoin':'round','pointer-events':'none'}));
+    }
+    function cyl(bx,by,r,h){
+      var ry=Math.max(2,Math.round(r*0.36));
+      g.appendChild(mk('rect',{x:bx-r,y:by-h,width:2*r,height:h,fill:grads.lft,'pointer-events':'none'}));
+      g.appendChild(mk('line',{x1:bx-r,y1:by-h,x2:bx-r,y2:by,stroke:rgba(col,0.45),'stroke-width':'0.7','pointer-events':'none'}));
+      g.appendChild(mk('line',{x1:bx+r,y1:by-h,x2:bx+r,y2:by,stroke:rgba(col,0.45),'stroke-width':'0.7','pointer-events':'none'}));
+      g.appendChild(mk('path',{d:'M'+(bx-r)+','+by+' A'+r+','+ry+' 0 0,0 '+(bx+r)+','+by,
+        fill:rgba(col,0.09),stroke:rgba(col,0.28),'stroke-width':'0.6','pointer-events':'none'}));
+      g.appendChild(mk('ellipse',{cx:bx,cy:by-h,rx:r,ry:ry,fill:grads.top,stroke:rgba(col,0.85),'stroke-width':'1','pointer-events':'none'}));
+    }
+
+    // Zone glow
+    var glowEll = mk('ellipse', {cx:cx,cy:cy+26,rx:'100',ry:'28',fill:'url(#zoneGlow)',opacity:'0'});
+    glowEll.style.transition = 'opacity 0.3s';
+    g.appendChild(glowEll);
+
+    // Ground shadow
+    g.appendChild(mk('ellipse',{cx:cx,cy:cy+26,rx:'88',ry:'24',fill:rgba(col,0.05),stroke:rgba(col,0.09),'stroke-width':'1'}));
+    cyl(cx-55,cy,12,40);
+    box(cx,cy,72,24,26,true);
+    cyl(cx+55,cy,12,40);
+    box(cx-22,cy-26,8,2.7,9,false,0.48,0.22,0.11);
+    box(cx+22,cy-26,8,2.7,9,false,0.48,0.22,0.11);
+    g.appendChild(mk('ellipse',{cx:cx,cy:cy-26,rx:'20',ry:'7',fill:rgba(col,0.42),stroke:col,'stroke-width':'1.5',filter:'url(#ng)'}));
+    for(var i=-2;i<=2;i++){
+      g.appendChild(mk('line',{x1:cx+i*8,y1:cy-33,x2:cx+i*8,y2:cy-50,
+        stroke:rgba(col,0.35+Math.abs(i)*0.03),'stroke-width':'1','stroke-dasharray':'2 4','pointer-events':'none'}));
+    }
+    var lbl=mk('text',{x:cx,y:cy+62,'text-anchor':'middle','font-family':'JetBrains Mono,ui-monospace,monospace',
+      'font-size':'10.5','font-weight':'700',fill:col,'letter-spacing':'0.12em','pointer-events':'none'});
+    lbl.textContent=n.label;
+    g.appendChild(lbl);
+
+    g.addEventListener('mouseenter',function(evt){
+      g.style.transform    = 'translateY(-4px)';
+      g.style.filter       = 'drop-shadow(0 10px 24px '+rgba(col,0.4)+')';
+      glowEll.style.opacity = '0.9';
+      showCard(evt, n);
+    });
+    g.addEventListener('mousemove',function(evt){ posCard(evt); });
+    g.addEventListener('mouseleave',function(){
+      g.style.transform    = '';
+      g.style.filter       = '';
+      glowEll.style.opacity = '0';
+      hideCard();
+    });
+  }
+
+  // ── per-node icons ──────────────────────────────────────────────────
+  function drawIcon(g, n) {
+    var cx=n.cx, cy=n.cy, col=n.col, id=n.id;
+    var grads=fg(col);
+    function pstr(a){return a.map(function(p){return p[0]+','+p[1];}).join(' ');}
+
+    function box(bx,by,bhw,bhh,bH,useGrad,tA,lA,rA){
+      var tF=useGrad?grads.top  :rgba(col,tA!==undefined?tA:0.52);
+      var lF=useGrad?grads.lft  :rgba(col,lA!==undefined?lA:0.26);
+      var rF=useGrad?grads.rgt  :rgba(col,rA!==undefined?rA:0.14);
+      g.appendChild(mk('polygon',{points:pstr([[bx-bhw,by],[bx,by+bhh],[bx,by+bhh-bH],[bx-bhw,by-bH]]),
+        fill:lF,stroke:rgba(col,0.38),'stroke-width':'0.7','stroke-linejoin':'round','pointer-events':'none'}));
+      g.appendChild(mk('polygon',{points:pstr([[bx,by+bhh],[bx+bhw,by],[bx+bhw,by-bH],[bx,by+bhh-bH]]),
+        fill:rF,stroke:rgba(col,0.25),'stroke-width':'0.7','stroke-linejoin':'round','pointer-events':'none'}));
+      g.appendChild(mk('polygon',{points:pstr([[bx,by-bhh-bH],[bx+bhw,by-bH],[bx,by+bhh-bH],[bx-bhw,by-bH]]),
+        fill:tF,stroke:rgba(col,0.78),'stroke-width':'1','stroke-linejoin':'round','pointer-events':'none'}));
+    }
+    function cyl(bx,by,r,h){
+      var ry=Math.max(2,Math.round(r*0.36));
+      g.appendChild(mk('rect',{x:bx-r,y:by-h,width:2*r,height:h,fill:grads.lft,'pointer-events':'none'}));
+      g.appendChild(mk('line',{x1:bx-r,y1:by-h,x2:bx-r,y2:by,stroke:rgba(col,0.45),'stroke-width':'0.7','pointer-events':'none'}));
+      g.appendChild(mk('line',{x1:bx+r,y1:by-h,x2:bx+r,y2:by,stroke:rgba(col,0.45),'stroke-width':'0.7','pointer-events':'none'}));
+      g.appendChild(mk('path',{d:'M'+(bx-r)+','+by+' A'+r+','+ry+' 0 0,0 '+(bx+r)+','+by,
+        fill:rgba(col,0.09),stroke:rgba(col,0.28),'stroke-width':'0.6','pointer-events':'none'}));
+      g.appendChild(mk('ellipse',{cx:bx,cy:by-h,rx:r,ry:ry,fill:grads.top,stroke:rgba(col,0.85),'stroke-width':'1','pointer-events':'none'}));
+    }
+
+    if (id==='src') {
+      [cx-26,cx,cx+26].forEach(function(dx){
+        cyl(dx,cy,10,20);
+        for(var s=0;s<3;s++){
+          g.appendChild(mk('line',{x1:dx-10,y1:cy-6-s*6,x2:dx+10,y2:cy-6-s*6,
+            stroke:rgba(col,0.30),'stroke-width':'0.6','pointer-events':'none'}));
+        }
+      });
+      return;
+    }
+    if (id==='ingest') {
+      box(cx-10,cy,26,9,22,true);
+      cyl(cx+26,cy,7,32);
+      cyl(cx+38,cy,5.5,24);
+      g.appendChild(mk('ellipse',{cx:cx+26,cy:cy-32,rx:'11',ry:'3.5',
+        fill:'none',stroke:rgba(col,0.28),'stroke-width':'1.2','pointer-events':'none'}));
+      return;
+    }
+    if (id==='ai') {
+      box(cx-22,cy,7,2.4,26,true);
+      box(cx+22,cy,7,2.4,22,true);
+      box(cx,cy,12,4.1,40,true);
+      for(var wi=0;wi<5;wi++){
+        g.appendChild(mk('line',{x1:cx-11,y1:cy-8-wi*7,x2:cx-1,y2:cy-8-wi*7+3.5,
+          stroke:rgba(col,0.55),'stroke-width':'1.1','pointer-events':'none'}));
+      }
+      var dtop=cy-4.1-40;
+      g.appendChild(mk('path',{d:'M'+(cx-12)+','+dtop+' A12,4.5 0 0,1 '+(cx+12)+','+dtop,
+        fill:rgba(col,0.45),stroke:rgba(col,0.80),'stroke-width':'1','pointer-events':'none'}));
+      g.appendChild(mk('line',{x1:cx,y1:dtop,x2:cx,y2:dtop-14,
+        stroke:col,'stroke-width':'1.5','stroke-linecap':'round','pointer-events':'none'}));
+      g.appendChild(mk('circle',{cx:cx,cy:dtop-14,r:'2.5',fill:col,filter:'url(#ng)','pointer-events':'none'}));
+      return;
+    }
+    if (id==='prod') {
+      box(cx-26,cy,10,3.4,24,true);
+      box(cx+26,cy,10,3.4,28,true);
+      box(cx,cy,13,4.5,36,true);
+      [[cx-6,cy-14],[cx+3,cy-14],[cx-6,cy-23],[cx+3,cy-23],[cx-6,cy-32],[cx+3,cy-32]].forEach(function(w){
+        g.appendChild(mk('rect',{x:w[0],y:w[1],width:'5',height:'5',
+          fill:rgba(col,0.38),stroke:rgba(col,0.55),'stroke-width':'0.5',rx:'0.5','pointer-events':'none'}));
+      });
+      return;
+    }
+    if (id==='hist') {
+      var tiers=[{bhw:26,bhh:8.8,bH:9},{bhw:17,bhh:5.8,bH:9},{bhw:10,bhh:3.4,bH:9}];
+      var stackY=cy;
+      for(var ti=0;ti<tiers.length;ti++){
+        var t=tiers[ti];
+        box(cx,stackY,t.bhw,t.bhh,t.bH,ti===0,0.52+ti*0.07,0.26+ti*0.04,0.14+ti*0.04);
+        if(ti<tiers.length-1) stackY=stackY+t.bhh-t.bH-tiers[ti+1].bhh;
+      }
+      return;
+    }
+    if (id==='con') {
+      box(cx,cy,7,2.4,42,true);
+      for(var bi=0;bi<5;bi++){
+        g.appendChild(mk('line',{x1:cx-7,y1:cy-8-bi*8,x2:cx,y2:cy-8-bi*8+2.4,
+          stroke:rgba(col,0.38),'stroke-width':'0.7','pointer-events':'none'}));
+      }
+      var ctop=cy-2.4-42;
+      g.appendChild(mk('path',{d:'M'+(cx-18)+','+(ctop+5)+' Q '+cx+','+(ctop-14)+' '+(cx+18)+','+(ctop+5),
+        fill:rgba(col,0.18),stroke:rgba(col,0.72),'stroke-width':'1.5','pointer-events':'none'}));
+      g.appendChild(mk('line',{x1:cx,y1:ctop,x2:cx,y2:ctop-12,
+        stroke:rgba(col,0.50),'stroke-width':'1','pointer-events':'none'}));
+      g.appendChild(mk('circle',{cx:cx,cy:ctop,r:'3.5',fill:col,opacity:'0.90',filter:'url(#ng)','pointer-events':'none'}));
+      return;
+    }
+  }
+})();
+</script>
 <!-- Scroll-in animation -->
 <script>
   // Use IntersectionObserver but keep elements visible by default,

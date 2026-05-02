@@ -1,0 +1,158 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 384" width="800" height="384">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0d1629"/>
+      <stop offset="55%" stop-color="#1a1408"/>
+      <stop offset="100%" stop-color="#2a1a00"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="50%" cy="50%" r="42%">
+      <stop offset="0%" stop-color="#fbbc00" stop-opacity="0.18"/>
+      <stop offset="100%" stop-color="#fbbc00" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="barFull" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#fbbc00"/>
+      <stop offset="100%" stop-color="#f59e0b"/>
+    </linearGradient>
+    <linearGradient id="barMid" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#fbbc00" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#f59e0b" stop-opacity="0.8"/>
+    </linearGradient>
+    <filter id="glow-filter">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="384" fill="url(#bg)"/>
+
+  <!-- Grid dots -->
+  <pattern id="dots" x="0" y="0" width="28" height="28" patternUnits="userSpaceOnUse">
+    <circle cx="1" cy="1" r="0.7" fill="rgba(255,255,255,0.035)"/>
+  </pattern>
+  <rect width="800" height="384" fill="url(#dots)"/>
+
+  <!-- Amber radial glow centre -->
+  <ellipse cx="400" cy="192" rx="320" ry="200" fill="url(#glow)"/>
+
+  <!-- ── Left panel: branding + gavel ── -->
+
+  <!-- Gavel head -->
+  <g transform="translate(148,110)" filter="url(#glow-filter)">
+    <!-- Handle -->
+    <rect x="32" y="38" width="9" height="72" rx="4" transform="rotate(42,36.5,74)" fill="#fbbc00" opacity="0.9"/>
+    <!-- Head block -->
+    <rect x="-20" y="-10" width="62" height="28" rx="6" fill="#fbbc00" opacity="0.95"/>
+    <!-- Head band -->
+    <rect x="8" y="-10" width="10" height="28" rx="2" fill="#d97706" opacity="0.7"/>
+    <!-- Small circle accent -->
+    <circle cx="64" cy="80" r="5" fill="#fbbc00" opacity="0.5"/>
+    <!-- Strike surface glow -->
+    <rect x="-22" y="-12" width="66" height="32" rx="7" fill="none" stroke="#fbbc00" stroke-width="1.5" opacity="0.35"/>
+  </g>
+
+  <!-- TRIBUNAL wordmark -->
+  <text x="148" y="224" font-family="'Inter','Segoe UI',sans-serif" font-size="38" font-weight="900"
+        fill="white" letter-spacing="2" opacity="0.95">TRIBUNAL</text>
+
+  <!-- Tagline -->
+  <text x="148" y="248" font-family="'Inter','Segoe UI',monospace" font-size="11" font-weight="500"
+        fill="rgba(251,188,0,0.75)" letter-spacing="2.5">LLM · EVALUATION · PLATFORM</text>
+
+  <!-- Divider -->
+  <line x1="148" y1="262" x2="340" y2="262" stroke="rgba(251,188,0,0.2)" stroke-width="1"/>
+
+  <!-- Bottom chips -->
+  <g transform="translate(148, 276)">
+    <rect x="0" y="0" width="60" height="20" rx="3" fill="rgba(251,188,0,0.1)" stroke="rgba(251,188,0,0.3)" stroke-width="1"/>
+    <text x="30" y="14" font-family="monospace" font-size="9" font-weight="700" fill="rgba(251,188,0,0.85)" text-anchor="middle" letter-spacing="0.5">RAGAS</text>
+
+    <rect x="68" y="0" width="76" height="20" rx="3" fill="rgba(251,188,0,0.1)" stroke="rgba(251,188,0,0.3)" stroke-width="1"/>
+    <text x="106" y="14" font-family="monospace" font-size="9" font-weight="700" fill="rgba(251,188,0,0.85)" text-anchor="middle" letter-spacing="0.5">FASTAPI</text>
+
+    <rect x="152" y="0" width="56" height="20" rx="3" fill="rgba(251,188,0,0.1)" stroke="rgba(251,188,0,0.3)" stroke-width="1"/>
+    <text x="180" y="14" font-family="monospace" font-size="9" font-weight="700" fill="rgba(251,188,0,0.85)" text-anchor="middle" letter-spacing="0.5">REACT</text>
+  </g>
+
+  <!-- ── Right panel: mini eval dashboard ── -->
+
+  <!-- Panel bg -->
+  <rect x="390" y="40" width="368" height="304" rx="8"
+        fill="rgba(15,20,35,0.85)" stroke="rgba(251,188,0,0.12)" stroke-width="1"/>
+
+  <!-- Panel header -->
+  <rect x="390" y="40" width="368" height="36" rx="8" fill="rgba(251,188,0,0.07)"/>
+  <rect x="390" y="60" width="368" height="16" rx="0" fill="rgba(251,188,0,0.07)"/>
+  <text x="412" y="63" font-family="monospace" font-size="10" font-weight="700"
+        fill="rgba(251,188,0,0.7)" letter-spacing="1">EXPERIMENT_RESULTS</text>
+
+  <!-- Verdict badge -->
+  <rect x="670" y="49" width="72" height="18" rx="3"
+        fill="rgba(34,197,94,0.15)" stroke="rgba(34,197,94,0.4)" stroke-width="1"/>
+  <text x="706" y="62" font-family="monospace" font-size="9" font-weight="800"
+        fill="rgba(34,197,94,0.9)" text-anchor="middle" letter-spacing="1">PASS ✓</text>
+
+  <!-- Metric rows -->
+  <!-- Row helper: label, bar width (out of 200), score text, y position -->
+
+  <!-- FAITHFULNESS -->
+  <text x="412" y="113" font-family="monospace" font-size="9" fill="rgba(255,255,255,0.55)" letter-spacing="0.5">FAITHFULNESS</text>
+  <rect x="412" y="118" width="200" height="5" rx="2.5" fill="rgba(255,255,255,0.07)"/>
+  <rect x="412" y="118" width="186" height="5" rx="2.5" fill="url(#barFull)"/>
+  <text x="622" y="124" font-family="monospace" font-size="9" font-weight="700" fill="#fbbc00">0.93</text>
+
+  <!-- ANSWER RELEVANCY -->
+  <text x="412" y="142" font-family="monospace" font-size="9" fill="rgba(255,255,255,0.55)" letter-spacing="0.5">ANSWER_RELEVANCY</text>
+  <rect x="412" y="147" width="200" height="5" rx="2.5" fill="rgba(255,255,255,0.07)"/>
+  <rect x="412" y="147" width="176" height="5" rx="2.5" fill="url(#barFull)"/>
+  <text x="622" y="153" font-family="monospace" font-size="9" font-weight="700" fill="#fbbc00">0.88</text>
+
+  <!-- CONTEXT PRECISION -->
+  <text x="412" y="171" font-family="monospace" font-size="9" fill="rgba(255,255,255,0.55)" letter-spacing="0.5">CONTEXT_PRECISION</text>
+  <rect x="412" y="176" width="200" height="5" rx="2.5" fill="rgba(255,255,255,0.07)"/>
+  <rect x="412" y="176" width="162" height="5" rx="2.5" fill="url(#barMid)"/>
+  <text x="622" y="182" font-family="monospace" font-size="9" font-weight="700" fill="rgba(251,188,0,0.8)">0.81</text>
+
+  <!-- CONTEXT RECALL -->
+  <text x="412" y="200" font-family="monospace" font-size="9" fill="rgba(255,255,255,0.55)" letter-spacing="0.5">CONTEXT_RECALL</text>
+  <rect x="412" y="205" width="200" height="5" rx="2.5" fill="rgba(255,255,255,0.07)"/>
+  <rect x="412" y="205" width="190" height="5" rx="2.5" fill="url(#barFull)"/>
+  <text x="622" y="211" font-family="monospace" font-size="9" font-weight="700" fill="#fbbc00">0.95</text>
+
+  <!-- NOISE SENSITIVITY -->
+  <text x="412" y="229" font-family="monospace" font-size="9" fill="rgba(255,255,255,0.55)" letter-spacing="0.5">NOISE_SENSITIVITY</text>
+  <rect x="412" y="234" width="200" height="5" rx="2.5" fill="rgba(255,255,255,0.07)"/>
+  <rect x="412" y="234" width="152" height="5" rx="2.5" fill="url(#barMid)"/>
+  <text x="622" y="240" font-family="monospace" font-size="9" font-weight="700" fill="rgba(251,188,0,0.8)">0.76</text>
+
+  <!-- SEMANTIC SIMILARITY -->
+  <text x="412" y="258" font-family="monospace" font-size="9" fill="rgba(255,255,255,0.55)" letter-spacing="0.5">SEMANTIC_SIMILARITY</text>
+  <rect x="412" y="263" width="200" height="5" rx="2.5" fill="rgba(255,255,255,0.07)"/>
+  <rect x="412" y="263" width="178" height="5" rx="2.5" fill="url(#barFull)"/>
+  <text x="622" y="269" font-family="monospace" font-size="9" font-weight="700" fill="#fbbc00">0.89</text>
+
+  <!-- Divider -->
+  <line x1="406" y1="283" x2="752" y2="283" stroke="rgba(251,188,0,0.1)" stroke-width="1"/>
+
+  <!-- Overall score row -->
+  <text x="412" y="303" font-family="monospace" font-size="10" font-weight="700"
+        fill="rgba(255,255,255,0.6)" letter-spacing="1">OVERALL_SCORE</text>
+  <text x="648" y="305" font-family="monospace" font-size="18" font-weight="900"
+        fill="#fbbc00" filter="url(#glow-filter)">0.87</text>
+
+  <!-- Comparison delta hint -->
+  <text x="700" y="303" font-family="monospace" font-size="9" fill="rgba(34,197,94,0.75)">▲ +0.12</text>
+  <text x="700" y="313" font-family="monospace" font-size="8" fill="rgba(255,255,255,0.3)">vs baseline</text>
+
+  <!-- HACKATHON badge -->
+  <rect x="20" y="18" width="66" height="20" rx="3" fill="rgba(255,191,0,0.1)" stroke="rgba(255,191,0,0.3)" stroke-width="1"/>
+  <text x="53" y="32" font-family="monospace" font-size="9" font-weight="700"
+        fill="rgba(251,188,0,0.85)" text-anchor="middle" letter-spacing="1">AI EVAL</text>
+
+  <!-- Bottom fade -->
+  <linearGradient id="btmFade" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0%" stop-color="#0d1629" stop-opacity="0"/>
+    <stop offset="100%" stop-color="#0d1629" stop-opacity="0.45"/>
+  </linearGradient>
+  <rect y="310" width="800" height="74" fill="url(#btmFade)"/>
+</svg>
