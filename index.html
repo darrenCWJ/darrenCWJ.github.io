@@ -474,8 +474,8 @@
     <div class="mb-lg flex flex-col md:flex-row md:items-end justify-between gap-md">
       <div>
         <span class="font-label-caps text-label-caps uppercase tracking-widest" style="color:#fbbc00">03. CAPABILITY_MATRIX</span>
-        <h2 class="font-headline-xl text-headline-xl text-on-surface mt-2">SKILL_MATRIX_V4.0</h2>
-        <p class="font-body-lg text-on-surface-variant mt-2 max-w-xl">A multi-dimensional mapping of engineering competencies, algorithmic depth, and product delivery.</p>
+        <h2 class="font-headline-xl text-headline-xl text-on-surface mt-2" data-s="skillsHeadline">SKILL_MATRIX_V4.0</h2>
+        <p class="font-body-lg text-on-surface-variant mt-2 max-w-xl" data-s="skillsDescription">A multi-dimensional mapping of engineering competencies, algorithmic depth, and product delivery.</p>
       </div>
       <div class="glass-card p-md border-l-4 border-primary-container hidden lg:flex flex-col justify-center flex-shrink-0" style="border-top-color:rgba(255,191,0,0.3)">
         <div class="font-label-caps text-[10px] uppercase tracking-widest" style="color:#fbbc00">SYSTEM_UPTIME</div>
@@ -490,54 +490,22 @@
       <div class="col-span-12 lg:col-span-4 flex flex-col gap-gutter">
         <div class="flex items-center gap-sm">
           <span class="material-symbols-outlined" style="color:#fbbc00">database</span>
-          <h3 class="font-headline-md text-headline-md uppercase tracking-tight">Data Engineering</h3>
+          <h3 class="font-headline-md text-headline-md uppercase tracking-tight" data-s="dataEngineeringHeading">Data Engineering</h3>
         </div>
 
-        <!-- Card: Pipeline Orchestration -->
-        <div class="glass-card p-md glow-hover transition-all group" style="border-top-color:rgba(255,191,0,0.35)">
-          <div class="flex justify-between items-start mb-md">
-            <div>
-              <h4 class="font-bold text-on-surface mb-xs">Pipeline Orchestration</h4>
-              <p class="text-xs text-on-surface-variant font-mono">STABILITY_RATING: 0.94</p>
-            </div>
-            <span class="material-symbols-outlined transition-colors" style="color:rgba(255,191,0,0.35)">analytics</span>
-          </div>
-          <div id="bars-pipeline" class="h-12 w-full flex items-end gap-1 mb-md px-1"></div>
-          <div class="flex flex-wrap gap-xs">
-            <span class="thermal-chip px-2 py-1 text-[10px] font-bold tracking-widest">PYSPARK</span>
-            <span class="thermal-chip px-2 py-1 text-[10px] font-bold tracking-widest">AIRFLOW</span>
-            <span class="thermal-chip px-2 py-1 text-[10px] font-bold tracking-widest">DATABRICKS</span>
-          </div>
-        </div>
-
-        <!-- Card: Data Lakehouse -->
-        <div class="glass-card p-md glow-hover transition-all group" style="border-top-color:rgba(255,191,0,0.2)">
-          <div class="flex justify-between items-start mb-md">
-            <div>
-              <h4 class="font-bold text-on-surface mb-xs">Data Lakehouse</h4>
-              <p class="text-xs text-on-surface-variant font-mono">SCALE: PETABYTE_GRADE</p>
-            </div>
-            <span class="material-symbols-outlined transition-colors" style="color:rgba(255,191,0,0.35)">cloud_done</span>
-          </div>
-          <div id="bars-lakehouse" class="h-12 w-full flex items-end gap-1 mb-md px-1"></div>
-          <div class="flex flex-wrap gap-xs">
-            <span class="thermal-chip px-2 py-1 text-[10px] font-bold tracking-widest">SNOWFLAKE</span>
-            <span class="thermal-chip px-2 py-1 text-[10px] font-bold tracking-widest">AWS S3</span>
-            <span class="thermal-chip px-2 py-1 text-[10px] font-bold tracking-widest">AZURE</span>
-          </div>
-        </div>
+        <div id="skills-col-left"></div>
       </div>
 
       <!-- â”€â”€ Column 2: AI / LLM Systems (centre highlight) â”€â”€ -->
       <div class="col-span-12 lg:col-span-4 flex flex-col gap-gutter">
         <div class="flex items-center gap-sm">
           <span class="material-symbols-outlined text-secondary-container">neurology</span>
-          <h3 class="font-headline-md text-headline-md uppercase tracking-tight">AI / LLM Systems</h3>
+          <h3 class="font-headline-md text-headline-md uppercase tracking-tight" data-s="cognitiveEngineHeading">AI / LLM Systems</h3>
         </div>
         <div class="glass-card p-md flex-1 relative overflow-hidden flex flex-col" style="border-top-color:rgba(255,86,37,0.35)">
           <div class="flex justify-between items-center mb-md">
-            <h4 class="font-bold text-on-surface">Cognitive Engine</h4>
-            <span class="px-2 py-1 text-[10px] font-bold text-secondary-container" style="background:rgba(255,86,37,0.1);border:1px solid rgba(255,86,37,0.3)">LEVEL_ELITE</span>
+            <h4 class="font-bold text-on-surface" data-s="cognitiveEngineTitle">Cognitive Engine</h4>
+            <span class="px-2 py-1 text-[10px] font-bold text-secondary-container" style="background:rgba(255,86,37,0.1);border:1px solid rgba(255,86,37,0.3)" data-s="cognitiveEngineBadge">LEVEL_ELITE</span>
           </div>
           <!-- Dynamic SVG radar â€” polygon vertices driven by skill percentages below -->
           <div class="flex-1 flex items-center justify-center py-md">
@@ -552,41 +520,10 @@
       <div class="col-span-12 lg:col-span-4 flex flex-col gap-gutter">
         <div class="flex items-center gap-sm">
           <span class="material-symbols-outlined" style="color:#dbe6ff">terminal</span>
-          <h3 class="font-headline-md text-headline-md uppercase tracking-tight">Product Engineering</h3>
+          <h3 class="font-headline-md text-headline-md uppercase tracking-tight" data-s="productEngineeringHeading">Product Engineering</h3>
         </div>
 
-        <!-- Card: Full-Stack Systems -->
-        <div class="glass-card p-md glow-hover transition-all" style="border-top-color:rgba(255,191,0,0.2)">
-          <h4 class="font-bold text-on-surface mb-xs">Full-Stack Systems</h4>
-          <p class="text-xs text-on-surface-variant font-mono mb-md">DEPLOY_VELOCITY: HIGH</p>
-          <div class="grid grid-cols-2 gap-sm mb-md">
-            <div class="p-sm" style="background:rgba(31,41,66,1);border-top:1px solid rgba(255,191,0,0.15)">
-              <div class="text-[10px] font-mono mb-1 uppercase" style="color:rgba(255,191,0,0.5)">Backend</div>
-              <div class="text-sm font-bold text-on-surface">Flask / Django</div>
-            </div>
-            <div class="p-sm" style="background:rgba(31,41,66,1);border-top:1px solid rgba(255,191,0,0.15)">
-              <div class="text-[10px] font-mono mb-1 uppercase" style="color:rgba(255,191,0,0.5)">Frontend</div>
-              <div class="text-sm font-bold text-on-surface">React / TS</div>
-            </div>
-          </div>
-          <div class="flex flex-wrap gap-xs">
-            <span class="thermal-chip px-2 py-1 text-[10px] font-bold tracking-widest">TYPESCRIPT</span>
-            <span class="thermal-chip px-2 py-1 text-[10px] font-bold tracking-widest">REACT</span>
-            <span class="thermal-chip px-2 py-1 text-[10px] font-bold tracking-widest">VERCEL</span>
-          </div>
-        </div>
-
-        <!-- Card: Speech & NLP -->
-        <div class="glass-card p-md glow-hover transition-all flex-1" style="border-top-color:rgba(219,230,255,0.25)">
-          <h4 class="font-bold text-on-surface mb-xs">Speech & NLP</h4>
-          <p class="text-xs text-on-surface-variant font-mono mb-md">BENCHMARK_FIDELITY: v2.0</p>
-          <div id="bars-speech" class="h-12 w-full flex items-end gap-1 mb-md px-1"></div>
-          <div class="flex flex-wrap gap-xs">
-            <span class="thermal-chip px-2 py-1 text-[10px] font-bold tracking-widest">WHISPER</span>
-            <span class="thermal-chip px-2 py-1 text-[10px] font-bold tracking-widest">ELEVENLABS</span>
-            <span class="thermal-chip px-2 py-1 text-[10px] font-bold tracking-widest">STT / TTS</span>
-          </div>
-        </div>
+        <div id="skills-col-right"></div>
       </div>
 
     </div>
@@ -1058,6 +995,76 @@
     var cntEl = document.getElementById('certs-count');
     if (cntEl) cntEl.textContent = S.certifications.length + ' CREDENTIALS';
   }
+
+    // ── Skills columns (left + right) ────────────────────────────
+  // Renders Data Engineering cards (left) and Product Engineering cards (right).
+  // The middle Cognitive Engine column is static HTML — its chart data
+  // comes from cognitiveSkills above.
+  (function renderSkillCols() {
+    var sl = S.sparklines || {};
+
+    // Generate sparkline bar HTML inline (avoids dependency on bars-* IDs)
+    function sparkBars(key, color) {
+      var vals = sl[key];
+      if (!vals || !vals.length) return '';
+      var max = Math.max.apply(null, vals);
+      var bars = vals.map(function(v) {
+        var h = Math.max(2, Math.round(v / max * 48));
+        return '<div style="flex:1;background:' + color + ';height:' + h + 'px;opacity:0.7;border-radius:1px 1px 0 0"></div>';
+      }).join('');
+      return '<div class="h-12 w-full flex items-end gap-1 mb-md px-1">' + bars + '</div>';
+    }
+
+    function chips(arr) {
+      return arr.map(function(c) {
+        return '<span class="thermal-chip px-2 py-1 text-[10px] font-bold tracking-widest">' + c + '</span>';
+      }).join('');
+    }
+
+    // ── Left column: Data Engineering (amber theme) ──────────────
+    var leftEl = document.getElementById('skills-col-left');
+    if (leftEl && S.dataEngineeringCards) {
+      var borders = ['rgba(255,191,0,0.35)', 'rgba(255,191,0,0.2)'];
+      leftEl.innerHTML = S.dataEngineeringCards.map(function(card, i) {
+        var bars = card.sparkline ? sparkBars(card.sparkline, '#fbbc00') : '';
+        var iconHtml = card.icon
+          ? '<span class="material-symbols-outlined transition-colors" style="color:rgba(255,191,0,0.35)">' + card.icon + '</span>'
+          : '';
+        return '<div class="glass-card p-md glow-hover transition-all group" style="border-top-color:' + (borders[i] || borders[0]) + '">'
+          + '<div class="flex justify-between items-start mb-md">'
+          + '<div><h4 class="font-bold text-on-surface mb-xs">' + card.title + '</h4>'
+          + '<p class="text-xs text-on-surface-variant font-mono">' + card.metric + '</p></div>'
+          + iconHtml + '</div>'
+          + bars
+          + '<div class="flex flex-wrap gap-xs">' + chips(card.chips) + '</div>'
+          + '</div>';
+      }).join('');
+    }
+
+    // ── Right column: Product Engineering (blue theme) ───────────
+    var rightEl = document.getElementById('skills-col-right');
+    if (rightEl && S.productEngineeringCards) {
+      var rborders = ['rgba(255,191,0,0.2)', 'rgba(219,230,255,0.25)'];
+      rightEl.innerHTML = S.productEngineeringCards.map(function(card, i) {
+        var bars = card.sparkline ? sparkBars(card.sparkline, '#8898d8') : '';
+        var gridHtml = card.grid
+          ? '<div class="grid grid-cols-2 gap-sm mb-md">'
+            + card.grid.map(function(g) {
+              return '<div class="p-sm" style="background:rgba(31,41,66,1);border-top:1px solid rgba(255,191,0,0.15)">'
+                + '<div class="text-[10px] font-mono mb-1 uppercase" style="color:rgba(255,191,0,0.5)">' + g.label + '</div>'
+                + '<div class="text-sm font-bold text-on-surface">' + g.value + '</div></div>';
+            }).join('') + '</div>'
+          : '';
+        var extraClass = i === S.productEngineeringCards.length - 1 ? ' flex-1' : '';
+        return '<div class="glass-card p-md glow-hover transition-all' + extraClass + '" style="border-top-color:' + (rborders[i] || rborders[0]) + '">'
+          + '<h4 class="font-bold text-on-surface mb-xs">' + card.title + '</h4>'
+          + '<p class="text-xs text-on-surface-variant font-mono mb-md">' + card.metric + '</p>'
+          + gridHtml + bars
+          + '<div class="flex flex-wrap gap-xs">' + chips(card.chips) + '</div>'
+          + '</div>';
+      }).join('');
+    }
+  }());
 
   // â”€â”€ Projects â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   var pgEl = document.getElementById('projects-grid');

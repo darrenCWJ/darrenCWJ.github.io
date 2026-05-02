@@ -141,6 +141,70 @@ window.SITE = {
     { label: "DATA_INTELLIGENCE",  short: "DATA_IQ", pct: 0.92 },
   ],
 
+  // ── Skills Section (03) ─────────────────────────────────────
+  // Section headline and subtitle
+  skillsHeadline:    "SKILL_MATRIX_V4.0",
+  skillsDescription: "A multi-dimensional mapping of engineering competencies, algorithmic depth, and product delivery.",
+
+  // ── Skills: Left Column — Data Engineering ──────────────────
+  // Column heading (h3 above the cards)
+  dataEngineeringHeading: "Data Engineering",
+
+  // Cards in the left column.
+  //   title     : card heading
+  //   metric    : small status line shown under the title
+  //   icon      : Material Symbols name shown top-right of the card
+  //   sparkline : key into the sparklines object above — controls bar heights
+  //   chips     : technology tags shown at the bottom
+  dataEngineeringCards: [
+    {
+      title:     "Pipeline Orchestration",
+      metric:    "STABILITY_RATING: 0.94",
+      icon:      "analytics",
+      sparkline: "pipelineOrchestration",
+      chips:     ["PYSPARK", "AIRFLOW", "DATABRICKS"],
+    },
+    {
+      title:     "Data Lakehouse",
+      metric:    "SCALE: PETABYTE_GRADE",
+      icon:      "cloud_done",
+      sparkline: "dataLakehouse",
+      chips:     ["SNOWFLAKE", "AWS S3", "AZURE"],
+    },
+  ],
+
+  // ── Skills: Middle Column — Cognitive Engine ──────────────────
+  // The radar chart and progress bars come from `cognitiveSkills` above.
+  // Only the heading text and card labels are editable here.
+  cognitiveEngineHeading: "AI / LLM Systems",
+  cognitiveEngineTitle:   "Cognitive Engine",
+  cognitiveEngineBadge:   "LEVEL_ELITE",
+
+  // ── Skills: Right Column — Product Engineering ────────────────
+  // Column heading (h3 above the cards)
+  productEngineeringHeading: "Product Engineering",
+
+  // Cards in the right column.
+  // A card with a `grid` array renders a 2-column mini-grid (label + value)
+  // instead of a sparkline. Use it for tech stack breakdowns.
+  productEngineeringCards: [
+    {
+      title:  "Full-Stack Systems",
+      metric: "DEPLOY_VELOCITY: HIGH",
+      grid: [
+        { label: "Backend",  value: "Flask / Django" },
+        { label: "Frontend", value: "React / TS" },
+      ],
+      chips: ["TYPESCRIPT", "REACT", "VERCEL"],
+    },
+    {
+      title:     "Speech & NLP",
+      metric:    "BENCHMARK_FIDELITY: v2.0",
+      sparkline: "AIProductEngineering",
+      chips:     ["WHISPER", "ELEVENLABS", "STT / TTS"],
+    },
+  ],
+
   // ── Certifications (02 section) ──────────────────────────────
   // accent : "amber" | "orange" | "blue"
   // featured: true  → wide card in the first column (use for top cert)
