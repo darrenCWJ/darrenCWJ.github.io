@@ -141,4 +141,108 @@ window.SITE = {
     { label: "DATA_INTELLIGENCE",  short: "DATA_IQ", pct: 0.92 },
   ],
 
+  // ── Certifications (02 section) ──────────────────────────────
+  // accent : "amber" | "orange" | "blue"
+  // featured: true  → wide card in the first column (use for top cert)
+  // earlier: true   → grouped in the "Earlier Credentials" bottom row
+  // badge   → short label chip shown on the card (optional)
+  // expires → expiry date string (optional)
+  certsDescription: "Verified credentials across data engineering, AI platforms, and product management.",
+
+  certifications: [
+    {
+      title:    "Databricks Certified Data Engineer Associate",
+      issuer:   "Databricks",
+      issued:   "APR 2026",
+      expires:  "APR 2028",
+      url:      "https://credentials.databricks.com/31af5c22-be6a-4b4d-af9a-e93739e84902",
+      badge:    "CERTIFIED · ASSOCIATE",
+      accent:   "amber",
+      icon:     "verified",
+      featured: true,
+    },
+    {
+      title:  "Claude Code in Action",
+      issuer: "Anthropic",
+      issued: "MAR 2026",
+      url:    "https://verify.skilljar.com/c/bmcv4abtz9mz",
+      accent: "orange",
+      icon:   "smart_toy",
+    },
+    {
+      title:  "Claude 101",
+      issuer: "Anthropic",
+      issued: "FEB 2026",
+      url:    "https://verify.skilljar.com/c/aunkrafx24xw",
+      accent: "orange",
+      icon:   "smart_toy",
+    },
+    {
+      title:   "Workato Foundations Level 2",
+      issuer:  "Workato",
+      issued:  "FEB 2026",
+      expires: "FEB 2028",
+      url:     "https://verify.skilljar.com/c/7hwkov8pha45",
+      badge:   "LEVEL 2",
+      accent:  "orange",
+      icon:    "integration_instructions",
+    },
+    {
+      title:   "Workato Foundations Level 1",
+      issuer:  "Workato",
+      issued:  "DEC 2025",
+      expires: "DEC 2027",
+      url:     "https://verify.skilljar.com/c/vd3oj9s522eo",
+      badge:   "LEVEL 1",
+      accent:  "orange",
+      icon:    "integration_instructions",
+    },
+    {
+      title:  "Containers for Deploying & Scaling Apps",
+      issuer: "National University of Singapore",
+      issued: "DEC 2025",
+      url:    "https://credentials.nus.edu.sg/b07afa1b-207a-426c-9e59-023abeb06766",
+      accent: "blue",
+      icon:   "school",
+    },
+    {
+      title:  "Managing Digital Products",
+      issuer: "National University of Singapore",
+      issued: "OCT 2025",
+      url:    "https://credentials.nus.edu.sg/4d27897d-3090-4781-ad5d-7de69a7dd3b6",
+      accent: "blue",
+      icon:   "school",
+    },
+    {
+      title:   "AI Champions Bootcamp",
+      issuer:  "GovTech Singapore",
+      issued:  "DEC 2024",
+      url:     "https://stg.trustdocs.gov.sg/li?src=transient-storage-stg.oa.gov.sg/govtech/abc-coc/91f102e4-9f93-4a5d-9e5c-52929e9edb2c&key=eef62f63b789756a88d9e2cfadc75a7a8ca3ef57358efffe03e0fff6a771e326",
+      badge:   "GOVTECH SG",
+      accent:  "blue",
+      icon:    "flag",
+      earlier: true,
+    },
+    {
+      title:   "Professional Certificate in ML & AI",
+      issuer:  "Emeritus · Imperial College London",
+      issued:  "DEC 2022",
+      url:     "https://certificates.emeritus.org/248c7de9-44d8-4489-94f2-483054bd4efc",
+      badge:   "EMERITUS · ICL",
+      accent:  "blue",
+      icon:    "workspace_premium",
+      earlier: true,
+    },
+    {
+      title:   "Econometrics: Methods & Applications",
+      issuer:  "Coursera",
+      issued:  "AUG 2020",
+      url:     "https://www.coursera.org/account/accomplishments/certificate/N848HQ4M6955",
+      badge:   "COURSERA",
+      accent:  "blue",
+      icon:    "analytics",
+      earlier: true,
+    },
+  ],
+
 };
