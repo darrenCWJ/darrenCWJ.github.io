@@ -1122,7 +1122,7 @@
     { id:'src',    cx:800, cy:75,  hw:70, hh:24, depth:20, col:'#dbe6ff' },
     { id:'ingest', cx:570, cy:165, hw:62, hh:21, depth:18, col:'#fbbc00' },
     { id:'ai',     cx:760, cy:205, hw:62, hh:21, depth:18, col:'#ff5625' },
-    { id:'lake',   cx:530, cy:285, hw:72, hh:24, depth:28, col:'#fbbc00' },
+    { id:'lake',   cx:530, cy:305, hw:72, hh:24, depth:28, col:'#fbbc00' },
     { id:'prod',   cx:330, cy:360, hw:62, hh:21, depth:18, col:'#ff5625' },
     { id:'hist',   cx:170, cy:408, hw:60, hh:18, depth:15, col:'#dbe6ff' },
     { id:'con',    cx:430, cy:408, hw:60, hh:18, depth:15, col:'#fbbc00' },
@@ -1145,9 +1145,9 @@
   var edges = [
     { col:'#dbe6ff', pts:[[730,75],[570,75],[570,144]]            },
     { col:'#dbe6ff', pts:[[800,99],[800,150],[760,150],[760,184]] },
-    { col:'#fbbc00', pts:[[570,186],[570,261],[530,261]]          },
-    { col:'#ff5625', pts:[[698,205],[602,205],[602,285]]          },
-    { col:'#fbbc00', pts:[[458,285],[330,285],[330,339]]          },
+    { col:'#fbbc00', pts:[[570,186],[570,281],[530,281]]          },
+    { col:'#ff5625', pts:[[698,205],[602,205],[602,305]]          },
+    { col:'#fbbc00', pts:[[458,305],[330,305],[330,339]]          },
     { col:'#ff5625', pts:[[268,360],[170,360],[170,390]]          },
     { col:'#ff5625', pts:[[392,360],[430,360],[430,390]]          },
   ];
@@ -1185,6 +1185,178 @@
   }
   addFilter('ng', 5);
   addFilter('sg', 12);
+
+  // ── node hover animations ─────────────────────────────────────────
+  (function(){
+    // 8-direction sparks for AI (every 45°, 22px travel)
+    var aiKf = '';
+    [[0,-22],[16,-16],[22,0],[16,16],[0,22],[-16,16],[-22,0],[-16,-16]].forEach(function(d,i){
+      aiKf += '@keyframes archSpark'+i+'{0%{opacity:0;transform:translate(0px,0px)}14%{opacity:0.95}100%{opacity:0;transform:translate('+d[0]+'px,'+d[1]+'px)}}';
+    });
+    var s = document.createElement('style');
+    s.textContent =
+      '@keyframes archMailFloat{0%{opacity:0;transform:translateY(0px) scale(0.6)}14%{opacity:0.65}82%{opacity:0.38}100%{opacity:0;transform:translateY(-36px) scale(1.05)}}' +
+      // SRC: drops fall into cylinder openings (start above top, end inside)
+      '@keyframes archDrop{0%{opacity:0;transform:translateY(0px)}18%{opacity:0.9}72%{opacity:0.65}100%{opacity:0;transform:translateY(22px)}}' +
+      // INGEST: pure opacity ripple — no transform, works reliably on SVG
+      '@keyframes archRing{0%{opacity:0}16%{opacity:0.78}62%{opacity:0.12}100%{opacity:0}}' +
+      // LAKE: top-face glow pulse
+      '@keyframes archLakeGlow{0%{opacity:0}30%{opacity:0.48}65%{opacity:0.28}100%{opacity:0}}' +
+      '@keyframes archWinGlow{0%,26%{opacity:0.88}55%,100%{opacity:0}}' +
+      '@keyframes archTierGlow{0%{opacity:0}25%{opacity:0.72}60%{opacity:0.45}100%{opacity:0}}' +
+      aiKf;
+    document.head.appendChild(s);
+  }());
+
+  function _makeEffect(list) {
+    return {
+      activate: function() {
+        list.forEach(function(p){ p.el.style.animation = p.kf+' '+p.dur+' '+p.delay+' infinite ease-out'; });
+      },
+      deactivate: function() {
+        list.forEach(function(p){ p.el.style.animation=''; p.el.style.opacity='0'; });
+      }
+    };
+  }
+
+  function createEffect(id, g, cx, cy, col) {
+    if (id==='con')    return _conEffect(g,cx,cy,col);
+    if (id==='src')    return _srcEffect(g,cx,cy,col);
+    if (id==='ingest') return _ingestEffect(g,cx,cy,col);
+    if (id==='ai')     return _aiEffect(g,cx,cy,col);
+    if (id==='prod')   return _prodEffect(g,cx,cy,col);
+    if (id==='hist')   return _histEffect(g,cx,cy,col);
+    return null;
+  }
+
+  // CON — mail envelopes + chain links float up from antenna
+  function _conEffect(g, cx, cy, col) {
+    var ctop = cy - 44.4;
+    var cfgs = [
+      {x:cx-16,y:ctop-2,type:'env', delay:'0s',    dur:'2.2s'},
+      {x:cx+10,y:ctop-6,type:'link',delay:'0.65s', dur:'2.5s'},
+      {x:cx-3, y:ctop-4,type:'env', delay:'1.15s', dur:'2.0s'},
+      {x:cx+21,y:ctop-5,type:'link',delay:'1.75s', dur:'2.4s'},
+      {x:cx-25,y:ctop-3,type:'env', delay:'0.4s',  dur:'2.3s'},
+    ];
+    var list = [];
+    cfgs.forEach(function(cfg) {
+      var outer = mk('g',{transform:'translate('+cfg.x+','+cfg.y+')'});
+      var inner = mk('g',{opacity:'0',style:'pointer-events:none'});
+      if (cfg.type==='env') {
+        inner.appendChild(mk('rect',{x:'-7',y:'-4.5',width:'14',height:'9',rx:'1',fill:'none',stroke:rgba(col,0.68),'stroke-width':'1.2','pointer-events':'none'}));
+        inner.appendChild(mk('polyline',{points:'-7,-4.5 0,1 7,-4.5',fill:'none',stroke:rgba(col,0.68),'stroke-width':'1.2','stroke-linejoin':'round','pointer-events':'none'}));
+      } else {
+        inner.appendChild(mk('path',{d:'M-5.5,-2 A2,2 0 0,0 -5.5,2 L0.5,2 A2,2 0 0,0 0.5,-2 Z M-0.5,-2 A2,2 0 0,0 -0.5,2 L5.5,2 A2,2 0 0,0 5.5,-2 Z',fill:rgba(col,0.14),stroke:rgba(col,0.68),'stroke-width':'0.9','pointer-events':'none'}));
+      }
+      outer.appendChild(inner);
+      g.appendChild(outer);
+      list.push({el:inner,delay:cfg.delay,dur:cfg.dur,kf:'archMailFloat'});
+    });
+    return _makeEffect(list);
+  }
+
+  // SRC — drops fall from above into each cylinder opening (top is cy-20)
+  function _srcEffect(g, cx, cy, col) {
+    var list = [];
+    [-26,0,26].forEach(function(dx,ci){
+      [-3,0,3].forEach(function(jit,di){
+        // spawn 14px above the cylinder top opening (cy-20), so at cy-34
+        var outer = mk('g',{transform:'translate('+(cx+dx+jit)+','+(cy-34)+')'});
+        var dot = mk('circle',{cx:'0',cy:'0',r:'4',fill:rgba(col,0.9),opacity:'0',
+          filter:'url(#ng)',style:'pointer-events:none'});
+        outer.appendChild(dot); g.appendChild(outer);
+        list.push({el:dot,delay:(ci*0.3+di*0.52)+'s',dur:'1.5s',kf:'archDrop'});
+      });
+    });
+    return _makeEffect(list);
+  }
+
+  // INGEST — three staggered fixed-size rings (pure opacity, no transform)
+  function _ingestEffect(g, cx, cy, col) {
+    var list = [];
+    // three rings at small/medium/large; larger rings peak later → simulates outward ripple
+    [{rx:11,ry:4},{rx:20,ry:7.5},{rx:29,ry:10.5}].forEach(function(sz,i){
+      var outer = mk('g',{transform:'translate('+(cx-10)+','+(cy-22)+')'});
+      var ring = mk('ellipse',{cx:'0',cy:'0',rx:String(sz.rx),ry:String(sz.ry),
+        fill:'none',stroke:rgba(col,0.78),'stroke-width':'2',opacity:'0',
+        style:'pointer-events:none'});
+      outer.appendChild(ring); g.appendChild(outer);
+      list.push({el:ring,delay:(i*0.38)+'s',dur:'1.25s',kf:'archRing'});
+    });
+    return _makeEffect(list);
+  }
+
+  // AI — 8-direction glowing sparks burst from antenna orb
+  function _aiEffect(g, cx, cy, col) {
+    var orbY = cy - 58;
+    var list = [];
+    for (var i=0;i<8;i++){
+      var dot = mk('circle',{cx:String(cx),cy:String(orbY),r:'3.5',fill:col,opacity:'0',
+        filter:'url(#ng)',style:'pointer-events:none'});
+      g.appendChild(dot);
+      list.push({el:dot,delay:(i*0.10)+'s',dur:'0.95s',kf:'archSpark'+i});
+    }
+    return _makeEffect(list);
+  }
+
+  // PROD — windows light up one by one
+  function _prodEffect(g, cx, cy, col) {
+    var wins=[[cx-6,cy-14],[cx+3,cy-14],[cx-6,cy-23],[cx+3,cy-23],[cx-6,cy-32],[cx+3,cy-32]];
+    var list = [];
+    wins.forEach(function(w,i){
+      var rect = mk('rect',{x:String(w[0]),y:String(w[1]),width:'5',height:'5',rx:'0.5',fill:rgba(col,0.88),opacity:'0',style:'pointer-events:none'});
+      g.appendChild(rect);
+      list.push({el:rect,delay:(i*0.28)+'s',dur:'1.8s',kf:'archWinGlow'});
+    });
+    return _makeEffect(list);
+  }
+
+  // HIST — upper 2 tiers lift then glow sequentially
+  function _histEffect(g, cx, cy, col) {
+    var tiers = g._histTiers; // [mid-tier <g>, top-tier <g>]
+    if (!tiers || !tiers.length) return { activate:function(){}, deactivate:function(){} };
+
+    // CSS transition for smooth lift
+    tiers[0].style.transition = 'transform 0.32s cubic-bezier(0.34,1.56,0.64,1)';
+    tiers[1].style.transition = 'transform 0.32s cubic-bezier(0.34,1.56,0.64,1)';
+
+    // Glow ellipse on top face of each tier (absolute SVG coords — groups have no transform offset)
+    // tier1 top face: y = cy-15, tier2 top face: y = cy-21.6
+    var glowDefs = [
+      {cy: cy-15,   rx: 13, ry: 4.2, delay: '0.20s', parent: tiers[0]},
+      {cy: cy-21.6, rx: 8,  ry: 2.6, delay: '0.55s', parent: tiers[1]},
+    ];
+    var glows = [];
+    glowDefs.forEach(function(cfg) {
+      var ell = mk('ellipse', {
+        cx: String(cx), cy: String(cfg.cy),
+        rx: String(cfg.rx), ry: String(cfg.ry),
+        fill: rgba(col, 0.45), stroke: rgba(col, 0.65), 'stroke-width': '1',
+        opacity: '0', style: 'pointer-events:none', filter: 'url(#ng)'
+      });
+      cfg.parent.appendChild(ell);
+      glows.push({el: ell, delay: cfg.delay});
+    });
+
+    return {
+      activate: function() {
+        tiers[0].style.transform = 'translateY(-6px)';
+        tiers[1].style.transform = 'translateY(-11px)';
+        glows.forEach(function(p) {
+          p.el.style.animation = 'archTierGlow 1.5s ' + p.delay + ' infinite ease-in-out';
+        });
+      },
+      deactivate: function() {
+        tiers[0].style.transform = '';
+        tiers[1].style.transform = '';
+        glows.forEach(function(p) {
+          p.el.style.animation = '';
+          p.el.style.opacity = '0';
+        });
+      }
+    };
+  }
 
   var bg = mk('radialGradient', {id:'bgrad', cx:'50%', cy:'46%', r:'58%'});
   [{o:'0%',c:'rgba(8,18,48,0.98)'},{o:'100%',c:'rgba(3,9,26,1)'}].forEach(function(x){
@@ -1361,6 +1533,7 @@
       g.appendChild(top);
 
       drawIcon(g, n);
+      var nodeEffect = createEffect(id, g, cx, cy, col);
 
       var lbl = mk('text', {
         x:cx, y:cy+hh+depth+16, 'text-anchor':'middle',
@@ -1377,6 +1550,7 @@
         glowEll.style.opacity = '0.9';
         top.setAttribute('filter','url(#ng)');
         showCard(evt, n);
+        if (nodeEffect) nodeEffect.activate();
       });
       g.addEventListener('mousemove', function(evt){ posCard(evt); });
       g.addEventListener('mouseleave', function() {
@@ -1385,6 +1559,7 @@
         glowEll.style.opacity = '0';
         top.removeAttribute('filter');
         hideCard();
+        if (nodeEffect) nodeEffect.deactivate();
       });
     }
 
@@ -1430,9 +1605,9 @@
 
     // Ground shadow
     g.appendChild(mk('ellipse',{cx:cx,cy:cy+26,rx:'88',ry:'24',fill:rgba(col,0.05),stroke:rgba(col,0.09),'stroke-width':'1'}));
-    cyl(cx-55,cy,12,40);
+    cyl(cx-55,cy+26,12,66);
     box(cx,cy,72,24,26,true);
-    cyl(cx+55,cy,12,40);
+    cyl(cx+55,cy+26,12,66);
     box(cx-22,cy-26,8,2.7,9,false,0.48,0.22,0.11);
     box(cx+22,cy-26,8,2.7,9,false,0.48,0.22,0.11);
     g.appendChild(mk('ellipse',{cx:cx,cy:cy-26,rx:'20',ry:'7',fill:rgba(col,0.42),stroke:col,'stroke-width':'1.5',filter:'url(#ng)'}));
@@ -1445,10 +1620,18 @@
     lbl.textContent=n.label;
     g.appendChild(lbl);
 
+    // top-face diamond glow: N=(cx,cy-50) E=(cx+72,cy-26) S=(cx,cy-2) W=(cx-72,cy-26)
+    var topGlow = mk('polygon',{
+      points:cx+','+(cy-50)+' '+(cx+72)+','+(cy-26)+' '+cx+','+(cy-2)+' '+(cx-72)+','+(cy-26),
+      fill:rgba(col,0.5), opacity:'0', filter:'url(#ng)', style:'pointer-events:none'
+    });
+    g.appendChild(topGlow);
+
     g.addEventListener('mouseenter',function(evt){
       g.style.transform    = 'translateY(-4px)';
       g.style.filter       = 'drop-shadow(0 10px 24px '+rgba(col,0.4)+')';
       glowEll.style.opacity = '0.9';
+      topGlow.style.animation = 'archLakeGlow 1.8s 0s infinite ease-in-out';
       showCard(evt, n);
     });
     g.addEventListener('mousemove',function(evt){ posCard(evt); });
@@ -1456,6 +1639,8 @@
       g.style.transform    = '';
       g.style.filter       = '';
       glowEll.style.opacity = '0';
+      topGlow.style.animation = '';
+      topGlow.style.opacity   = '0';
       hideCard();
     });
   }
@@ -1532,13 +1717,22 @@
       return;
     }
     if (id==='hist') {
-      var tiers=[{bhw:26,bhh:8.8,bH:9},{bhw:17,bhh:5.8,bH:9},{bhw:10,bhh:3.4,bH:9}];
+      var tierDefs=[{bhw:26,bhh:8.8,bH:9},{bhw:17,bhh:5.8,bH:9},{bhw:10,bhh:3.4,bH:9}];
       var stackY=cy;
-      for(var ti=0;ti<tiers.length;ti++){
-        var t=tiers[ti];
+      var animTiers=[];
+      for(var ti=0;ti<tierDefs.length;ti++){
+        var t=tierDefs[ti];
+        var before=g.children.length;
         box(cx,stackY,t.bhw,t.bhh,t.bH,ti===0,0.52+ti*0.07,0.26+ti*0.04,0.14+ti*0.04);
-        if(ti<tiers.length-1) stackY=stackY+t.bhh-t.bH-tiers[ti+1].bhh;
+        if(ti>0){
+          var tg=mk('g',null);
+          while(g.children.length>before) tg.appendChild(g.children[before]);
+          g.appendChild(tg);
+          animTiers.push(tg);
+        }
+        if(ti<tierDefs.length-1) stackY=stackY+t.bhh-t.bH-tierDefs[ti+1].bhh;
       }
+      g._histTiers=animTiers;
       return;
     }
     if (id==='con') {
