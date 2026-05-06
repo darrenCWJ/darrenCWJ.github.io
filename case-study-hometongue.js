@@ -14,7 +14,7 @@ window.CASE_STUDY = {
   // ── Hero Image ────────────────────────────────────────────────
   // Set to your image filename (must be in the project root or images/ folder).
   // Set to null to use the CSS pattern background instead.
-  heroImage: null,               // e.g. "images/hometongue-hero.jpg"
+  heroImage: "images/hometongue-hero.png",
 
   // Chips shown in the hero section.
   heroTags: ["TypeScript", "Speech AI", "Dialect Preservation", "Vercel", "{build} Hackathon SG"],
