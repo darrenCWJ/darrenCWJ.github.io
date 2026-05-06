@@ -10,3 +10,6 @@ Thumbs.db
 # Local dev
 *.log
 README.md
+
+# Playwright MCP cache
+.playwright-mcp/
