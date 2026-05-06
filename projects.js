@@ -26,7 +26,7 @@ window.PROJECTS = [
     description:  "Language learning app built for a hackathon, leveraging STT/TTS and AI translation to help users connect with their mother tongue. Cloud-deployed on Vercel.",
     githubUrl:    "https://github.com/darrenCWJ/HomeTongue",
     caseStudyUrl: "case-study-hometongue.html",
-    tags:         ["TYPESCRIPT", "SPEECH AI", "VERCEL"],
+    tags:         ["TYPESCRIPT", "SPEECH AI", "AI EMBEDDINGS"],
     icon:         "translate",
     image:        "hometongue-preview.svg",
     accent:       "orange",            // "amber" | "orange" | "tertiary"
@@ -35,11 +35,11 @@ window.PROJECTS = [
   {
     title:        "Hustle SG",
     subtitle:     "Singapore Gig Platform",
-    date:         "APR 2026 · PRODUCT",
+    date:         "APR 2026 · HACKATHON",
     description:  "Singapore-first gig platform featuring verified side hustlers, AI-matched gigs, and async video interviews — reducing friction between talent and opportunity.",
     githubUrl:    "https://github.com/darrenCWJ/hustle-sg",
-    caseStudyUrl: null,
-    tags:         ["TYPESCRIPT", "AI MATCHING", "SINGAPORE"],
+    caseStudyUrl: "case-study-hustlesg.html",
+    tags:         ["TYPESCRIPT", "AI MATCHING", "PINECONE"],
     icon:         "work",
     image:        "hustlesg-preview.svg",
     accent:       "tertiary",

@@ -14,7 +14,7 @@ window.CASE_STUDY = {
   // ── Hero Image ────────────────────────────────────────────────
   // Set to your image filename (must be inside the images/ folder).
   // Set to null to use the CSS pattern background instead.
-  heroImage: null,               // e.g. "images/tribunal-hero.jpg"
+  heroImage: "images/tribunal-hero.png",
 
   // Chips shown in the hero section.
   heroTags: ["Python", "RAGAS", "LLM Eval", "GovTech SG"],

@@ -192,8 +192,8 @@ window.SITE = {
       title:  "Full-Stack Systems",
       metric: "DEPLOY_VELOCITY: HIGH",
       grid: [
-        { label: "Backend",  value: "Flask / Django" },
-        { label: "Frontend", value: "React / TS" },
+        { label: "Backend",  value: "Flask / Django / FastAPI" },
+        { label: "Frontend", value: "React / TS / VITE" },
       ],
       chips: ["TYPESCRIPT", "REACT", "VERCEL"],
     },

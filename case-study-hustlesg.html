@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Hustle SG // Singapore Gig Platform — Darren Chua</title>
+<meta name="description" content="Case study: Hustle SG — a Singapore-first gig platform with Singpass verification, AI semantic matching via OpenAI embeddings and Pinecone, async video interviews, and a business registration guide."/>
+<script src="case-study-hustlesg.js"></script>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        colors: {
+          "background":               "#07122a",
+          "surface":                  "#07122a",
+          "surface-dim":              "#07122a",
+          "surface-bright":           "#2f3952",
+          "surface-container-lowest": "#030d25",
+          "surface-container-low":    "#101b33",
+          "surface-container":        "#151f37",
+          "surface-container-high":   "#1f2942",
+          "surface-container-highest":"#2a344e",
+          "on-surface":               "#fce7f3",
+          "on-surface-variant":       "#c9b8d0",
+          "outline":                  "#8b7a95",
+          "outline-variant":          "#4a2460",
+          "primary":                  "#ffd6e7",
+          "on-primary":               "#5c0026",
+          "primary-container":        "#db2777",
+          "on-primary-container":     "#7a0035",
+          "primary-fixed-dim":        "#f472b6",
+          "secondary-container":      "#a855f7",
+          "on-secondary-container":   "#1e0035",
+          "tertiary":                 "#dbe6ff",
+          "on-tertiary":              "#233148",
+          "on-background":            "#fce7f3",
+          "surface-variant":          "#2a344e",
+          "surface-tint":             "#db2777",
+        },
+        borderRadius: {
+          DEFAULT: "0.125rem",
+          lg:      "0.25rem",
+          xl:      "0.5rem",
+          full:    "9999px",
+        },
+        spacing: {
+          base:   "8px",
+          xs:     "4px",
+          sm:     "12px",
+          md:     "24px",
+          lg:     "48px",
+          xl:     "80px",
+          gutter: "24px",
+          margin: "32px",
+        },
+        fontFamily: {
+          "headline-xl": ["Space Grotesk"],
+          "headline-md": ["Space Grotesk"],
+          "label-caps":  ["Space Grotesk"],
+          "body-lg":     ["Inter"],
+          "body-md":     ["Inter"],
+          "mono":        ["JetBrains Mono"],
+        },
+        fontSize: {
+          "headline-xl": ["48px", { lineHeight:"1.1", letterSpacing:"-0.02em", fontWeight:"700" }],
+          "headline-md": ["24px", { lineHeight:"1.2", fontWeight:"600" }],
+          "label-caps":  ["12px", { lineHeight:"1",   letterSpacing:"0.1em",  fontWeight:"600" }],
+          "body-lg":     ["18px", { lineHeight:"1.6", fontWeight:"400" }],
+          "body-md":     ["16px", { lineHeight:"1.5", fontWeight:"400" }],
+        },
+      },
+    },
+  }
+</script>
+<style>
+  .material-symbols-outlined { font-variation-settings: 'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24; }
+
+  .glass-card {
+    background: rgba(17, 34, 64, 0.4);
+    backdrop-filter: blur(12px);
+    border-top: 1px solid rgba(219, 39, 119, 0.2);
+  }
+  .glass-card-bright {
+    background: rgba(21, 31, 55, 0.6);
+    backdrop-filter: blur(16px);
+    border-top: 1px solid rgba(219, 39, 119, 0.35);
+  }
+
+  .thermal-chip {
+    background: rgba(219, 39, 119, 0.08);
+    color: #f472b6;
+    border: 1px solid rgba(219, 39, 119, 0.2);
+  }
+
+  .blueprint-grid {
+    background-image:
+      linear-gradient(rgba(219,39,119,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(219,39,119,0.04) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: #07122a; }
+  ::-webkit-scrollbar-thumb { background: #db2777; border-radius: 10px; }
+
+  html { scroll-behavior: smooth; }
+
+  body::before {
+    content:''; position:fixed; top:0; right:0; width:60%; height:60%;
+    background: radial-gradient(ellipse at top right, rgba(219,39,119,0.05) 0%, transparent 70%);
+    pointer-events:none; z-index:0;
+  }
+  body::after {
+    content:''; position:fixed; bottom:0; left:0; width:50%; height:50%;
+    background: radial-gradient(ellipse at bottom left, rgba(168,85,247,0.04) 0%, transparent 70%);
+    pointer-events:none; z-index:0;
+  }
+
+  .text-glow { text-shadow: 0 0 12px rgba(219, 39, 119, 0.4); }
+
+  .pipe-line {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, rgba(219,39,119,0.6), rgba(219,39,119,0.2));
+    min-width: 20px;
+  }
+
+  .metric-num {
+    background: linear-gradient(135deg, #db2777 0%, #a855f7 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  #back-to-top {
+    position: fixed; bottom: 32px; right: 32px;
+    width: 44px; height: 44px;
+    background: #db2777; color: #fff;
+    border: none; cursor: pointer;
+    display: none; align-items: center; justify-content: center;
+    z-index: 100; transition: all 0.2s;
+  }
+  #back-to-top:hover { box-shadow: 0 0 20px rgba(219,39,119,0.5); transform: translateY(-2px); }
+  #back-to-top.visible { display: flex; }
+</style>
+</head>
+<body class="bg-background text-on-background font-body-md overflow-x-hidden selection:bg-primary-container selection:text-on-primary">
+
+<!-- ════ NAV ════ -->
+<nav class="fixed top-0 w-full z-50 border-b border-pink-500/20 bg-slate-950/60 backdrop-blur-xl h-16 flex justify-between items-center px-8 shadow-[0_4px_20px_rgba(219,39,119,0.05)]">
+  <a href="index.html" class="flex items-center gap-2 text-on-surface/60 hover:text-primary-fixed-dim transition-colors duration-200">
+    <span class="material-symbols-outlined text-[18px]">arrow_back</span>
+    <span class="font-label-caps text-label-caps uppercase tracking-widest">Back to Portfolio</span>
+  </a>
+  <div class="font-bold font-headline-md tracking-tighter uppercase" style="color:#f472b6">
+    DARREN.CWJ
+  </div>
+  <a id="cs-nav-github" href="#" target="_blank"
+     class="hidden md:flex items-center gap-2 border border-pink-500/30 px-4 py-2 font-label-caps uppercase text-[11px] hover:bg-pink-500/10 transition-all"
+     style="color:#f472b6">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/>
+    </svg>
+    View on GitHub
+  </a>
+</nav>
+
+<main class="relative z-10 pt-16">
+
+<!-- ════ HERO ════ -->
+<section class="relative w-full h-[560px] flex items-end overflow-hidden blueprint-grid">
+  <div class="absolute inset-0 z-0">
+
+    <img
+      id="cs-hero-img"
+      src=""
+      alt="Case study hero"
+      class="w-full h-full object-cover opacity-55"
+      style="display:none"
+      onerror="this.style.display='none'"
+      onload="this.style.display='block'"
+    />
+
+    <div class="absolute inset-0" style="background: radial-gradient(ellipse 70% 60% at 70% 40%, rgba(219,39,119,0.07) 0%, transparent 70%), radial-gradient(ellipse 40% 40% at 30% 60%, rgba(168,85,247,0.04) 0%, transparent 60%);"></div>
+    <svg class="absolute inset-0 w-full h-full opacity-10" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+      <defs>
+        <pattern id="circuit" x="0" y="0" width="120" height="120" patternUnits="userSpaceOnUse">
+          <path d="M20 60 L50 60 L50 20 L100 20" stroke="#db2777" stroke-width="0.5" fill="none"/>
+          <path d="M60 60 L60 100 L100 100" stroke="#dbe6ff" stroke-width="0.5" fill="none"/>
+          <circle cx="50" cy="60" r="2" fill="#db2777"/>
+          <circle cx="60" cy="100" r="2" fill="#dbe6ff"/>
+          <rect x="95" y="15" width="10" height="10" stroke="#db2777" stroke-width="0.5" fill="none"/>
+        </pattern>
+      </defs>
+      <rect width="100%" height="100%" fill="url(#circuit)"/>
+    </svg>
+
+    <div class="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-background/20"></div>
+  </div>
+
+  <!-- Large decorative icon -->
+  <div id="cs-hero-icon-wrap" class="absolute right-32 top-1/2 -translate-y-1/2 opacity-5 pointer-events-none">
+    <span class="material-symbols-outlined text-tertiary" style="font-size:320px;font-variation-settings:'FILL' 1">work</span>
+  </div>
+
+  <div class="relative z-10 max-w-7xl mx-auto px-margin pb-xl w-full">
+    <div class="flex flex-col gap-xs max-w-3xl">
+      <span id="cs-category" class="font-label-caps uppercase tracking-widest" style="color:#dbe6ff"></span>
+      <h1 id="cs-title" class="font-headline-xl text-headline-xl text-glow" style="color:#f472b6"></h1>
+      <p id="cs-subtitle" class="font-body-lg text-body-lg text-on-surface-variant mt-sm max-w-2xl"></p>
+      <div id="cs-hero-tags" class="flex flex-wrap gap-2 mt-sm"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ MAIN CONTENT ════ -->
+<section class="max-w-7xl mx-auto px-margin py-xl grid grid-cols-1 md:grid-cols-12 gap-gutter">
+
+  <!-- 8-col content -->
+  <div class="md:col-span-8 flex flex-col gap-lg">
+
+    <!-- The Problem -->
+    <div>
+      <h2 class="font-headline-md text-headline-md text-primary mb-md flex items-center gap-base">
+        <span class="material-symbols-outlined" style="color:#f472b6">terminal</span>
+        The Problem
+      </h2>
+      <div class="glass-card p-md border-l-2" style="border-left-color:#a855f7">
+        <p id="cs-problem-quote" class="text-on-surface leading-relaxed italic"></p>
+      </div>
+      <p id="cs-problem-desc" class="mt-md text-on-surface-variant leading-relaxed"></p>
+    </div>
+
+    <!-- Problem cards -->
+    <div id="cs-problem-cards" class="grid grid-cols-1 sm:grid-cols-2 gap-gutter"></div>
+
+    <!-- The Architecture -->
+    <div>
+      <h2 class="font-headline-md text-headline-md text-primary mb-md flex items-center gap-base">
+        <span class="material-symbols-outlined" style="color:#f472b6">architecture</span>
+        The Architecture
+      </h2>
+
+      <div class="relative glass-card border border-pink-500/10 mb-md overflow-hidden p-lg">
+        <div class="absolute inset-0 opacity-10">
+          <div class="w-full h-full" style="background-image: radial-gradient(#db2777 1px, transparent 0); background-size: 24px 24px;"></div>
+        </div>
+        <div id="cs-arch-pipeline-inner" class="relative flex flex-col gap-md items-center"></div>
+      </div>
+
+      <p id="cs-arch-desc" class="text-on-surface-variant leading-relaxed"></p>
+    </div>
+
+    <!-- Implementation Detail -->
+    <div>
+      <h2 class="font-headline-md text-headline-md text-primary mb-md flex items-center gap-base">
+        <span class="material-symbols-outlined" style="color:#f472b6">code</span>
+        Implementation
+      </h2>
+      <div id="cs-impl-paragraphs" class="space-y-md text-on-surface-variant leading-relaxed"></div>
+
+      <div class="mt-md glass-card border border-pink-500/10 p-md font-mono text-xs overflow-x-auto">
+        <div id="cs-impl-filename" class="mb-sm font-label-caps text-[10px] uppercase" style="color:#4a2460"></div>
+        <pre id="cs-impl-code" class="text-tertiary leading-relaxed"></pre>
+      </div>
+    </div>
+
+  </div><!-- /col-span-8 -->
+
+  <!-- 4-col aside -->
+  <aside class="md:col-span-4 flex flex-col gap-gutter">
+
+    <!-- System Specs -->
+    <div class="glass-card p-md" style="border-top-width:2px;border-top-color:#db2777">
+      <h4 class="font-label-caps text-primary mb-md">System Specifications</h4>
+      <ul id="cs-specs" class="flex flex-col gap-sm"></ul>
+    </div>
+
+    <!-- Key Technologies -->
+    <div class="glass-card p-md" style="background:rgba(219,39,119,0.03)">
+      <h4 class="font-label-caps mb-md" style="color:#f472b6">Key Technologies</h4>
+      <div id="cs-technologies" class="flex flex-wrap gap-xs"></div>
+    </div>
+
+    <!-- Match Quality Metrics -->
+    <div class="glass-card p-md">
+      <h4 class="font-label-caps text-primary mb-md">Platform Coverage</h4>
+      <div id="cs-metrics-bars" class="space-y-sm"></div>
+    </div>
+
+    <!-- Links -->
+    <div class="flex flex-col gap-sm">
+      <a id="cs-aside-github" href="#" target="_blank"
+         class="flex items-center justify-between glass-card p-sm hover:border-pink-500/40 transition-all group">
+        <span class="font-label-caps text-[11px] uppercase text-on-surface-variant group-hover:text-primary">View Source Code</span>
+        <span class="material-symbols-outlined text-[18px] text-on-surface-variant group-hover:text-primary">open_in_new</span>
+      </a>
+      <a href="index.html#projects"
+         class="flex items-center justify-between glass-card p-sm hover:border-pink-500/40 transition-all group">
+        <span class="font-label-caps text-[11px] uppercase text-on-surface-variant group-hover:text-primary">All Projects</span>
+        <span class="material-symbols-outlined text-[18px] text-on-surface-variant group-hover:text-primary">arrow_back</span>
+      </a>
+    </div>
+
+  </aside>
+
+</section>
+
+<!-- ════ RESULTS ════ -->
+<section class="border-y py-xl" style="background:rgba(10,20,48,0.6);border-color:rgba(219,39,119,0.1)">
+  <div class="max-w-7xl mx-auto px-margin">
+    <h2 class="font-headline-md text-headline-md text-primary mb-lg text-center">The Result</h2>
+    <div id="cs-results" class="grid grid-cols-1 md:grid-cols-3 gap-gutter"></div>
+  </div>
+</section>
+
+<!-- ════ REFLECTIONS ════ -->
+<section class="max-w-4xl mx-auto px-margin py-xl">
+  <div class="flex items-center gap-md mb-lg">
+    <div class="w-16 h-[1px]" style="background:rgba(219,39,119,0.3)"></div>
+    <h2 class="font-headline-md text-headline-md text-primary whitespace-nowrap">Reflections // Philosophy</h2>
+    <div class="flex-grow h-[1px]" style="background:rgba(219,39,119,0.3)"></div>
+  </div>
+  <div id="cs-reflections" class="flex flex-col gap-md"></div>
+</section>
+
+<!-- ════ BACK LINK ════ -->
+<div class="max-w-7xl mx-auto px-margin pb-xl">
+  <a href="index.html#projects" class="inline-flex items-center gap-2 font-label-caps text-[11px] uppercase text-on-surface-variant hover:text-primary transition-colors">
+    <span class="material-symbols-outlined text-[16px]">arrow_back</span>
+    Back to all projects
+  </a>
+</div>
+
+</main>
+
+<!-- ════ FOOTER ════ -->
+<footer class="border-t p-6 w-full" style="background:#030d25;border-color:rgba(219,39,119,0.3)">
+  <div class="flex flex-col md:flex-row justify-between items-center max-w-7xl mx-auto gap-4 font-mono text-xs uppercase tracking-widest">
+    <div style="color:#f472b6;font-weight:700">DARREN.CWJ</div>
+    <div style="color:#4a2460">© 2026 Darren Chua // Case Study</div>
+    <div class="flex gap-6">
+      <a href="https://github.com/darrenCWJ" target="_blank" class="transition-all hover:text-pink-300" style="color:#4a2460">GitHub</a>
+      <a href="https://www.linkedin.com/in/darren-chua-265879b1/" target="_blank" class="transition-all hover:text-pink-300" style="color:#4a2460">LinkedIn</a>
+      <a href="index.html" class="transition-all hover:text-pink-300" style="color:#4a2460">Portfolio</a>
+    </div>
+  </div>
+</footer>
+
+<!-- Back to top -->
+<button id="back-to-top" title="Back to top">
+  <span class="material-symbols-outlined text-[20px]">arrow_upward</span>
+</button>
+
+<!-- ════ CASE STUDY RENDERER ════ -->
+<script>
+(function () {
+  var CS = window.CASE_STUDY;
+  if (!CS) return;
+
+  function setText(id, text) {
+    var el = document.getElementById(id);
+    if (el) el.textContent = text;
+  }
+  function setHtml(id, markup) {
+    var el = document.getElementById(id);
+    if (el) el.innerHTML = markup;
+  }
+
+  // ── Nav & hero ────────────────────────────────────────────────
+  var navGh = document.getElementById('cs-nav-github');
+  if (navGh) navGh.href = CS.githubUrl;
+
+  var heroImg = document.getElementById('cs-hero-img');
+  if (heroImg && CS.heroImage) {
+    heroImg.src = CS.heroImage;
+  }
+
+  setText('cs-category', CS.category);
+  setText('cs-title',    CS.title);
+  setText('cs-subtitle', CS.subtitle);
+
+  setHtml('cs-hero-tags', CS.heroTags.map(function (t) {
+    return '<span class="thermal-chip px-3 py-1 text-label-caps text-xs rounded-sm uppercase">' + t + '</span>';
+  }).join(''));
+
+  // ── Problem ───────────────────────────────────────────────────
+  setText('cs-problem-quote', CS.problemQuote);
+  setText('cs-problem-desc',  CS.problemDescription);
+
+  setHtml('cs-problem-cards', CS.problemCards.map(function (c) {
+    return '<div class="glass-card p-md flex flex-col gap-sm">'
+      + '<span class="material-symbols-outlined text-2xl" style="color:#f472b6">' + c.icon + '</span>'
+      + '<div class="font-semibold text-on-surface">' + c.title + '</div>'
+      + '<p class="text-on-surface-variant text-sm leading-relaxed">' + c.description + '</p>'
+      + '</div>';
+  }).join(''));
+
+  // ── Architecture pipeline ─────────────────────────────────────
+  function buildPipeRow(nodes, isRow2) {
+    var borderClass = isRow2
+      ? 'border border-dashed" style="border-color:rgba(219,230,255,0.3)'
+      : 'border border-pink-500/20"';
+    var iconColor  = isRow2 ? '#dbe6ff' : '#f472b6';
+    var labelColor = isRow2 ? '#dbe6ff' : '#f472b6';
+    var pipeStyle  = isRow2
+      ? ' style="background:linear-gradient(90deg,rgba(219,230,255,0.5),rgba(219,230,255,0.1))"'
+      : '';
+
+    return nodes.map(function (n, i) {
+      var node = '<div class="flex-1 glass-card-bright ' + borderClass + ' p-sm text-center">'
+        + '<span class="material-symbols-outlined text-2xl block" style="color:' + iconColor + '">' + n.icon + '</span>'
+        + '<span class="text-[10px] font-mono uppercase block mt-1" style="color:' + labelColor + '">' + n.label + '</span>'
+        + '<span class="text-[9px] text-on-surface-variant block">' + n.sublabel + '</span>'
+        + '</div>';
+      if (i < nodes.length - 1) {
+        node += '<div class="pipe-line"' + pipeStyle + '></div>';
+      }
+      return node;
+    }).join('');
+  }
+
+  var archInner = document.getElementById('cs-arch-pipeline-inner');
+  if (archInner) {
+    archInner.innerHTML =
+      '<div class="flex items-center gap-md w-full max-w-2xl mx-auto">'
+        + buildPipeRow(CS.archPipelineRow1, false)
+      + '</div>'
+      + '<div class="w-[1px] h-8 bg-pink-500/30"></div>'
+      + '<div class="flex items-center gap-md w-full max-w-2xl mx-auto">'
+        + buildPipeRow(CS.archPipelineRow2, true)
+      + '</div>';
+  }
+
+  setText('cs-arch-desc', CS.archDescription);
+
+  // ── Implementation ────────────────────────────────────────────
+  setHtml('cs-impl-paragraphs', CS.implParagraphs.map(function (p) {
+    return '<p>' + p + '</p>';
+  }).join(''));
+
+  setText('cs-impl-filename', '# ' + CS.implCodeFilename);
+
+  var codeEl = document.getElementById('cs-impl-code');
+  if (codeEl) codeEl.textContent = CS.implCode;
+
+  // ── Aside: specs ──────────────────────────────────────────────
+  setHtml('cs-specs', CS.specs.map(function (s, i) {
+    var border = i < CS.specs.length - 1
+      ? 'border-b pb-xs" style="border-color:rgba(255,255,255,0.05)'
+      : 'pb-xs"';
+    return '<li class="flex justify-between items-center ' + border + '">'
+      + '<span class="text-on-surface-variant text-xs font-mono uppercase">' + s.key + '</span>'
+      + '<span class="text-on-surface text-sm font-semibold">' + s.value + '</span>'
+      + '</li>';
+  }).join(''));
+
+  // ── Aside: technologies ───────────────────────────────────────
+  setHtml('cs-technologies', CS.technologies.map(function (t) {
+    return '<span class="px-2 py-1 text-[10px] font-mono border uppercase"'
+      + ' style="background:rgba(219,39,119,0.08);color:#f472b6;border-color:rgba(219,39,119,0.2)">'
+      + t + '</span>';
+  }).join(''));
+
+  // ── Aside: metrics bars ───────────────────────────────────────
+  var metricsHtml = '';
+  var lastType = '';
+  CS.metricsBars.forEach(function (m) {
+    var isCore    = m.type === 'core';
+    var barColor  = isCore ? '#db2777' : '#dbe6ff';
+    var barExtra  = isCore ? '' : ';opacity:0.6';
+    var barWidth  = isCore ? '100%' : '80%';
+    var typeLabel = isCore ? 'Core' : 'Extended';
+    var typeColor = isCore ? '#f472b6' : '#dbe6ff';
+
+    if (!isCore && lastType === 'core') {
+      metricsHtml += '<div class="border-t my-sm" style="border-color:rgba(255,255,255,0.05)"></div>';
+    }
+    metricsHtml +=
+      '<div>'
+      + '<div class="flex justify-between text-[10px] font-mono text-on-surface-variant mb-xs">'
+      + '<span>' + m.label + '</span>'
+      + '<span style="color:' + typeColor + '">' + typeLabel + '</span>'
+      + '</div>'
+      + '<div class="h-1 rounded-full" style="background:rgba(255,255,255,0.08)">'
+      + '<div class="h-full rounded-full" style="width:' + barWidth + ';background:' + barColor + barExtra + '"></div>'
+      + '</div>'
+      + '</div>';
+    lastType = m.type;
+  });
+  setHtml('cs-metrics-bars', metricsHtml);
+
+  // ── Aside: GitHub link ────────────────────────────────────────
+  var asideGh = document.getElementById('cs-aside-github');
+  if (asideGh) asideGh.href = CS.githubUrl;
+
+  // ── Results ───────────────────────────────────────────────────
+  setHtml('cs-results', CS.results.map(function (r) {
+    return '<div class="text-center flex flex-col gap-sm">'
+      + '<div class="text-5xl font-headline-xl metric-num">' + r.number + '</div>'
+      + '<div class="font-label-caps text-on-surface-variant">' + r.label + '</div>'
+      + '<p class="text-sm text-on-surface-variant mt-xs">' + r.description + '</p>'
+      + '</div>';
+  }).join(''));
+
+  // ── Reflections ───────────────────────────────────────────────
+  var p0 = CS.reflectionParagraphs[0] || '';
+  var p1 = CS.reflectionParagraphs[1] || '';
+  setHtml('cs-reflections',
+    '<p class="font-body-lg text-on-surface-variant leading-relaxed">' + p0 + '</p>'
+    + '<div class="border p-md relative overflow-hidden" style="background:#0a1430;border-color:rgba(219,39,119,0.2)">'
+    + '<span class="material-symbols-outlined absolute -right-4 -bottom-4 opacity-5" style="font-size:144px;color:#db2777;font-variation-settings:\'FILL\' 1;">format_quote</span>'
+    + '<p class="relative z-10 font-mono text-sm" style="color:#f472b6">&ldquo;' + CS.quote + '&rdquo;</p>'
+    + '<div class="mt-md flex items-center gap-sm">'
+    + '<div class="w-8 h-8 rounded-full flex items-center justify-center font-bold text-[10px]" style="background:rgba(219,39,119,0.15);border:1px solid rgba(219,39,119,0.3);color:#f472b6">' + CS.quoteInitials + '</div>'
+    + '<span class="text-xs uppercase font-bold tracking-widest text-on-surface-variant">' + CS.quoteAuthor + '</span>'
+    + '</div>'
+    + '</div>'
+    + '<p class="font-body-lg text-on-surface-variant leading-relaxed">' + p1 + '</p>'
+  );
+
+})();
+</script>
+
+<script>
+  const btn = document.getElementById('back-to-top');
+  window.addEventListener('scroll', () => {
+    btn.classList.toggle('visible', window.scrollY > 400);
+  });
+  btn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+</script>
+
+</body>
+</html>
