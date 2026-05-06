@@ -25,7 +25,7 @@ window.PROJECTS = [
     date:         "APR 2026 · HACKATHON",
     description:  "Language learning app built for a hackathon, leveraging STT/TTS and AI translation to help users connect with their mother tongue. Cloud-deployed on Vercel.",
     githubUrl:    "https://github.com/darrenCWJ/HomeTongue",
-    caseStudyUrl: null,               // set to "case-study-hometongue.html" when ready
+    caseStudyUrl: "case-study-hometongue.html",
     tags:         ["TYPESCRIPT", "SPEECH AI", "VERCEL"],
     icon:         "translate",
     image:        "hometongue-preview.svg",
