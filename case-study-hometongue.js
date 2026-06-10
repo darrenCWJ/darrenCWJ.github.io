@@ -7,8 +7,8 @@ window.CASE_STUDY = {
 
   // ── Header & Nav ─────────────────────────────────────────────
   title:     "HomeTongue",
-  category:  "Project Case Study // Speech & Language AI · {build} Hackathon",
-  subtitle:  "\"Voices Before They Fade\" — an AI family archive that records grandparents speaking in dialect, preserves the meaning behind their words, and turns everyday moments into living heritage before it's too late.",
+  category:  "Project Case Study // Speech & Language AI · {build} Hackathon · Team 92",
+  subtitle:  "\"Stay in the conversation\" — an AI companion that helps Singaporeans understand dialect-speaking seniors, respond in Cantonese, and learn from real exchanges. Validated by 735 survey responses, three rounds of public prototype testing, and a research-driven pivot.",
   githubUrl: "https://github.com/darrenCWJ/HomeTongue",
 
   // ── Hero Image ────────────────────────────────────────────────
@@ -17,36 +17,36 @@ window.CASE_STUDY = {
   heroImage: "images/hometongue-hero.png",
 
   // Chips shown in the hero section.
-  heroTags: ["TypeScript", "Speech AI", "Dialect Preservation", "Vercel", "{build} Hackathon SG"],
+  heroTags: ["TypeScript", "Speech AI", "Cantonese First", "735 Survey Responses", "{build} Hackathon SG"],
 
   // ── The Problem ───────────────────────────────────────────────
   // The opening quote shown in the highlighted block.
-  problemQuote: "When young Singaporeans can no longer speak their grandparents' dialect, families lose more than words — they lose connection, memory, and heritage.",
+  problemQuote: "Many people do not lack care for seniors — they lack the words and confidence to express it in the dialect seniors understand best.",
 
   // The paragraph below the quote.
-  problemDescription: "The root cause is not that people don't care about dialects. Dialect is no longer being passed down consistently in everyday family life. Many families have shifted toward English and Mandarin, so younger generations may still hear dialect — at family dinners, festive visits, in casual conversations at home — but don't get enough repeated, practical exposure to understand or respond. Existing learning resources are generic; they cannot capture how Ah Gong tells a joke in his particular way, or the recipes Ah Ma explains only in Hokkien. Families are left without a simple, meaningful way to record how their loved ones actually speak, and pass that on.",
+  problemDescription: "Users are not trying to \"translate a sentence.\" They are trying to stay present in a live conversation with a senior — at home with grandparents, in healthcare settings with elderly patients, during community visits. They need to understand what was said, express their own response in dialect, and continue the exchange without freezing, guessing, or relying on someone else to speak for them. Our user testing surfaced a nuanced insight: many users already know what they want to say — they just cannot say it naturally and confidently in Cantonese. Existing tools handle one-off translation or generic lessons, but nothing supports the full loop: Understand → Respond → Save → Learn → Improve.",
 
   // Four problem cards. icon = any Material Symbols name.
   problemCards: [
     {
-      icon:        "voice_over_off",
-      title:       "Dialect Falling Silent",
-      description: "Younger generations hear dialect at home but lack the repeated, practical exposure to understand or respond — so everyday family conversations gradually shift fully to English or Mandarin.",
+      icon:        "hourglass_disabled",
+      title:       "Conversations End Too Early",
+      description: "A grandchild stops at polite small talk. A nurse can't confidently reassure a worried patient. A volunteer misses the chance to make a senior feel heard. Each shortened exchange weakens family bonds and trust in care settings.",
     },
     {
-      icon:        "folder_off",
-      title:       "No Family Archive",
-      description: "Grandparents' voices, phrases, jokes, and stories are almost never recorded in any reusable form. When they are gone, so are the little expressions that carried decades of warmth, identity, and memory.",
+      icon:        "record_voice_over",
+      title:       "\"I Know What I Want to Say\"",
+      description: "Prototype testing revealed the core pain isn't deciding what to say — users often know their intended reply but can't express it naturally in Cantonese. This validated a first-class \"Say Something Else\" flow: speak or type in English, get it back in dialect.",
     },
     {
-      icon:        "menu_book",
-      title:       "Generic Learning Resources",
-      description: "Existing dialect tools are built for general audiences. They can't capture how Ah Gong tells that joke in his particular way, or the scoldings that somehow still sound loving, or the recipes explained only in Hokkien.",
+      icon:        "sync_problem",
+      title:       "Translation Isn't the Loop",
+      description: "Google Translate helps you understand a one-off sentence. Nothing supports conversation continuity — understanding, responding in real time, saving useful phrases, and practising from real exchanges until you need the app less.",
     },
     {
-      icon:        "warning",
-      title:       "The Loss Is Permanent",
-      description: "Regret comes too late. Once elder voices are gone, so are the stories behind old family photos, the festive greetings passed down for generations, and Singapore's living heritage — not in museums, but in the voices of our homes.",
+      icon:        "location_on",
+      title:       "Localisation Gap",
+      description: "Singapore Cantonese is not Hong Kong or Malaysia Cantonese. Testers flagged generic phrasing immediately — local expressions and mixed English-Mandarin-Cantonese sentences are the reality the product must handle.",
     },
   ],
 
@@ -54,64 +54,48 @@ window.CASE_STUDY = {
   // Two rows of nodes. Each node: icon (Material Symbols), label, sublabel.
   // Row 1 uses amber styling, row 2 uses tertiary (blue-white) styling.
   archPipelineRow1: [
-    { icon: "mic",          label: "RECORD",      sublabel: "Capture elder's voice" },
-    { icon: "hearing",      label: "DIALECT_STT", sublabel: "Transcribe dialect audio" },
-    { icon: "translate",    label: "LLM_ENRICH",  sublabel: "Translate + contextualise" },
+    { icon: "mic",          label: "LISTEN",       sublabel: "Capture the senior live" },
+    { icon: "hearing",      label: "DIALECT_STT",  sublabel: "Transcribe Cantonese" },
+    { icon: "psychology",   label: "EXPLAIN",      sublabel: "English meaning + intent" },
   ],
   archPipelineRow2: [
-    { icon: "sell",         label: "TAG_SUGGEST",  sublabel: "Key phrases + tags" },
-    { icon: "photo_album",  label: "FAMILY_VAULT", sublabel: "Searchable archive" },
-    { icon: "school",       label: "LEARN_BITE",   sublabel: "Bite-sized moments" },
+    { icon: "question_answer", label: "RESPOND",     sublabel: "Suggested or your own words" },
+    { icon: "volume_up",       label: "TTS_PLAYBACK", sublabel: "Speak it in Cantonese" },
+    { icon: "school",          label: "SAVE_LEARN",   sublabel: "Real moments → practice" },
   ],
 
   // Paragraph below the pipeline diagram.
-  archDescription: "HomeTongue's pipeline is built around preservation, not just translation. The family opens the app during a natural moment — a festive visit, a dinner conversation, a story being told — and records the elder speaking in dialect. That audio passes through a dialect-tuned STT layer for transcription, then into an LLM enrichment step that produces a translation, surfaces key phrases, suggests tags, and proposes a simple reply the younger family member can use. Everything is saved to a searchable family vault and automatically broken into bite-sized learning cards the next generation can revisit and learn from.",
+  archDescription: "HomeTongue's pipeline is built around one stressful moment: you're looking at a senior, trying to listen, understand, and reply without breaking the flow. The user records what the senior says; dialect speech-to-text transcribes it and an LLM explains the meaning in English. To respond, the user can pick an optional AI-suggested reply — or use \"Say Something Else\" to speak or type their own English response and have it converted to Cantonese with audio playback they can play aloud or imitate. Useful moments are saved after the conversation, where Learn Mode turns them into practice material with lightweight pronunciation scoring — so each future conversation needs the app a little less.",
 
   // ── Implementation ────────────────────────────────────────────
   // Plain text paragraphs — no HTML needed.
   implParagraphs: [
-    "The frontend is built in TypeScript with a React + Next.js stack, deployed on Vercel for instant availability. Recording uses the browser's MediaRecorder API — no app install required, so families can open it on any device during the moment, not later when the moment has passed.",
-    "The LLM enrichment layer does more than translate. A prompt chain extracts the emotional register of what was said (advice, memory, joke, recipe), proposes relevant tags for the archive, highlights key phrases worth learning, and generates a contextually appropriate reply suggestion the younger family member can try in the next turn.",
-    "Longer recordings — a story about the old kampong, a recipe walked through step by step — are automatically segmented into shorter learning moments. Each segment becomes a standalone card in the family vault: the original audio clip, the dialect transcript, the English translation, and a cultural note explaining what made that expression unique.",
+    "The frontend is built in TypeScript with a React + Next.js stack, deployed on Vercel as a mobile web app — no install required, because the moment of need is live and unplanned. The live screen is deliberately minimal: one clear primary action (listen to the senior), tap-or-hold recording, and the ability to extend a recording when the senior keeps speaking in chunks.",
+    "The respond flow has two first-class paths, a direct outcome of user testing. Optional AI-suggested replies are generated from the conversation context and intent — but testing showed some users found them unnecessary, so they toggle off cleanly. \"Say Something Else\" handles the validated majority case: the user speaks or types their intended reply in English, and the app converts it to Cantonese with playback — human-in-the-loop, so the user reviews the English meaning before anything is spoken aloud.",
+    "Learn Mode closes the loop. Saved phrases and conversations become practice material drawn from the user's real life, not a generic curriculum. A lightweight scoring mechanism compares the learner's STT-captured attempt against the target phrase — deliberately positioned as an early confidence-builder rather than full Cantonese tone scoring. Persona and context personalise future suggestions over time.",
   ],
 
   // The code block. Use plain text — indent with spaces, not tabs.
-  implCodeFilename: "app/api/preserve/route.ts",
+  implCodeFilename: "app/api/conversation-turn/route.ts",
   implCode:
-`// Record a dialect moment and save it to the family archive
+`// One live conversation turn: understand → respond → speak
 export async function POST(req: Request) {
-  const { audioBlob, dialect, speakerName } = await req.json();
+  const { audioBlob, mode, userIntent, context } = await req.json();
 
-  // Transcribe dialect audio
-  const transcript = await transcribeDialect(audioBlob, dialect);
+  // 1. UNDERSTAND — transcribe the senior's Cantonese, explain in English
+  const transcript = await transcribeCantonese(audioBlob);
+  const meaning    = await explainInEnglish(transcript, context);
 
-  // Enrich with translation, tags, key phrases, reply suggestion
-  const { translation, keyPhrases, tags, suggestedReply, culturalNote } =
-    await enrichMoment(transcript, dialect);
+  // 2. RESPOND — two first-class paths, validated by user testing
+  const reply = mode === 'say-something-else'
+    ? await englishToCantonese(userIntent)        // user knows what to say
+    : await suggestReplies(transcript, context);  // user wants options
 
-  // Segment longer recordings into learning moments
-  const learningCards = await segmentIntoCards({
-    transcript,
-    translation,
-    keyPhrases,
-    audioBlob,
-  });
+  // 3. SPEAK — Cantonese audio the user can play or imitate
+  const replyAudio = await synthesiseCantonese(reply);
 
-  // Save everything to the family vault
-  const entry = await familyVault.save({
-    speaker:      speakerName,
-    dialect,
-    original:     transcript,
-    translation,
-    keyPhrases,
-    tags,
-    culturalNote,
-    learningCards,
-    audio:        audioBlob,
-    timestamp:    new Date(),
-  });
-
-  return Response.json({ entry, suggestedReply });
+  // 4. SAVE — useful moments become Learn Mode practice material
+  return Response.json({ transcript, meaning, reply, replyAudio });
 }`,
 
   // ── Aside — System Specifications ────────────────────────────
@@ -121,7 +105,8 @@ export async function POST(req: Request) {
     { key: "Deployment",  value: "Vercel" },
     { key: "STT",         value: "Whisper / ElevenLabs" },
     { key: "LLM",         value: "GPT-4o-mini" },
-    { key: "Dialects",    value: "Hokkien, Cantonese, Teochew" },
+    { key: "Dialect",     value: "Cantonese first · Hokkien, Teochew, Hakka next" },
+    { key: "Team",        value: "Team 92 · 4 members" },
     { key: "Context",     value: "{build} Hackathon SG 2026" },
   ],
 
@@ -134,41 +119,41 @@ export async function POST(req: Request) {
   // ── Aside — Metrics Bars ──────────────────────────────────────
   // type: "core" (amber) or "extended" (blue-white).
   metricsBars: [
-    { label: "DIALECT TRANSCRIPTION",    type: "core" },
-    { label: "TRANSLATION FIDELITY",     type: "core" },
-    { label: "PHRASE PRESERVATION",      type: "core" },
-    { label: "CULTURAL CONTEXT",         type: "extended" },
-    { label: "ARCHIVE SEARCHABILITY",    type: "extended" },
-    { label: "LEARNING CARD QUALITY",    type: "extended" },
+    { label: "LIVE TRANSCRIPTION",        type: "core" },
+    { label: "ENGLISH MEANING",           type: "core" },
+    { label: "RESPONSE CONVERSION",       type: "core" },
+    { label: "SUGGESTED REPLIES",         type: "extended" },
+    { label: "LEARN MODE SCORING",        type: "extended" },
+    { label: "SG CANTONESE LOCALISATION", type: "extended" },
   ],
 
   // ── Results ───────────────────────────────────────────────────
   results: [
     {
-      number:      "48h",
-      label:       "Zero to Demo",
-      description: "Designed, built, and deployed within the hackathon window — recording, transcription, LLM enrichment, and family vault all live and functional.",
+      number:      "735",
+      label:       "Survey Responses",
+      description: "Collected via FormSG to validate the need — 87.9% of respondents found the idea at least somewhat useful, with demand spanning family, healthcare, and community settings.",
+    },
+    {
+      number:      "73.7%",
+      label:       "Top Feature Signal",
+      description: "Real-time dialect translation was the most requested feature (518 of 703 feature respondents) — archive features ranked last. That data drove the pivot from memory archive to live conversation companion.",
     },
     {
       number:      "3",
-      label:       "Dialect Groups",
-      description: "Hokkien, Cantonese, and Teochew — the three major Chinese dialects spoken across Singapore's elder generation, each with distinct vocabulary and expression.",
-    },
-    {
-      number:      "∞",
-      label:       "Archive Lives On",
-      description: "Every recording added to the family vault persists — searchable, shareable, and learnable by grandchildren who haven't been born yet.",
+      label:       "Rounds of User Testing",
+      description: "Public prototype testing with non-dialect speakers, family caregivers, and healthcare-adjacent users — validating the \"Say Something Else\" flow and making suggested replies optional.",
     },
   ],
 
   // ── Reflections ───────────────────────────────────────────────
   // Two paragraphs — one before the quote, one after.
   reflectionParagraphs: [
-    "HomeTongue started as a hackathon project but landed on a problem with a real deadline — not a product deadline, but a human one. The elder voices we're trying to preserve are finite. Building this made clear that the most important feature wasn't translation quality or latency. It was lowering the barrier to recording in the first place: making it feel natural enough that a family would actually open it at the dinner table, not think \"I should do this sometime\" and never get around to it.",
-    "The product insight that shaped everything was this: people don't want to learn a dialect in the abstract. They want to understand what Ah Gong just said. They want to reply in a way that makes him smile. They want their children to one day hear his voice telling that story about the old kampong — and know exactly what he meant. The archive is the product. The AI is just what makes the moment worth keeping.",
+    "HomeTongue began as \"Voices Before They Fade\" — an archive for preserving grandparents' dialect recordings. Then 735 survey responses said otherwise: voice archiving ranked at the bottom of requested features (15.9%), while real-time translation topped the list at 73.7%. We pivoted from memory archive to live conversation companion — the hardest and best product decision of the hackathon. The wedge is not better translation, and it is not preservation. The wedge is conversation continuity: helping someone stay present in a live exchange they would otherwise shorten or avoid.",
+    "The deepest insight came from watching testers: people often already know what they want to say — they need help saying it in Cantonese. So \"Say Something Else\" became a first-class path rather than a hidden fallback, and AI-suggested replies became optional. The product now measures itself against one North Star: successful meaningful conversation turns completed. The idea has been submitted to MCCY's Singapore Government Partnerships Office and aligns with Age Well SG and SG Cares — a path for HomeTongue to support families, volunteers, and care settings beyond the hackathon.",
   ],
-  quote:        "The loss is permanent. Once those voices are gone, so are the jokes that only Ah Gong tells in a certain way — and no language app in the world can give those back.",
-  quoteAuthor:  "Darren Chua · {build} Hackathon SG",
+  quote:        "Google Translate helps you understand what was said. HomeTongue helps you keep the conversation going — until you need it a little less each time.",
+  quoteAuthor:  "Darren Chua · Team 92 · {build} Hackathon SG",
   quoteInitials:"DC",
 
 };

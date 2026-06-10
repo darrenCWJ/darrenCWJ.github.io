@@ -23,7 +23,7 @@ window.PROJECTS = [
     title:        "HomeTongue",
     subtitle:     "Speech & Language AI",
     date:         "APR 2026 · HACKATHON",
-    description:  "Language learning app built for a hackathon, leveraging STT/TTS and AI translation to help users connect with their mother tongue. Cloud-deployed on Vercel.",
+    description:  "Real-time conversation companion that helps Singaporeans understand and respond to dialect-speaking seniors — validated by 735 survey responses at GovTech's {build} hackathon.",
     githubUrl:    "https://github.com/darrenCWJ/HomeTongue",
     caseStudyUrl: "case-study-hometongue.html",
     tags:         ["TYPESCRIPT", "SPEECH AI", "AI EMBEDDINGS"],
