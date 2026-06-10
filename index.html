@@ -1,10 +1,24 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html class="dark" lang="en">
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Darren Chua | Data Engineer & AI Builder</title>
 <meta name="description" content="Data Engineer at GovTech Singapore. Building AI systems that bridge data pipelines to intelligent, user-facing products."/>
+<link rel="icon" href="favicon.svg" type="image/svg+xml"/>
+<link rel="canonical" href="https://darrencwj.github.io/"/>
+<!-- Open Graph / social sharing -->
+<meta property="og:type" content="website"/>
+<meta property="og:url" content="https://darrencwj.github.io/"/>
+<meta property="og:title" content="Darren Chua | Data Engineer & AI Builder"/>
+<meta property="og:description" content="Data Engineer at GovTech Singapore. Building AI systems that bridge data pipelines to intelligent, user-facing products."/>
+<meta property="og:image" content="https://darrencwj.github.io/images/og-cover.png"/>
+<meta property="og:image:width" content="1200"/>
+<meta property="og:image:height" content="630"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" content="Darren Chua | Data Engineer & AI Builder"/>
+<meta name="twitter:description" content="Data Engineer at GovTech Singapore. Building AI systems that bridge data pipelines to intelligent, user-facing products."/>
+<meta name="twitter:image" content="https://darrencwj.github.io/images/og-cover.png"/>
 <script src="content.js"></script>
 <script src="projects.js"></script>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
@@ -136,7 +150,7 @@
   /* Smooth scroll */
   html { scroll-behavior: smooth; }
 
-  /* Subtle ambient glow â€” pure CSS radial gradients, no filter to avoid compositing issues */
+  /* Subtle ambient glow — pure CSS radial gradients, no filter to avoid compositing issues */
   body::before {
     content:''; position:fixed; top:0; right:0; width:60%; height:60%;
     background: radial-gradient(ellipse at top right, rgba(255,191,0,0.04) 0%, transparent 70%);
@@ -177,16 +191,19 @@
     color: #402d00;
     border: none;
     cursor: pointer;
-    display: none;
+    display: flex;
     align-items: center;
     justify-content: center;
     z-index: 100;
-    transition: all 0.2s;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(10px);
+    transition: opacity 0.3s ease, transform 0.3s ease, box-shadow 0.2s;
   }
   #back-to-top:hover { box-shadow: 0 0 20px rgba(255,191,0,0.5); transform: translateY(-2px); }
-  #back-to-top.visible { display: flex; }
+  #back-to-top.visible { opacity: 1; pointer-events: auto; transform: translateY(0); }
 
-  /* Scroll reveal â€” elements always start visible, just get a subtle lift */
+  /* Scroll reveal — elements always start visible, just get a subtle lift */
   /* Architecture node hover lift */
   .arch-node {
     transition: transform 0.32s cubic-bezier(.2,.7,.2,1), filter 0.28s;
@@ -195,7 +212,7 @@
   }
   /* Typewriter caret */
   .arch-tw::after {
-    content: 'â–';
+    content: '▍';
     display: inline-block;
     margin-left: 1px;
     color: #fbbc00;
@@ -204,26 +221,91 @@
   .arch-tw.done::after { display: none; }
   @keyframes arch-blink { 50% { opacity: 0; } }
 
+  /* Scroll reveal — class is only ever added by JS, so no-JS renders stay fully visible */
   .reveal-target {
-    transition: opacity 0.5s ease, transform 0.5s ease;
+    transition: opacity 0.65s cubic-bezier(0.16,1,0.3,1), transform 0.65s cubic-bezier(0.16,1,0.3,1);
   }
-  /* Not yet in view: tiny offset but still visible so static renders look fine */
   .reveal-target:not(.revealed) {
-    opacity: 0.85;
-    transform: translateY(8px);
+    opacity: 0;
+    transform: translateY(26px);
   }
   .reveal-target.revealed {
     opacity: 1;
     transform: translateY(0);
+  }
+
+  /* ── Hero entrance sequence ─────────────────────────────────── */
+  @keyframes heroRise {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .hero-stagger > * { animation: heroRise 0.75s cubic-bezier(0.16,1,0.3,1) both; }
+  .hero-stagger > *:nth-child(1) { animation-delay: 0.05s; }
+  .hero-stagger > *:nth-child(2) { animation-delay: 0.15s; }
+  .hero-stagger > *:nth-child(3) { animation-delay: 0.28s; }
+  .hero-stagger > *:nth-child(4) { animation-delay: 0.40s; }
+  .hero-stagger > *:nth-child(5) { animation-delay: 0.52s; }
+  .hero-stagger > *:nth-child(6) { animation-delay: 0.64s; }
+  .hero-terminal-wrap { animation: heroRise 0.9s 0.45s cubic-bezier(0.16,1,0.3,1) both; }
+
+  /* Amber shimmer sweep across the accent headline line */
+  @keyframes heroShimmer {
+    0%, 55%  { background-position: 130% 0; }
+    100%     { background-position: -30% 0; }
+  }
+  .hero-accent {
+    background: linear-gradient(100deg, #fbbc00 42%, #fff3c4 50%, #fbbc00 58%);
+    background-size: 220% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: heroShimmer 5.5s ease-in-out 1.2s infinite;
+  }
+
+  /* Terminal typewriter caret */
+  .term-caret::after {
+    content: '▍';
+    color: #fbbc00;
+    animation: arch-blink 0.85s steps(2) infinite;
+  }
+
+  /* ── Scroll progress bar under the nav ──────────────────────── */
+  #scroll-progress {
+    position: fixed; top: 64px; left: 0; height: 2px; width: 100%;
+    background: linear-gradient(90deg, #ff5625, #fbbc00);
+    transform: scaleX(0); transform-origin: left;
+    z-index: 60; pointer-events: none;
+    box-shadow: 0 0 8px rgba(255,191,0,0.5);
+  }
+
+  /* ── Project card tilt + image zoom ─────────────────────────── */
+  .project-card { will-change: transform; }
+  /* Once revealed, transform responds quickly so the 3D tilt tracks the cursor */
+  .project-card.revealed { transition: transform 0.18s ease-out, opacity 0.65s; }
+  .project-card img { transition: transform 0.55s cubic-bezier(0.16,1,0.3,1); }
+  .project-card:hover img { transform: scale(1.06); }
+
+  /* ── Animated stat bars (zeroed by JS, grow on reveal) ──────── */
+  .bar-fill  { transition: width 1.1s cubic-bezier(0.16,1,0.3,1); }
+  .spark-bar { transition: height 0.9s cubic-bezier(0.16,1,0.3,1); }
+
+  /* ── Reduced motion: calm everything down ───────────────────── */
+  @media (prefers-reduced-motion: reduce) {
+    .hero-stagger > *, .hero-terminal-wrap { animation: none; }
+    .hero-accent { animation: none; background-position: 0 0; }
+    .reveal-target, .reveal-target:not(.revealed) { opacity: 1; transform: none; transition: none; }
+    .scanning-line { animation: none; opacity: 0; }
+    .bar-fill, .spark-bar, .project-card img { transition: none; }
+    html { scroll-behavior: auto; }
   }
 </style>
 </head>
 <body class="bg-background text-on-background font-body-md overflow-x-hidden selection:bg-primary-container selection:text-on-primary">
 
 
-<!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+<!-- ════════════════════════════════════
      TOP NAV
-â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+════════════════════════════════════ -->
 <nav class="fixed top-0 w-full z-50 border-b border-amber-500/20 bg-slate-950/60 backdrop-blur-xl h-16 flex justify-between items-center px-8 shadow-[0_4px_20px_rgba(255,191,0,0.05)]">
   <div class="text-xl font-bold text-primary-fixed-dim drop-shadow-[0_0_8px_rgba(255,191,0,0.4)] font-headline-md tracking-tighter uppercase" style="color:#fbbc00">
     DARREN.CWJ
@@ -232,7 +314,7 @@
     <a href="#systems"   class="text-on-surface/60 hover:text-primary-fixed-dim transition-colors duration-200" style="--tw-text-opacity:1">Evolution</a>
     <a href="#skills"    class="text-on-surface/60 hover:text-primary-fixed-dim transition-colors duration-200">Skills</a>
     <a href="#projects"  class="text-on-surface/60 hover:text-primary-fixed-dim transition-colors duration-200">Works</a>
-    <a href="#timeline"  class="text-on-surface/60 hover:text-primary-fixed-dim transition-colors duration-200">History</a>
+    <a href="#timeline"  class="text-on-surface/60 hover:text-primary-fixed-dim transition-colors duration-200">Experience</a>
     <a href="#certs"     class="text-on-surface/60 hover:text-primary-fixed-dim transition-colors duration-200">Certs</a>
     <a href="#contact"   class="text-on-surface/60 hover:text-primary-fixed-dim transition-colors duration-200">Connect</a>
   </div>
@@ -241,56 +323,57 @@
           class="md:hidden p-2 text-on-surface/60 hover:text-primary-fixed-dim transition-colors">
     <span class="material-symbols-outlined">menu</span>
   </button>
-  <a href="mailto:deathdarren@gmail.com" data-s-href="emailHref"
+  <a href="mailto:darrenchuawj@hotmail.com" data-s-href="emailHref"
      class="hidden md:block bg-primary-container text-on-primary px-5 py-2 font-label-caps uppercase font-bold active:scale-95 duration-150 transition-all hover:shadow-[0_0_20px_rgba(255,191,0,0.4)]"
      style="color:#402d00">
     Connect
   </a>
 </nav>
+<div id="scroll-progress"></div>
 
 <!-- Mobile menu -->
 <div id="mobile-menu" class="hidden fixed top-16 left-0 w-full z-40 bg-slate-950/95 backdrop-blur-xl border-b border-amber-500/20 p-6 space-y-4">
   <a href="#systems"  onclick="document.getElementById('mobile-menu').classList.add('hidden')" class="block font-label-caps uppercase text-on-surface/70 hover:text-primary-fixed-dim">Evolution</a>
   <a href="#skills"   onclick="document.getElementById('mobile-menu').classList.add('hidden')" class="block font-label-caps uppercase text-on-surface/70 hover:text-primary-fixed-dim">Skills</a>
   <a href="#projects" onclick="document.getElementById('mobile-menu').classList.add('hidden')" class="block font-label-caps uppercase text-on-surface/70 hover:text-primary-fixed-dim">Works</a>
-  <a href="#timeline" onclick="document.getElementById('mobile-menu').classList.add('hidden')" class="block font-label-caps uppercase text-on-surface/70 hover:text-primary-fixed-dim">History</a>
+  <a href="#timeline" onclick="document.getElementById('mobile-menu').classList.add('hidden')" class="block font-label-caps uppercase text-on-surface/70 hover:text-primary-fixed-dim">Experience</a>
   <a href="#certs"    onclick="document.getElementById('mobile-menu').classList.add('hidden')" class="block font-label-caps uppercase text-on-surface/70 hover:text-primary-fixed-dim">Certs</a>
   <a href="#contact"  onclick="document.getElementById('mobile-menu').classList.add('hidden')" class="block font-label-caps uppercase text-on-surface/70 hover:text-primary-fixed-dim">Connect</a>
 </div>
 
 <main class="relative z-10">
 
-<!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+<!-- ════════════════════════════════════
      HERO
-â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+════════════════════════════════════ -->
 <section class="min-h-screen flex items-center pt-16 blueprint-grid overflow-hidden">
   <div class="absolute inset-0 bg-gradient-to-b from-transparent via-background/30 to-background pointer-events-none"></div>
   <div class="relative w-full max-w-7xl mx-auto px-margin grid grid-cols-1 md:grid-cols-12 gap-gutter items-center py-xl">
 
     <!-- Left: Text -->
-    <div class="md:col-span-7 space-y-md">
+    <div class="md:col-span-7 space-y-md hero-stagger">
       <!-- Status badge -->
       <div class="inline-flex items-center gap-2 px-sm py-xs border border-amber-500/30 bg-amber-500/5 backdrop-blur-sm">
         <span class="w-2 h-2 rounded-full bg-primary-fixed-dim animate-pulse"></span>
         <span class="font-label-caps text-label-caps uppercase tracking-widest" style="color:#fbbc00"
               data-s="heroStatus">
-          Data Engineer Â· GovTech Singapore Â· Open to Opportunities
+          Data Engineer · GovTech Singapore · Open to Opportunities
         </span>
       </div>
 
       <!-- Headline -->
       <h1 class="font-headline-xl text-headline-xl leading-none text-on-surface">
         Automate the Mundane,<br/>
-        <span style="color:#fbbc00">Amplify Creativity.</span>
+        <span class="hero-accent" style="color:#fbbc00">Amplify Creativity.</span>
       </h1>
 
       <!-- Sub -->
       <p class="font-body-lg text-body-lg text-on-surface-variant max-w-xl" data-s="heroBio">
-        I build AI systems that bridge raw data pipelines to intelligent, user-facing products â€”
-        from LLM evaluation frameworks and speech AI to Singapore's next gig platform.
+        I build systems that turn raw data pipelines into intelligent, user-facing products —
+        from LLM evaluation frameworks to a sensor-driven facilities management system.
       </p>
 
-      <!-- Credential chips â€” edit in content.js â†’ heroChips -->
+      <!-- Credential chips — edit in content.js → heroChips -->
       <div id="hero-chips" class="flex flex-wrap gap-2 pt-2"></div>
 
       <!-- CTAs -->
@@ -330,7 +413,7 @@
     </div>
 
     <!-- Right: Visual -->
-    <div class="md:col-span-5 flex justify-center relative mt-12 md:mt-0">
+    <div class="md:col-span-5 flex justify-center relative mt-12 md:mt-0 hero-terminal-wrap">
       <div class="relative w-80 h-80 flex items-center justify-center">
         <!-- Orbit rings -->
         <div class="absolute inset-0 border border-amber-500/10 rounded-full animate-pulse"></div>
@@ -339,7 +422,7 @@
         <div class="glass-card-bright p-6 w-72 space-y-3 relative overflow-hidden" style="border-top-color:rgba(255,191,0,0.4)">
           <div class="scanning-line"></div>
           <div class="font-mono text-[10px] text-on-surface-variant uppercase tracking-widest">system_log // live</div>
-          <!-- Terminal lines â€” edit in content.js â†’ terminalLines -->
+          <!-- Terminal lines — edit in content.js → terminalLines -->
           <div id="terminal-lines" class="space-y-2 font-mono text-xs"></div>
           <div class="flex gap-2 pt-1 font-mono text-xs">
             <span class="w-2 h-2 rounded-full bg-primary-fixed-dim animate-ping self-center"></span>
@@ -351,9 +434,9 @@
   </div>
 </section>
 
-<!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+<!-- ════════════════════════════════════
      00. PLATFORM ARCHITECTURE (nav layer)
-â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+════════════════════════════════════ -->
 <section id="arch" class="py-10 blueprint-grid relative overflow-hidden">
   <div class="max-w-7xl mx-auto px-margin">
 
@@ -399,9 +482,9 @@
   </div>
 </div>
 
-<!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+<!-- ════════════════════════════════════
      01. EVOLUTION LOG
-â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+════════════════════════════════════ -->
 <section id="systems" class="py-xl border-y border-amber-500/10 bg-surface-container-lowest/40">
   <div class="max-w-7xl mx-auto px-margin">
     <div class="grid grid-cols-1 md:grid-cols-12 gap-gutter items-start">
@@ -424,7 +507,7 @@
       </div>
 
       <div class="md:col-span-7 space-y-md text-on-surface-variant">
-        <!-- Evolution paragraphs â€” edit in content.js â†’ evolutionParagraphs -->
+        <!-- Evolution paragraphs — edit in content.js → evolutionParagraphs -->
         <div id="evolution-bio"></div>
         <div class="grid grid-cols-2 gap-md pt-4 border-t border-amber-500/10">
           <div>
@@ -441,9 +524,9 @@
   </div>
 </section>
 
-<!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+<!-- ════════════════════════════════════
      02. CAPABILITY MATRIX
-â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+════════════════════════════════════ -->
 <!-- CERTIFICATIONS SECTION -->
 <section id="certs" class="py-xl border-t border-amber-500/10 bg-surface-container-lowest/40">
   <div class="max-w-7xl mx-auto px-margin">
@@ -478,15 +561,15 @@
         <p class="font-body-lg text-on-surface-variant mt-2 max-w-xl" data-s="skillsDescription">A multi-dimensional mapping of engineering competencies, algorithmic depth, and product delivery.</p>
       </div>
       <div class="glass-card p-md border-l-4 border-primary-container hidden lg:flex flex-col justify-center flex-shrink-0" style="border-top-color:rgba(255,191,0,0.3)">
-        <div class="font-label-caps text-[10px] uppercase tracking-widest" style="color:#fbbc00">SYSTEM_UPTIME</div>
-        <div class="font-headline-md" style="color:#fbbc00;font-size:20px;font-weight:700">99.98% OPTIMIZED</div>
+        <div class="font-label-caps text-[10px] uppercase tracking-widest" style="color:#fbbc00">SYSTEM_RUNTIME</div>
+        <div class="font-headline-md" style="color:#fbbc00;font-size:20px;font-weight:700">6 YEARS IN PROD</div>
       </div>
     </div>
 
     <!-- 3-column skill grid -->
     <div class="grid grid-cols-12 gap-gutter">
 
-      <!-- â”€â”€ Column 1: Data Engineering â”€â”€ -->
+      <!-- ── Column 1: Data Engineering ── -->
       <div class="col-span-12 lg:col-span-4 flex flex-col gap-gutter">
         <div class="flex items-center gap-sm">
           <span class="material-symbols-outlined" style="color:#fbbc00">database</span>
@@ -496,7 +579,7 @@
         <div id="skills-col-left"></div>
       </div>
 
-      <!-- â”€â”€ Column 2: AI / LLM Systems (centre highlight) â”€â”€ -->
+      <!-- ── Column 2: AI / LLM Systems (centre highlight) ── -->
       <div class="col-span-12 lg:col-span-4 flex flex-col gap-gutter">
         <div class="flex items-center gap-sm">
           <span class="material-symbols-outlined text-secondary-container">neurology</span>
@@ -507,7 +590,7 @@
             <h4 class="font-bold text-on-surface" data-s="cognitiveEngineTitle">Cognitive Engine</h4>
             <span class="px-2 py-1 text-[10px] font-bold text-secondary-container" style="background:rgba(255,86,37,0.1);border:1px solid rgba(255,86,37,0.3)" data-s="cognitiveEngineBadge">LEVEL_ELITE</span>
           </div>
-          <!-- Dynamic SVG radar â€” polygon vertices driven by skill percentages below -->
+          <!-- Dynamic SVG radar — polygon vertices driven by skill percentages below -->
           <div class="flex-1 flex items-center justify-center py-md">
             <svg id="cognitive-radar" width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"></svg>
           </div>
@@ -516,7 +599,7 @@
         </div>
       </div>
 
-      <!-- â”€â”€ Column 3: Product & Speech Engineering â”€â”€ -->
+      <!-- ── Column 3: Product & Speech Engineering ── -->
       <div class="col-span-12 lg:col-span-4 flex flex-col gap-gutter">
         <div class="flex items-center gap-sm">
           <span class="material-symbols-outlined" style="color:#dbe6ff">terminal</span>
@@ -530,9 +613,9 @@
   </div>
 </section>
 
-<!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+<!-- ════════════════════════════════════
      03. ACTIVE DEPLOYMENTS (Projects)
-â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+════════════════════════════════════ -->
 <section id="projects" class="py-xl border-t border-amber-500/10 bg-surface-container-lowest/30">
   <div class="max-w-7xl mx-auto px-margin">
     <div class="mb-lg flex justify-between items-end">
@@ -556,9 +639,9 @@
   </div>
 </section>
 
-<!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+<!-- ════════════════════════════════════
      04. TEMPORAL LOGS (Timeline)
-â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+════════════════════════════════════ -->
 <section id="timeline" class="py-xl blueprint-grid border-t border-amber-500/10">
   <div class="max-w-7xl mx-auto px-margin">
     <div class="text-center mb-xl">
@@ -566,14 +649,14 @@
       <h2 class="font-headline-xl text-headline-xl text-on-surface mt-2">The Evolution Path</h2>
     </div>
 
-    <!-- Timeline rendered from content.js â†’ timeline -->
+    <!-- Timeline rendered from content.js → timeline -->
     <div id="timeline-items" class="space-y-sm max-w-4xl mx-auto"></div>
   </div>
 </section>
 
-<!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+<!-- ════════════════════════════════════
      05. CURRENTLY PROCESSING (Learning)
-â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+════════════════════════════════════ -->
 <section class="py-xl bg-surface-container-lowest/40 border-t border-amber-500/10">
   <div class="max-w-7xl mx-auto px-margin">
     <div class="flex items-center justify-between mb-lg flex-wrap gap-md">
@@ -587,14 +670,14 @@
       </div>
     </div>
 
-    <!-- Learning cards rendered from content.js â†’ currentlyProcessing -->
+    <!-- Learning cards rendered from content.js → currentlyProcessing -->
     <div id="learning-cards" class="grid grid-cols-1 md:grid-cols-3 gap-gutter"></div>
   </div>
 </section>
 
-<!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+<!-- ════════════════════════════════════
      06. CONTACT / CTA
-â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+════════════════════════════════════ -->
 <!-- CONTACT SECTION -->
 <section id="contact" class="py-xl border-t border-amber-500/10" style="background:#070f20;position:relative;z-index:20">
   <div class="max-w-7xl mx-auto px-margin text-center">
@@ -612,7 +695,7 @@
 
       <!-- Contact links -->
       <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:16px;padding-top:8px">
-        <a href="mailto:deathdarren@gmail.com" data-s-href="emailHref"
+        <a href="mailto:darrenchuawj@hotmail.com" data-s-href="emailHref"
            class="cta-amber inline-flex items-center gap-2 font-label-caps uppercase font-bold active:scale-95 transition-all"
            style="background:#ffbf00;color:#402d00;padding:16px 48px;font-size:12px;letter-spacing:0.1em;font-weight:700;text-decoration:none;display:inline-flex;align-items:center;gap:8px">
           <span class="material-symbols-outlined" style="font-size:18px">mail</span>
@@ -646,17 +729,17 @@
   <span class="material-symbols-outlined" style="font-size:20px">arrow_upward</span>
 </button>
 
-<!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+<!-- ════════════════════════════════════
      FOOTER
-â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+════════════════════════════════════ -->
 <footer class="bg-slate-950 border-t border-amber-500/20 py-6 px-8">
   <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4 font-mono text-[10px] uppercase tracking-widest">
-    <div class="font-bold" style="color:#fbbc00">DARREN.CWJ // DATA ENGINEER Â· AI BUILDER</div>
-    <div class="text-slate-500">Â© <span data-s="footerYear">2026</span> Â· Singapore Â· Always Learning, Always Improving</div>
+    <div class="font-bold" style="color:#fbbc00">DARREN.CWJ // DATA ENGINEER · AI BUILDER</div>
+    <div class="text-slate-500">© <span data-s="footerYear">2026</span> · Singapore · Always Learning, Always Improving</div>
     <div class="flex gap-6">
       <a href="https://github.com/darrenCWJ"                              target="_blank" data-s-href="githubHref"   class="text-slate-500 hover:text-amber-300 transition-colors">GitHub</a>
       <a href="https://www.linkedin.com/in/darren-chua-265879b1/"         target="_blank" data-s-href="linkedinHref" class="text-slate-500 hover:text-amber-300 transition-colors">LinkedIn</a>
-      <a href="mailto:deathdarren@gmail.com"                                              data-s-href="emailHref"    class="text-slate-500 hover:text-amber-300 transition-colors">Email</a>
+      <a href="mailto:darrenchuawj@hotmail.com"                                              data-s-href="emailHref"    class="text-slate-500 hover:text-amber-300 transition-colors">Email</a>
     </div>
     <div class="flex items-center gap-2">
       <span class="w-2 h-2 rounded-full bg-primary-fixed-dim animate-pulse" style="background:#fbbc00"></span>
@@ -665,7 +748,7 @@
   </div>
 </footer>
 
-<!-- Sparkline bar charts. Edit values in content.js â†’ sparklines -->
+<!-- Sparkline bar charts. Edit values in content.js → sparklines -->
 <script>
 (function () {
   var sl = window.SITE && window.SITE.sparklines;
@@ -689,7 +772,7 @@
 })();
 </script>
 
-<!-- Cognitive Engine â€” dynamic SVG radar. Edit skills in content.js â†’ cognitiveSkills -->
+<!-- Cognitive Engine — dynamic SVG radar. Edit skills in content.js → cognitiveSkills -->
 <script>
 (function () {
   // Read from content.js; fall back to defaults so the page never breaks
@@ -789,7 +872,7 @@
       + '<span style="font-size:10px;font-family:JetBrains Mono,monospace;color:#fbbc00">' + Math.round(s.pct * 100) + '%</span>'
       + '</div>'
       + '<div style="width:100%;height:2px;background:#2a344e;margin-top:4px">'
-      + '<div style="width:' + (s.pct * 100) + '%;height:100%;background:linear-gradient(90deg,#ff5625,#ffbf00);box-shadow:0 0 6px rgba(255,191,0,0.4)"></div>'
+      + '<div class="bar-fill" style="width:' + (s.pct * 100) + '%;height:100%;background:linear-gradient(90deg,#ff5625,#ffbf00);box-shadow:0 0 6px rgba(255,191,0,0.4)"></div>'
       + '</div>'
       + '</div>';
   }).join('');
@@ -810,12 +893,12 @@
   }
 </script>
 
-<!-- â”€â”€ Dynamic renderers â€” all driven by content.js and projects.js â”€â”€ -->
+<!-- ── Dynamic renderers — all driven by content.js and projects.js ── -->
 <script>
 (function () {
   var S = window.SITE || {};
 
-  // â”€â”€ Hero chips â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+  // ── Hero chips ────────────────────────────────────────────────
   var chipsEl = document.getElementById('hero-chips');
   if (chipsEl && S.heroChips) {
     chipsEl.innerHTML = S.heroChips.map(function (c) {
@@ -823,15 +906,52 @@
     }).join('');
   }
 
-  // â”€â”€ Terminal lines â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+  // ── Terminal lines ────────────────────────────────────────────
   var termEl = document.getElementById('terminal-lines');
   if (termEl && S.terminalLines) {
-    termEl.innerHTML = S.terminalLines.map(function (l) {
-      return '<div class="flex gap-2"><span style="color:#fbbc00">â€º</span><span class="text-on-surface">' + l.key + ': ' + l.value + '</span></div>';
-    }).join('');
+    var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var lineEls = S.terminalLines.map(function () {
+      var row = document.createElement('div');
+      row.className = 'flex gap-2';
+      row.innerHTML = '<span style="color:#fbbc00">›</span><span class="text-on-surface"></span>';
+      row.style.opacity = '0';
+      termEl.appendChild(row);
+      return row;
+    });
+    if (reduceMotion) {
+      // No animation: render everything instantly
+      S.terminalLines.forEach(function (l, i) {
+        lineEls[i].style.opacity = '1';
+        lineEls[i].lastChild.textContent = l.key + ': ' + l.value;
+      });
+    } else {
+      // Type each line in sequence with a blinking caret on the active line
+      var li = 0;
+      function typeLine() {
+        if (li >= S.terminalLines.length) return;
+        var l    = S.terminalLines[li];
+        var text = l.key + ': ' + l.value;
+        var row  = lineEls[li];
+        var span = row.lastChild;
+        row.style.opacity = '1';
+        span.classList.add('term-caret');
+        var ci = 0;
+        var t = setInterval(function () {
+          ci++;
+          span.textContent = text.slice(0, ci);
+          if (ci >= text.length) {
+            clearInterval(t);
+            span.classList.remove('term-caret');
+            li++;
+            setTimeout(typeLine, 140);
+          }
+        }, 14);
+      }
+      setTimeout(typeLine, 650);
+    }
   }
 
-  // â”€â”€ Evolution bio paragraphs â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+  // ── Evolution bio paragraphs ──────────────────────────────────
   var evoEl = document.getElementById('evolution-bio');
   if (evoEl && S.evolutionParagraphs) {
     evoEl.innerHTML = S.evolutionParagraphs.map(function (p, i) {
@@ -840,7 +960,7 @@
     }).join('');
   }
 
-  // â”€â”€ Timeline â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+  // ── Timeline ──────────────────────────────────────────────────
   var tlEl = document.getElementById('timeline-items');
   if (tlEl && S.timeline) {
     var TL_STYLES = {
@@ -875,7 +995,7 @@
     }).join('');
   }
 
-  // â”€â”€ Currently Processing (learning cards) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+  // ── Currently Processing (learning cards) ─────────────────────
   var lcEl = document.getElementById('learning-cards');
   if (lcEl && S.currentlyProcessing) {
     var LC_STYLES = {
@@ -895,7 +1015,7 @@
         + '<h4 class="font-bold text-on-surface mb-1">' + item.title + '</h4>'
         + '<p class="text-xs text-on-surface-variant leading-relaxed mb-2">' + item.description + '</p>'
         + '<div class="w-full h-1 bg-surface-container-highest">'
-        + '<div class="h-full" style="width:' + item.progress + '%;background:' + st.barColor + ';opacity:0.7"></div>'
+        + '<div class="h-full bar-fill" style="width:' + item.progress + '%;background:' + st.barColor + ';opacity:0.7"></div>'
         + '</div></div></div>';
     }).join('');
   }
@@ -1010,7 +1130,7 @@
       var max = Math.max.apply(null, vals);
       var bars = vals.map(function(v) {
         var h = Math.max(2, Math.round(v / max * 48));
-        return '<div style="flex:1;background:' + color + ';height:' + h + 'px;opacity:0.7;border-radius:1px 1px 0 0"></div>';
+        return '<div class="spark-bar" style="flex:1;background:' + color + ';height:' + h + 'px;opacity:0.7;border-radius:1px 1px 0 0"></div>';
       }).join('');
       return '<div class="h-12 w-full flex items-end gap-1 mb-md px-1">' + bars + '</div>';
     }
@@ -1066,7 +1186,7 @@
     }
   }());
 
-  // â”€â”€ Projects â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+  // ── Projects ──────────────────────────────────────────────────
   var pgEl = document.getElementById('projects-grid');
   if (pgEl && window.PROJECTS) {
     var PROJ_STYLES = {
@@ -1752,10 +1872,13 @@
   }
 })();
 </script>
-<!-- Scroll-in animation -->
+<!-- Scroll-in animation + micro-interactions -->
 <script>
-  // Use IntersectionObserver but keep elements visible by default,
-  // only add the animation class when near the viewport for a subtle effect.
+(function () {
+  const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // ── Staggered scroll reveals ─────────────────────────────────────────
+  // Cards in the same container reveal in sequence, not all at once.
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(e => {
       if (e.isIntersecting) {
@@ -1767,19 +1890,102 @@
 
   document.querySelectorAll('.glass-card, .project-card').forEach(el => {
     el.classList.add('reveal-target');
+    if (!reduceMotion) {
+      const siblings = el.parentElement
+        ? Array.from(el.parentElement.children).filter(c => c.classList.contains('reveal-target'))
+        : [el];
+      const idx = siblings.indexOf(el);
+      el.style.transitionDelay = Math.min(idx > 0 ? idx * 90 : 0, 450) + 'ms';
+    }
     observer.observe(el);
   });
 
-  // Nav active link + back-to-top on scroll
-  const sections = document.querySelectorAll('section[id]');
-  const navLinks = document.querySelectorAll('nav a[href^="#"]');
-  const backToTop = document.getElementById('back-to-top');
-  window.addEventListener('scroll', () => {
-    // Back to top visibility
+  // ── Bars and sparklines grow when they scroll into view ─────────────
+  if (!reduceMotion) {
+    const growEls = [];
+    document.querySelectorAll('.bar-fill').forEach(el => {
+      growEls.push({ el, prop: 'width', target: el.style.width });
+      el.style.width = '0%';
+    });
+    document.querySelectorAll('.spark-bar').forEach(el => {
+      growEls.push({ el, prop: 'height', target: el.style.height });
+      el.style.height = '2px';
+    });
+    const growObs = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (!e.isIntersecting) return;
+        const item = growEls.find(g => g.el === e.target);
+        if (item) e.target.style[item.prop] = item.target;
+        growObs.unobserve(e.target);
+      });
+    }, { threshold: 0.3 });
+    growEls.forEach(g => growObs.observe(g.el));
+
+    // Certs counter counts up on first view
+    const cnt = document.getElementById('certs-count');
+    if (cnt) {
+      const match = cnt.textContent.match(/\d+/);
+      const total = match ? parseInt(match[0], 10) : 0;
+      const suffix = cnt.textContent.replace(/^\d+\s*/, '');
+      const cntObs = new IntersectionObserver((entries) => {
+        if (!entries[0].isIntersecting || !total) return;
+        cntObs.disconnect();
+        let v = 0;
+        const t = setInterval(() => {
+          v++;
+          cnt.textContent = v + ' ' + suffix;
+          if (v >= total) clearInterval(t);
+        }, 70);
+      }, { threshold: 0.5 });
+      cntObs.observe(cnt);
+    }
+  }
+
+  // ── Project card 3D tilt ─────────────────────────────────────────────
+  if (!reduceMotion && window.matchMedia('(hover: hover)').matches) {
+    document.querySelectorAll('.project-card').forEach(card => {
+      card.addEventListener('mousemove', (e) => {
+        const r = card.getBoundingClientRect();
+        const px = (e.clientX - r.left) / r.width - 0.5;
+        const py = (e.clientY - r.top) / r.height - 0.5;
+        card.style.transform = 'perspective(900px) rotateX(' + (-py * 5).toFixed(2) + 'deg) rotateY(' + (px * 5).toFixed(2) + 'deg) translateY(-3px)';
+        card.style.transitionDelay = '0ms';
+      });
+      card.addEventListener('mouseleave', () => {
+        card.style.transform = '';
+      });
+    });
+
+    // Magnetic pull on the main CTA buttons
+    document.querySelectorAll('.hero-stagger a[href^="#"], .cta-amber, .cta-outline').forEach(btn => {
+      btn.addEventListener('mousemove', (e) => {
+        const r = btn.getBoundingClientRect();
+        const dx = (e.clientX - r.left - r.width / 2) / r.width;
+        const dy = (e.clientY - r.top - r.height / 2) / r.height;
+        btn.style.transform = 'translate(' + (dx * 7).toFixed(1) + 'px,' + (dy * 5).toFixed(1) + 'px)';
+      });
+      btn.addEventListener('mouseleave', () => { btn.style.transform = ''; });
+    });
+  }
+
+  // ── Scroll progress bar + nav active link + back-to-top ─────────────
+  const sections   = document.querySelectorAll('section[id]');
+  const navLinks   = document.querySelectorAll('nav a[href^="#"]');
+  const backToTop  = document.getElementById('back-to-top');
+  const progressEl = document.getElementById('scroll-progress');
+  let ticking = false;
+
+  function onScroll() {
+    ticking = false;
+
+    if (progressEl) {
+      const max = document.documentElement.scrollHeight - window.innerHeight;
+      progressEl.style.transform = 'scaleX(' + (max > 0 ? window.scrollY / max : 0) + ')';
+    }
+
     if (window.scrollY > 400) backToTop.classList.add('visible');
     else backToTop.classList.remove('visible');
 
-    // Active nav link
     let current = '';
     sections.forEach(s => {
       if (window.scrollY >= s.offsetTop - 100) current = s.id;
@@ -1788,7 +1994,13 @@
       a.style.color = a.getAttribute('href') === `#${current}` ? '#fbbc00' : '';
       a.style.fontWeight = a.getAttribute('href') === `#${current}` ? '700' : '';
     });
-  });
+  }
+
+  window.addEventListener('scroll', () => {
+    if (!ticking) { ticking = true; requestAnimationFrame(onScroll); }
+  }, { passive: true });
+  onScroll();
+})();
 </script>
 
 </body>

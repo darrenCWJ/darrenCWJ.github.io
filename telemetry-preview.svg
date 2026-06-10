@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 384" width="800" height="384">
+  <defs>
+    <linearGradient id="tbg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0d1629"/>
+      <stop offset="55%" stop-color="#1d1208"/>
+      <stop offset="100%" stop-color="#2a1200"/>
+    </linearGradient>
+    <radialGradient id="tglow" cx="50%" cy="45%" r="48%">
+      <stop offset="0%" stop-color="#ff5625" stop-opacity="0.14"/>
+      <stop offset="100%" stop-color="#ff5625" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="tline" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#fbbc00"/>
+      <stop offset="100%" stop-color="#ff5625"/>
+    </linearGradient>
+    <linearGradient id="tfill" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ff5625" stop-opacity="0.30"/>
+      <stop offset="100%" stop-color="#ff5625" stop-opacity="0"/>
+    </linearGradient>
+    <filter id="tglowf">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <pattern id="tdots" x="0" y="0" width="28" height="28" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1" fill="#fbbc00" fill-opacity="0.07"/>
+    </pattern>
+  </defs>
+
+  <rect width="800" height="384" fill="url(#tbg)"/>
+  <rect width="800" height="384" fill="url(#tdots)"/>
+  <rect width="800" height="384" fill="url(#tglow)"/>
+
+  <!-- Header bar -->
+  <text x="48" y="58" font-family="ui-monospace, 'JetBrains Mono', monospace" font-size="13" font-weight="700" letter-spacing="3" fill="#ff5625">CLAUDE_TELEMETRY</text>
+  <text x="48" y="80" font-family="ui-monospace, 'JetBrains Mono', monospace" font-size="10" letter-spacing="2" fill="#9c8f78">OTEL → CLICKHOUSE → GRAFANA</text>
+  <circle cx="730" cy="54" r="4" fill="#ff5625" filter="url(#tglowf)"/>
+  <text x="744" y="58" font-family="ui-monospace, 'JetBrains Mono', monospace" font-size="9" fill="#ff5625" text-anchor="end" letter-spacing="1"></text>
+
+  <!-- Main chart panel: token spend -->
+  <rect x="48" y="104" width="448" height="216" rx="6" fill="#0a1326" stroke="#ff5625" stroke-opacity="0.25"/>
+  <text x="68" y="132" font-family="ui-monospace, 'JetBrains Mono', monospace" font-size="9" letter-spacing="2" fill="#9c8f78">TOKEN_SPEND // 7D</text>
+  <!-- grid lines -->
+  <g stroke="#fbbc00" stroke-opacity="0.08">
+    <line x1="68" y1="170" x2="476" y2="170"/>
+    <line x1="68" y1="210" x2="476" y2="210"/>
+    <line x1="68" y1="250" x2="476" y2="250"/>
+    <line x1="68" y1="290" x2="476" y2="290"/>
+  </g>
+  <!-- area + line -->
+  <path d="M68,272 L126,258 L184,266 L242,228 L300,238 L358,196 L416,206 L476,158 L476,300 L68,300 Z" fill="url(#tfill)"/>
+  <path d="M68,272 L126,258 L184,266 L242,228 L300,238 L358,196 L416,206 L476,158" fill="none" stroke="url(#tline)" stroke-width="2.5" filter="url(#tglowf)"/>
+  <g fill="#fbbc00">
+    <circle cx="242" cy="228" r="3"/>
+    <circle cx="358" cy="196" r="3"/>
+    <circle cx="476" cy="158" r="3.5" fill="#ff5625" filter="url(#tglowf)"/>
+  </g>
+
+  <!-- Stat tiles -->
+  <g font-family="ui-monospace, 'JetBrains Mono', monospace">
+    <rect x="520" y="104" width="232" height="64" rx="6" fill="#0a1326" stroke="#fbbc00" stroke-opacity="0.22"/>
+    <text x="540" y="130" font-size="9" letter-spacing="2" fill="#9c8f78">TOKENS_TODAY</text>
+    <text x="540" y="156" font-size="20" font-weight="700" fill="#fbbc00">4.2M</text>
+
+    <rect x="520" y="180" width="232" height="64" rx="6" fill="#0a1326" stroke="#ff5625" stroke-opacity="0.22"/>
+    <text x="540" y="206" font-size="9" letter-spacing="2" fill="#9c8f78">CACHE_HIT_RATE</text>
+    <text x="540" y="232" font-size="20" font-weight="700" fill="#ff5625">87%</text>
+
+    <rect x="520" y="256" width="232" height="64" rx="6" fill="#0a1326" stroke="#dbe6ff" stroke-opacity="0.18"/>
+    <text x="540" y="282" font-size="9" letter-spacing="2" fill="#9c8f78">COST_BY_PROJECT</text>
+    <!-- mini bars -->
+    <g>
+      <rect x="540" y="292" width="86" height="7" rx="1" fill="#fbbc00" fill-opacity="0.85"/>
+      <rect x="540" y="303" width="58" height="7" rx="1" fill="#ff5625" fill-opacity="0.75"/>
+      <rect x="632" y="292" width="34" height="7" rx="1" fill="#dbe6ff" fill-opacity="0.55"/>
+    </g>
+  </g>
+
+  <!-- Footer label -->
+  <text x="48" y="352" font-family="ui-monospace, 'JetBrains Mono', monospace" font-size="9" letter-spacing="2" fill="#6a7a98">SELF_HOSTED · DOCKER COMPOSE · LIVE_INGEST</text>
+</svg>

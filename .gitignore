@@ -13,3 +13,6 @@ README.md
 
 # Playwright MCP cache
 .playwright-mcp/
+
+# Electron/GPU cache
+GPUCache/

@@ -14,7 +14,7 @@ window.SITE = {
   // ── Hero Section ─────────────────────────────────────────────
   heroStatus: "Data Engineer · GovTech Singapore · Open to Opportunities",
 
-  heroBio: "I build systems that bridge raw data pipelines to intelligence, user-facing products — from LLM evaluation frameworks to facilities management system with sensors data.",
+  heroBio: "I build systems that turn raw data pipelines into intelligent, user-facing products — from LLM evaluation frameworks to a sensor-driven facilities management system.",
 
   // Credential chips shown under the bio (add or remove as needed).
   heroChips: [
@@ -43,7 +43,7 @@ window.SITE = {
   ],
   // The two-column callout at the bottom of the evolution section.
   evolutionFoundation: "Structured data, ETL orchestration, horizontal scaling, deterministic logic.",
-  evolutionHorizon:    "Agentic workflows, LLM evaluation, Internal Tools, Singapore product-market fit.",
+  evolutionHorizon:    "Agentic workflows, LLM evaluation, internal tooling, Singapore product-market fit.",
 
   // ── Currently Processing — Active Learning (05 section) ──────
   // accent: "amber" | "orange" | "tertiary"
@@ -106,9 +106,9 @@ window.SITE = {
     {
       year:        "2020 → 2022",
       role:        "Data Analyst",
-      org:         "",
-      description: "Started the data journey at Ministry of Health (Singapore). Mastering SQL and python, data engineering primitives with automation, and the art of writing code that actually runs in production.",
-      tags:        [],
+      org:         "Ministry of Health (Singapore)",
+      description: "Started the data journey — mastered SQL and Python, data engineering primitives with automation, and the art of writing code that actually runs in production.",
+      tags:        ["SQL", "Python", "Automation"],
       accent:      "dim",
       active:      false,
     },
@@ -178,7 +178,7 @@ window.SITE = {
   // Only the heading text and card labels are editable here.
   cognitiveEngineHeading: "AI / LLM Systems",
   cognitiveEngineTitle:   "Cognitive Engine",
-  cognitiveEngineBadge:   "LEVEL_ELITE",
+  cognitiveEngineBadge:   "PRODUCTION_GRADE",
 
   // ── Skills: Right Column — Product Engineering ────────────────
   // Column heading (h3 above the cards)
@@ -266,7 +266,7 @@ window.SITE = {
     con: {
       label:   'CONTACT',
       title:   "Let's build something",
-      body:    "Open to data engineering roles, product collaborations, and ambitious problems. Let's connect.",
+      body:    "Open to data engineering roles, product collaborations, and ambitious problems. Let's build.",
       tools:   ['LinkedIn', 'Email', 'GitHub'],
       target:  '#contact',
       section: 'Connect',

@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 384" width="800" height="384">
+  <defs>
+    <linearGradient id="mbg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0d1629"/>
+      <stop offset="60%" stop-color="#0c1530"/>
+      <stop offset="100%" stop-color="#101b3e"/>
+    </linearGradient>
+    <radialGradient id="mglow" cx="35%" cy="45%" r="50%">
+      <stop offset="0%" stop-color="#dbe6ff" stop-opacity="0.10"/>
+      <stop offset="100%" stop-color="#dbe6ff" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="mglowf">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <pattern id="mdots" x="0" y="0" width="28" height="28" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1" fill="#dbe6ff" fill-opacity="0.07"/>
+    </pattern>
+  </defs>
+
+  <rect width="800" height="384" fill="url(#mbg)"/>
+  <rect width="800" height="384" fill="url(#mdots)"/>
+  <rect width="800" height="384" fill="url(#mglow)"/>
+
+  <!-- Header -->
+  <text x="48" y="58" font-family="ui-monospace, 'JetBrains Mono', monospace" font-size="13" font-weight="700" letter-spacing="3" fill="#dbe6ff">MACRO_BRIEF // DAILY</text>
+  <text x="48" y="80" font-family="ui-monospace, 'JetBrains Mono', monospace" font-size="10" letter-spacing="2" fill="#9c8f78">GITHUB ACTIONS · 08:30 SGT · EVERY WEEKDAY</text>
+
+  <!-- Candlestick panel -->
+  <rect x="48" y="104" width="400" height="216" rx="6" fill="#0a1326" stroke="#dbe6ff" stroke-opacity="0.20"/>
+  <text x="68" y="132" font-family="ui-monospace, 'JetBrains Mono', monospace" font-size="9" letter-spacing="2" fill="#9c8f78">INDICES // 30D</text>
+  <g stroke="#dbe6ff" stroke-opacity="0.07">
+    <line x1="68" y1="170" x2="428" y2="170"/>
+    <line x1="68" y1="215" x2="428" y2="215"/>
+    <line x1="68" y1="260" x2="428" y2="260"/>
+  </g>
+  <!-- candles: green=amber up, red=orange down -->
+  <g stroke-width="1.5">
+    <line x1="84"  y1="240" x2="84"  y2="286" stroke="#fbbc00"/><rect x="78"  y="250" width="12" height="26" fill="#fbbc00"/>
+    <line x1="112" y1="228" x2="112" y2="268" stroke="#fbbc00"/><rect x="106" y="236" width="12" height="22" fill="#fbbc00"/>
+    <line x1="140" y1="238" x2="140" y2="272" stroke="#ff5625"/><rect x="134" y="244" width="12" height="20" fill="#ff5625"/>
+    <line x1="168" y1="214" x2="168" y2="252" stroke="#fbbc00"/><rect x="162" y="222" width="12" height="22" fill="#fbbc00"/>
+    <line x1="196" y1="202" x2="196" y2="238" stroke="#fbbc00"/><rect x="190" y="210" width="12" height="20" fill="#fbbc00"/>
+    <line x1="224" y1="212" x2="224" y2="248" stroke="#ff5625"/><rect x="218" y="218" width="12" height="22" fill="#ff5625"/>
+    <line x1="252" y1="192" x2="252" y2="230" stroke="#fbbc00"/><rect x="246" y="200" width="12" height="22" fill="#fbbc00"/>
+    <line x1="280" y1="180" x2="280" y2="216" stroke="#fbbc00"/><rect x="274" y="188" width="12" height="20" fill="#fbbc00"/>
+    <line x1="308" y1="190" x2="308" y2="224" stroke="#ff5625"/><rect x="302" y="196" width="12" height="20" fill="#ff5625"/>
+    <line x1="336" y1="170" x2="336" y2="208" stroke="#fbbc00"/><rect x="330" y="178" width="12" height="22" fill="#fbbc00"/>
+    <line x1="364" y1="158" x2="364" y2="196" stroke="#fbbc00"/><rect x="358" y="166" width="12" height="22" fill="#fbbc00"/>
+    <line x1="392" y1="148" x2="392" y2="184" stroke="#fbbc00" filter="url(#mglowf)"/><rect x="386" y="156" width="12" height="20" fill="#fbbc00" filter="url(#mglowf)"/>
+  </g>
+
+  <!-- Telegram message card -->
+  <g font-family="ui-monospace, 'JetBrains Mono', monospace">
+    <rect x="472" y="104" width="280" height="216" rx="10" fill="#0e1a38" stroke="#dbe6ff" stroke-opacity="0.25"/>
+    <circle cx="500" cy="136" r="13" fill="#dbe6ff" fill-opacity="0.15" stroke="#dbe6ff" stroke-opacity="0.4"/>
+    <path d="M494,136 l5,4 8,-9" fill="none" stroke="#dbe6ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="522" y="133" font-size="11" font-weight="700" fill="#d9e2ff">macro_bot</text>
+    <text x="522" y="147" font-size="8" fill="#6a7a98">via GitHub Actions</text>
+
+    <g font-size="10">
+      <text x="496" y="180" fill="#9c8f78">S&amp;P 500</text><text x="700" y="180" fill="#fbbc00" text-anchor="end">▲ +0.8%</text>
+      <text x="496" y="204" fill="#9c8f78">STI</text><text x="700" y="204" fill="#fbbc00" text-anchor="end">▲ +0.3%</text>
+      <text x="496" y="228" fill="#9c8f78">US 10Y</text><text x="700" y="228" fill="#ff5625" text-anchor="end">▼ 4.21%</text>
+      <text x="496" y="252" fill="#9c8f78">USD/SGD</text><text x="700" y="252" fill="#d9e2ff" text-anchor="end">1.342</text>
+      <text x="496" y="276" fill="#9c8f78">GOLD</text><text x="700" y="276" fill="#fbbc00" text-anchor="end">▲ +1.2%</text>
+    </g>
+    <text x="496" y="304" font-size="8" letter-spacing="1" fill="#6a7a98">DELIVERED 08:30 · ZERO SERVERS</text>
+  </g>
+
+  <!-- Footer -->
+  <text x="48" y="352" font-family="ui-monospace, 'JetBrains Mono', monospace" font-size="9" letter-spacing="2" fill="#6a7a98">CRON → FETCH → FORMAT → PUSH // FULLY AUTOMATED</text>
+</svg>

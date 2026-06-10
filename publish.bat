@@ -3,7 +3,7 @@ echo.
 echo  Publishing to darrencwj.github.io ...
 echo  ----------------------------------------
 
-git add index.html content.js projects.js case-study-tribunal.html case-study-tribunal.js images
+git add -A index.html content.js projects.js favicon.svg case-study-*.html case-study-*.js *-preview.svg images .gitignore
 git diff --cached --quiet && (echo  No changes to publish. && pause && exit /b)
 
 set /p MSG= Commit message (or press Enter for "update site"):

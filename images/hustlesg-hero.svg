@@ -1,0 +1,182 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 480" width="1440" height="480">
+  <defs>
+    <linearGradient id="pinkBtn" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#e0266a"/>
+      <stop offset="100%" stop-color="#c51f5d"/>
+    </linearGradient>
+    <linearGradient id="rightFade" x1="0.76" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#070b1e" stop-opacity="0"/>
+      <stop offset="100%" stop-color="#070b1e" stop-opacity="0.88"/>
+    </linearGradient>
+    <filter id="shadow" x="-15%" y="-15%" width="130%" height="130%">
+      <feDropShadow dx="0" dy="10" stdDeviation="22" flood-color="rgba(0,0,0,0.55)"/>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1440" height="480" fill="#070b1e"/>
+
+  <!-- ─── LEFT PANEL ─── -->
+
+  <!-- {BUILD} HACKATHON SG badge -->
+  <rect x="48" y="42" width="148" height="20" rx="10"
+        fill="transparent" stroke="rgba(255,45,120,0.5)" stroke-width="1"/>
+  <text x="122" y="56.5" font-family="'JetBrains Mono',monospace" font-size="8"
+        fill="#ff2d78" text-anchor="middle" letter-spacing="0.8">+ {BUILD} HACKATHON SG</text>
+
+  <!-- Hustle SG title -->
+  <text x="48" y="138" font-family="'Inter',system-ui,sans-serif"
+        font-size="66" font-weight="900" fill="#ff2d78" letter-spacing="-2">Hustle SG</text>
+
+  <!-- Subtitle — no chips below -->
+  <text x="48" y="166" font-family="'Inter',system-ui,sans-serif" font-size="14"
+        fill="rgba(255,255,255,0.85)">Verified talent, matched by AI.</text>
+  <text x="48" y="185" font-family="'Inter',system-ui,sans-serif" font-size="14"
+        fill="rgba(255,255,255,0.85)">Singapore-first gig platform.</text>
+
+  <!-- ─── CARD 3: Dashboard (right, drawn first so it sits behind) ─── -->
+  <g transform="translate(862, 52) rotate(4, 122, 190)" filter="url(#shadow)">
+    <rect width="244" height="378" rx="18" fill="#180f35"/>
+    <!-- header -->
+    <rect width="244" height="36" rx="14" fill="#21154a"/>
+    <rect y="22" width="244" height="14" fill="#21154a"/>
+    <text x="20" y="24" font-family="'Inter',sans-serif" font-size="12.5" font-weight="700" fill="white">HustleSG</text>
+    <!-- DASHBOARD label -->
+    <text x="20" y="60" font-family="'Inter',sans-serif" font-size="7.5"
+          fill="rgba(255,255,255,0.42)" letter-spacing="2">DASHBOARD · WEEK 1</text>
+    <!-- heading -->
+    <text x="20" y="84" font-family="'Inter',sans-serif" font-size="17" font-weight="800" fill="white">Your gig work,</text>
+    <text x="20" y="107" font-family="'Inter',sans-serif" font-size="17" font-weight="800" fill="#ff2d78">tracked.</text>
+    <!-- stat -->
+    <text x="20" y="167" font-family="'Inter',sans-serif" font-size="54" font-weight="900" fill="white" letter-spacing="-2">3</text>
+    <text x="78" y="160" font-family="'Inter',sans-serif" font-size="15" font-weight="600" fill="rgba(255,255,255,0.6)">active</text>
+    <text x="20" y="185" font-family="'Inter',sans-serif" font-size="8.5"
+          fill="rgba(255,255,255,0.4)">Track your applications and inbound interest.</text>
+    <!-- divider -->
+    <line x1="20" y1="198" x2="224" y2="198" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+    <!-- fits your free slots -->
+    <text x="20" y="215" font-family="'Inter',sans-serif" font-size="7.5"
+          fill="rgba(255,255,255,0.38)" letter-spacing="1.5">FITS YOUR FREE SLOTS</text>
+    <text x="20" y="236" font-family="'Inter',sans-serif" font-size="14" font-weight="800" fill="white">12 gigs match your gaps.</text>
+    <!-- row 1 -->
+    <text x="20" y="262" font-family="'Inter',sans-serif" font-size="10" fill="rgba(255,255,255,0.65)">Brand shoot (2h)</text>
+    <text x="224" y="262" font-family="'JetBrains Mono',monospace" font-size="10" fill="white" text-anchor="end">S$180</text>
+    <rect x="20" y="266" width="204" height="3" rx="1.5" fill="rgba(255,45,120,0.22)"/>
+    <rect x="20" y="266" width="152" height="3" rx="1.5" fill="#ff2d78"/>
+    <!-- row 2 -->
+    <text x="20" y="285" font-family="'Inter',sans-serif" font-size="10" fill="rgba(255,255,255,0.65)">Content writing brief</text>
+    <text x="224" y="285" font-family="'JetBrains Mono',monospace" font-size="10" fill="white" text-anchor="end">S$85</text>
+    <rect x="20" y="289" width="204" height="3" rx="1.5" fill="rgba(255,45,120,0.22)"/>
+    <rect x="20" y="289" width="96" height="3" rx="1.5" fill="#ff2d78"/>
+    <!-- row 3 -->
+    <text x="20" y="308" font-family="'Inter',sans-serif" font-size="10" fill="rgba(255,255,255,0.65)">Event helper (3h)</text>
+    <text x="224" y="308" font-family="'JetBrains Mono',monospace" font-size="10" fill="white" text-anchor="end">S$90</text>
+    <rect x="20" y="312" width="204" height="3" rx="1.5" fill="rgba(255,45,120,0.22)"/>
+    <rect x="20" y="312" width="110" height="3" rx="1.5" fill="#ff2d78"/>
+  </g>
+
+  <!-- ─── CARD 1: Identity Verify (left, drawn second so it sits behind card 2) ─── -->
+  <g transform="translate(330, 50) rotate(-4, 122, 192)" filter="url(#shadow)">
+    <rect width="244" height="384" rx="18" fill="white"/>
+    <!-- header -->
+    <rect width="244" height="36" rx="14" fill="#f4f4f6"/>
+    <rect y="22" width="244" height="14" fill="#f4f4f6"/>
+    <text x="20" y="24" font-family="'Inter',sans-serif" font-size="12.5" font-weight="700" fill="#0d0d1f">HustleSG</text>
+    <text x="224" y="24" font-family="'Inter',sans-serif" font-size="11" fill="#bbb" text-anchor="end">Verify</text>
+    <!-- SINGPASS · IDENTITY -->
+    <text x="20" y="60" font-family="'Inter',sans-serif" font-size="8.5" font-weight="700"
+          fill="#e8356d" letter-spacing="2">SINGPASS · IDENTITY</text>
+    <!-- heading -->
+    <text x="20" y="84" font-family="'Inter',sans-serif" font-size="17" font-weight="800" fill="#0d0d1f">Verify your identity</text>
+    <text x="20" y="107" font-family="'Inter',sans-serif" font-size="17" font-weight="800" fill="#0d0d1f">to start hustling</text>
+    <!-- subtitle -->
+    <text x="20" y="128" font-family="'Inter',sans-serif" font-size="9" fill="#888">NRIC validation + face scan required before</text>
+    <text x="20" y="141" font-family="'Inter',sans-serif" font-size="9" fill="#888">posting or applying.</text>
+    <!-- NRIC + checkmark -->
+    <text x="20" y="170" font-family="'JetBrains Mono',monospace" font-size="15.5" font-weight="700" fill="#0d0d1f">S1234567D</text>
+    <text x="172" y="170" font-family="'Inter',sans-serif" font-size="15" font-weight="700" fill="#e8356d">&#10003;</text>
+    <!-- face scan ring -->
+    <circle cx="122" cy="260" r="52" fill="none" stroke="#e8356d" stroke-width="2" stroke-dasharray="8 4"/>
+    <circle cx="122" cy="260" r="43" fill="#fff5f8"/>
+    <text x="122" y="275" font-size="40" text-anchor="middle">&#128512;</text>
+    <!-- SCANNING FACE -->
+    <text x="122" y="324" font-family="'JetBrains Mono',monospace" font-size="8.5"
+          fill="#e8356d" text-anchor="middle" letter-spacing="1.5">SCANNING FACE...</text>
+    <!-- button -->
+    <rect x="16" y="344" width="212" height="34" rx="7" fill="url(#pinkBtn)"/>
+    <text x="122" y="365" font-family="'Inter',sans-serif" font-size="11" font-weight="700"
+          fill="white" text-anchor="middle">IDENTITY VERIFIED &#10003;</text>
+  </g>
+
+  <!-- ─── CARD 2: Gig Matching (center, front) ─── -->
+  <g transform="translate(552, 14)" filter="url(#shadow)">
+    <rect width="316" height="452" rx="18" fill="white"/>
+    <!-- nav bar -->
+    <rect width="316" height="38" rx="14" fill="#f8f8fa"/>
+    <rect y="24" width="316" height="14" fill="#f8f8fa"/>
+    <text x="18" y="26" font-family="'Inter',sans-serif" font-size="12.5" font-weight="700" fill="#0d0d1f">HustleSG</text>
+    <text x="168" y="26" font-family="'Inter',sans-serif" font-size="10.5" fill="#999" text-anchor="middle">My feed</text>
+    <text x="230" y="26" font-family="'Inter',sans-serif" font-size="10.5" fill="#ccc">Gigs</text>
+    <text x="276" y="26" font-family="'Inter',sans-serif" font-size="10.5" fill="#ccc">Instant</text>
+    <!-- title -->
+    <text x="18" y="66" font-family="'Inter',sans-serif" font-size="16.5" font-weight="800" fill="#0d0d1f">Gigs matched for your work.</text>
+    <text x="18" y="81" font-family="'Inter',sans-serif" font-size="9" fill="#aaa">Ranked by semantic match across portfolio, credentials, and profile.</text>
+    <!-- tabs -->
+    <text x="18" y="101" font-family="'Inter',sans-serif" font-size="9.5" fill="#e8356d" font-weight="700">All 12</text>
+    <text x="56" y="101" font-family="'Inter',sans-serif" font-size="9.5" fill="#ccc"> Design 5</text>
+    <text x="113" y="101" font-family="'Inter',sans-serif" font-size="9.5" fill="#ccc"> Engineering 1</text>
+    <text x="298" y="101" font-family="'JetBrains Mono',monospace" font-size="8.5" fill="#ccc" text-anchor="end">1536-D</text>
+    <line x1="18" y1="108" x2="298" y2="108" stroke="#eeeeee" stroke-width="1"/>
+
+    <!-- Gig 1 featured card -->
+    <rect x="12" y="114" width="292" height="148" rx="10" fill="#fafafa" stroke="#eeeeee" stroke-width="0.5"/>
+    <text x="24" y="136" font-family="'Inter',sans-serif" font-size="12" font-weight="700" fill="#0d0d1f">Senior UX contractor · 12-week</text>
+    <text x="24" y="152" font-family="'Inter',sans-serif" font-size="12" font-weight="700" fill="#0d0d1f">fintech</text>
+    <!-- 69% badge -->
+    <rect x="264" y="122" width="32" height="20" rx="4" fill="#e8356d"/>
+    <text x="280" y="136" font-family="'Inter',sans-serif" font-size="9.5" font-weight="700" fill="white" text-anchor="middle">69%</text>
+    <!-- scores -->
+    <text x="24" y="171" font-family="'Inter',sans-serif" font-size="8" fill="#aaa">Portfolio</text>
+    <rect x="65" y="164" width="110" height="4" rx="2" fill="#eee"/>
+    <rect x="65" y="164" width="100" height="4" rx="2" fill="#e8356d"/>
+    <text x="182" y="170" font-family="'JetBrains Mono',monospace" font-size="7.5" fill="#aaa">0.91</text>
+    <text x="24" y="183" font-family="'Inter',sans-serif" font-size="8" fill="#aaa">Skills</text>
+    <rect x="65" y="176" width="110" height="4" rx="2" fill="#eee"/>
+    <rect x="65" y="176" width="97" height="4" rx="2" fill="#e8356d"/>
+    <text x="182" y="182" font-family="'JetBrains Mono',monospace" font-size="7.5" fill="#aaa">0.88</text>
+    <text x="24" y="195" font-family="'Inter',sans-serif" font-size="8" fill="#aaa">Bio</text>
+    <rect x="65" y="188" width="110" height="4" rx="2" fill="#eee"/>
+    <rect x="65" y="188" width="94" height="4" rx="2" fill="#e8356d"/>
+    <text x="182" y="194" font-family="'JetBrains Mono',monospace" font-size="7.5" fill="#aaa">0.85</text>
+    <!-- skill tags -->
+    <rect x="24" y="200" width="22" height="13" rx="3" fill="#f0f0f5"/>
+    <text x="35" y="211" font-family="'Inter',sans-serif" font-size="7.5" fill="#666" text-anchor="middle">UX</text>
+    <rect x="50" y="200" width="36" height="13" rx="3" fill="#f0f0f5"/>
+    <text x="68" y="211" font-family="'Inter',sans-serif" font-size="7.5" fill="#666" text-anchor="middle">FIGMA</text>
+    <rect x="90" y="200" width="80" height="13" rx="3" fill="#f0f0f5"/>
+    <text x="130" y="211" font-family="'Inter',sans-serif" font-size="7.5" fill="#666" text-anchor="middle">USER RESEARCH</text>
+    <!-- rate + apply -->
+    <text x="24" y="249" font-family="'JetBrains Mono',monospace" font-size="14" font-weight="700" fill="#0d0d1f">S$120/hr</text>
+    <rect x="186" y="234" width="110" height="26" rx="5" fill="url(#pinkBtn)"/>
+    <text x="241" y="251" font-family="'Inter',sans-serif" font-size="9.5" font-weight="700" fill="white" text-anchor="middle">Review &amp; apply →</text>
+
+    <!-- Gig 2 -->
+    <text x="18" y="278" font-family="'Inter',sans-serif" font-size="11" font-weight="600" fill="#0d0d1f">Design a kopitiam loyalty app — 3 weeks</text>
+    <text x="298" y="278" font-family="'Inter',sans-serif" font-size="9.5" font-weight="700" fill="#e8356d" text-anchor="end">67%</text>
+    <text x="18" y="292" font-family="'Inter',sans-serif" font-size="9" fill="#bbb">Tampines · S$2,800 fixed</text>
+    <rect x="18" y="297" width="260" height="4" rx="2" fill="#fce8ef"/>
+    <rect x="18" y="297" width="174" height="4" rx="2" fill="#e8356d"/>
+
+    <line x1="18" y1="311" x2="298" y2="311" stroke="#f0f0f0" stroke-width="0.5"/>
+
+    <!-- Gig 3 -->
+    <text x="18" y="330" font-family="'Inter',sans-serif" font-size="11" font-weight="600" fill="#0d0d1f">Motion designer for brand launch</text>
+    <text x="298" y="330" font-family="'Inter',sans-serif" font-size="9.5" font-weight="700" fill="#e8356d" text-anchor="end">45%</text>
+    <text x="18" y="344" font-family="'Inter',sans-serif" font-size="9" fill="#bbb">CBD · S$1,500 fixed</text>
+    <rect x="18" y="349" width="260" height="4" rx="2" fill="#fce8ef"/>
+    <rect x="18" y="349" width="117" height="4" rx="2" fill="#e8356d"/>
+  </g>
+
+  <!-- Right edge fade -->
+  <rect width="1440" height="480" fill="url(#rightFade)"/>
+</svg>
