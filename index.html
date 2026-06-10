@@ -1548,19 +1548,19 @@
     var col=edge.col, pts=edge.pts;
     var ptStr = pts.map(function(p){return p[0]+','+p[1];}).join(' ');
     eGrp.appendChild(mk('polyline', {points:ptStr, fill:'none',
-      stroke:rgba(col,0.14), 'stroke-width':'7',
+      stroke:rgba(col,0.14), 'stroke-width':'7', 'class':'edge-under', 'data-edge':i,
       'stroke-linecap':'round', 'stroke-linejoin':'round'}));
     eGrp.appendChild(mk('polyline', {points:ptStr, fill:'none',
-      stroke:rgba(col,0.55), 'stroke-width':'1.5',
+      stroke:rgba(col,0.55), 'stroke-width':'1.5', 'class':'edge-dash', 'data-edge':i,
       'stroke-linecap':'round', 'stroke-linejoin':'round', 'stroke-dasharray':'4 6'}));
     pts.slice(1, pts.length-1).forEach(function(p) {
-      eGrp.appendChild(mk('circle', {cx:p[0],cy:p[1],r:'5',fill:col,opacity:'0.9',filter:'url(#ng)'}));
+      eGrp.appendChild(mk('circle', {cx:p[0],cy:p[1],r:'5',fill:col,opacity:'0.9',filter:'url(#ng)','class':'edge-dot','data-edge':i}));
     });
     var pid = 'ep'+i;
     var d = 'M'+pts[0][0]+','+pts[0][1];
     pts.slice(1).forEach(function(p){ d += ' L'+p[0]+','+p[1]; });
     defs.appendChild(mk('path',{id:pid,d:d}));
-    var dot = mk('circle',{r:'4.5',fill:col,opacity:'0.95',filter:'url(#ng)'});
+    var dot = mk('circle',{r:'4.5',fill:col,opacity:'0.95',filter:'url(#ng)','class':'edge-mover','data-edge':i});
     var am  = mk('animateMotion',{dur:'2.8s',begin:(i*0.4)+'s',repeatCount:'indefinite'});
     var mp  = mk('mpath');
     mp.setAttribute('href','#'+pid);
@@ -2246,6 +2246,101 @@
       hero.addEventListener('mouseleave', () => { termInner.style.transform = ''; });
     }
   }
+})();
+</script>
+
+<!-- Pipeline scroll-draw + dock-style nav magnification -->
+<script>
+(function () {
+  const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const canHover     = window.matchMedia('(hover: hover)').matches;
+
+  // ── Scroll-driven pipeline drawing ───────────────────────────────────
+  // The solid glow underlay of each circuit edge draws itself as the
+  // diagram scrolls through the viewport; dashes, junction dots, flow
+  // dots and nodes light up as their edge completes. Fully scrubbed —
+  // scrolling back up rewinds the drawing.
+  (function archDraw() {
+    if (reduceMotion) return;
+    const svg     = document.getElementById('arch-svg');
+    const section = document.getElementById('arch');
+    if (!svg || !section) return;
+
+    const unders = Array.from(svg.querySelectorAll('.edge-under'));
+    if (!unders.length) return;
+    const dashes = Array.from(svg.querySelectorAll('.edge-dash'));
+    const dots   = Array.from(svg.querySelectorAll('.edge-dot, .edge-mover'));
+    const nodes  = Array.from(svg.querySelectorAll('.arch-node'));
+
+    const lens = unders.map(el => {
+      const L = el.getTotalLength();
+      el.style.strokeDasharray  = L;
+      el.style.strokeDashoffset = L;
+      return L;
+    });
+    const fade = el => {
+      el.style.opacity = '0';
+      el.style.transition = el.classList.contains('arch-node')
+        ? 'transform 0.32s cubic-bezier(.2,.7,.2,1), filter 0.28s, opacity 0.45s ease'
+        : 'opacity 0.45s ease';
+    };
+    dashes.forEach(fade); dots.forEach(fade); nodes.forEach(fade);
+
+    // DOM order of nodes: src, ingest, ai, lake, prod, hist, con.
+    // Each waits for its incoming edge to finish (-1 = visible immediately).
+    const NODE_EDGE = [-1, 0, 1, 3, 4, 5, 6];
+    const STAGGER = 0.10, SPAN = 0.35;
+    const edgeP = (p, i) => Math.max(0, Math.min(1, (p - i * STAGGER) / SPAN));
+
+    let ticking = false;
+    function draw() {
+      ticking = false;
+      const vh = window.innerHeight;
+      const r  = section.getBoundingClientRect();
+      if (r.bottom < -80 || r.top > vh + 80) return;
+      const p = Math.max(0, Math.min(1, (vh * 0.85 - r.top) / (vh * 0.6)));
+      unders.forEach((el, i) => {
+        el.style.strokeDashoffset = lens[i] * (1 - edgeP(p, i));
+      });
+      dashes.forEach(el => { el.style.opacity = edgeP(p, +el.dataset.edge) >= 1 ? '' : '0'; });
+      dots.forEach(el   => { el.style.opacity = edgeP(p, +el.dataset.edge) >= 1 ? '' : '0'; });
+      nodes.forEach((el, i) => {
+        const need = NODE_EDGE[i];
+        const on = need < 0 ? p > 0.02 : edgeP(p, need) >= 1;
+        el.style.opacity = on ? '' : '0';
+      });
+    }
+    window.addEventListener('scroll', () => {
+      if (!ticking) { ticking = true; requestAnimationFrame(draw); }
+    }, { passive: true });
+    window.addEventListener('resize', draw);
+    draw();
+  })();
+
+  // ── Dock-style nav magnification ─────────────────────────────────────
+  // Desktop nav links swell and lift as the cursor approaches, macOS-dock
+  // style, with a gaussian falloff so neighbours react proportionally.
+  (function dockNav() {
+    if (reduceMotion || !canHover) return;
+    const wrap = document.querySelector('nav .md\\:flex');
+    if (!wrap) return;
+    const links = Array.from(wrap.querySelectorAll('a'));
+    links.forEach(a => {
+      a.style.transition = 'transform 0.18s ease-out, color 0.2s';
+      a.style.transformOrigin = '50% 100%';
+      a.style.willChange = 'transform';
+    });
+    const SIGMA = 80;
+    wrap.addEventListener('mousemove', e => {
+      links.forEach(a => {
+        const r = a.getBoundingClientRect();
+        const d = e.clientX - (r.left + r.width / 2);
+        const g = Math.exp(-(d * d) / (2 * SIGMA * SIGMA));
+        a.style.transform = 'translateY(' + (-3.5 * g).toFixed(2) + 'px) scale(' + (1 + 0.22 * g).toFixed(3) + ')';
+      });
+    });
+    wrap.addEventListener('mouseleave', () => links.forEach(a => { a.style.transform = ''; }));
+  })();
 })();
 </script>
 
