@@ -19,78 +19,22 @@
 <meta name="twitter:title" content="Darren Chua | Data Engineer & AI Builder"/>
 <meta name="twitter:description" content="Data Engineer at GovTech Singapore. Building AI systems that bridge data pipelines to intelligent, user-facing products."/>
 <meta name="twitter:image" content="https://darrencwj.github.io/images/og-cover.png"/>
+<script>
+  // Decide the boot-sequence before first paint: only on the first visit of a
+  // session, and never for users who prefer reduced motion.
+  (function () {
+    try {
+      var rm = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (!rm && !sessionStorage.getItem('booted')) document.documentElement.classList.add('booting');
+    } catch (e) { /* sessionStorage unavailable — skip the boot */ }
+  })();
+</script>
 <script src="content.js"></script>
 <script src="projects.js"></script>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link rel="stylesheet" href="tailwind.css"/>
+<style id="theme-vars">:root { --c-background: 7 18 42; --c-surface: 7 18 42; --c-surface-dim: 7 18 42; --c-surface-bright: 47 57 82; --c-surface-container-lowest: 3 13 37; --c-surface-container-low: 16 27 51; --c-surface-container: 21 31 55; --c-surface-container-high: 31 41 66; --c-surface-container-highest: 42 52 78; --c-on-surface: 217 226 255; --c-on-surface-variant: 212 197 171; --c-outline: 156 143 120; --c-outline-variant: 80 69 50; --c-primary: 255 226 171; --c-on-primary: 64 45 0; --c-primary-container: 255 191 0; --c-on-primary-container: 109 80 0; --c-primary-fixed-dim: 251 188 0; --c-secondary-container: 255 86 37; --c-on-secondary-container: 84 17 0; --c-tertiary: 219 230 255; --c-on-tertiary: 35 49 72; --c-on-background: 217 226 255; --c-surface-variant: 42 52 78; --c-surface-tint: 251 188 0; }</style>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
-<script id="tailwind-config">
-  tailwind.config = {
-    darkMode: "class",
-    theme: {
-      extend: {
-        colors: {
-          "background":               "#07122a",
-          "surface":                  "#07122a",
-          "surface-dim":              "#07122a",
-          "surface-bright":           "#2f3952",
-          "surface-container-lowest": "#030d25",
-          "surface-container-low":    "#101b33",
-          "surface-container":        "#151f37",
-          "surface-container-high":   "#1f2942",
-          "surface-container-highest":"#2a344e",
-          "on-surface":               "#d9e2ff",
-          "on-surface-variant":       "#d4c5ab",
-          "outline":                  "#9c8f78",
-          "outline-variant":          "#504532",
-          "primary":                  "#ffe2ab",
-          "on-primary":               "#402d00",
-          "primary-container":        "#ffbf00",
-          "on-primary-container":     "#6d5000",
-          "primary-fixed-dim":        "#fbbc00",
-          "secondary-container":      "#ff5625",
-          "on-secondary-container":   "#541100",
-          "tertiary":                 "#dbe6ff",
-          "on-tertiary":              "#233148",
-          "on-background":            "#d9e2ff",
-          "surface-variant":          "#2a344e",
-          "surface-tint":             "#fbbc00",
-        },
-        borderRadius: {
-          DEFAULT: "0.125rem",
-          lg:      "0.25rem",
-          xl:      "0.5rem",
-          full:    "9999px",
-        },
-        spacing: {
-          base:   "8px",
-          xs:     "4px",
-          sm:     "12px",
-          md:     "24px",
-          lg:     "48px",
-          xl:     "80px",
-          gutter: "24px",
-          margin: "32px",
-        },
-        fontFamily: {
-          "headline-xl": ["Space Grotesk"],
-          "headline-md": ["Space Grotesk"],
-          "label-caps":  ["Space Grotesk"],
-          "body-lg":     ["Inter"],
-          "body-md":     ["Inter"],
-          "mono":        ["JetBrains Mono"],
-        },
-        fontSize: {
-          "headline-xl": ["48px", { lineHeight:"1.1", letterSpacing:"-0.02em", fontWeight:"700" }],
-          "headline-md": ["24px", { lineHeight:"1.2", fontWeight:"600" }],
-          "label-caps":  ["12px", { lineHeight:"1",   letterSpacing:"0.1em",  fontWeight:"600" }],
-          "body-lg":     ["18px", { lineHeight:"1.6", fontWeight:"400" }],
-          "body-md":     ["16px", { lineHeight:"1.5", fontWeight:"400" }],
-        },
-      },
-    },
-  }
-</script>
 <style>
   .material-symbols-outlined { font-variation-settings: 'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24; }
 
@@ -289,6 +233,67 @@
   .bar-fill  { transition: width 1.1s cubic-bezier(0.16,1,0.3,1); }
   .spark-bar { transition: height 0.9s cubic-bezier(0.16,1,0.3,1); }
 
+  /* ── Boot sequence overlay (shown only when html.booting) ────── */
+  #boot-overlay {
+    position: fixed; inset: 0; z-index: 200;
+    background: #030d25;
+    display: none; align-items: center; justify-content: center;
+    transition: opacity 0.45s ease, visibility 0.45s;
+  }
+  html.booting #boot-overlay { display: flex; }
+  #boot-overlay.done { opacity: 0; visibility: hidden; pointer-events: none; }
+  #boot-inner { font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 13px; line-height: 2; color: #9c8f78; width: min(440px, 82vw); }
+  #boot-inner .ok { color: #fbbc00; font-weight: 700; }
+  #boot-bar { height: 2px; background: #1f2942; margin-top: 16px; overflow: hidden; }
+  #boot-bar > div { height: 100%; width: 0; background: linear-gradient(90deg, #ff5625, #fbbc00); transition: width 1.2s cubic-bezier(0.16,1,0.3,1); }
+  /* Hold the hero entrance until the boot finishes */
+  html.booting .hero-stagger > *, html.booting .hero-terminal-wrap { animation-play-state: paused; }
+
+  /* ── Hero particle network canvas ─────────────────────────────── */
+  #hero-particles { position: absolute; inset: 0; pointer-events: none; }
+
+  /* ── Cursor spotlight on cards ───────────────────────────────── */
+  .spot { position: relative; }
+  .spot::after {
+    content: ''; position: absolute; inset: 0; pointer-events: none; border-radius: inherit;
+    background: radial-gradient(240px circle at var(--mx, 50%) var(--my, 50%), rgba(255,191,0,0.09), transparent 65%);
+    opacity: 0; transition: opacity 0.35s;
+  }
+  .spot:hover::after { opacity: 1; }
+
+  /* ── Tech marquee ticker ─────────────────────────────────────── */
+  .marquee-wrap {
+    border-top: 1px solid rgba(255,191,0,0.12); border-bottom: 1px solid rgba(255,191,0,0.12);
+    background: rgba(3,13,37,0.55); overflow: hidden;
+    -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+    mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+  }
+  .marquee-track {
+    display: flex; align-items: center; width: max-content;
+    animation: marquee 38s linear infinite;
+    will-change: transform;
+  }
+  .marquee-wrap:hover .marquee-track { animation-play-state: paused; }
+  @keyframes marquee { to { transform: translateX(-50%); } }
+  .marquee-track span {
+    font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 11px; font-weight: 700;
+    letter-spacing: 0.18em; color: rgba(255,191,0,0.75); text-transform: uppercase;
+    padding: 14px 0; white-space: nowrap;
+  }
+  .marquee-track .sep { color: rgba(255,86,37,0.6); padding: 14px 22px; }
+
+  /* ── Scroll cue ───────────────────────────────────────────────── */
+  #scroll-cue {
+    position: absolute; bottom: 26px; left: 50%; transform: translateX(-50%);
+    display: flex; flex-direction: column; align-items: center; gap: 6px;
+    font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 9px; letter-spacing: 0.3em;
+    color: rgba(255,191,0,0.55); text-transform: uppercase;
+    transition: opacity 0.4s; pointer-events: none;
+  }
+  #scroll-cue .chev { animation: cueBounce 1.6s ease-in-out infinite; color: #fbbc00; font-size: 16px; line-height: 1; }
+  #scroll-cue.hidden { opacity: 0; }
+  @keyframes cueBounce { 0%, 100% { transform: translateY(0); opacity: 0.5; } 50% { transform: translateY(7px); opacity: 1; } }
+
   /* ── Reduced motion: calm everything down ───────────────────── */
   @media (prefers-reduced-motion: reduce) {
     .hero-stagger > *, .hero-terminal-wrap { animation: none; }
@@ -296,11 +301,22 @@
     .reveal-target, .reveal-target:not(.revealed) { opacity: 1; transform: none; transition: none; }
     .scanning-line { animation: none; opacity: 0; }
     .bar-fill, .spark-bar, .project-card img { transition: none; }
+    .marquee-track { animation: none; }
+    #scroll-cue .chev { animation: none; }
+    .spot::after { display: none; }
     html { scroll-behavior: auto; }
   }
 </style>
 </head>
 <body class="bg-background text-on-background font-body-md overflow-x-hidden selection:bg-primary-container selection:text-on-primary">
+
+<!-- Boot sequence overlay — only rendered when html.booting (first visit per session) -->
+<div id="boot-overlay" aria-hidden="true">
+  <div id="boot-inner">
+    <div id="boot-lines"></div>
+    <div id="boot-bar"><div></div></div>
+  </div>
+</div>
 
 
 <!-- ════════════════════════════════════
@@ -346,7 +362,8 @@
 <!-- ════════════════════════════════════
      HERO
 ════════════════════════════════════ -->
-<section class="min-h-screen flex items-center pt-16 blueprint-grid overflow-hidden">
+<section id="hero" class="relative min-h-screen flex items-center pt-16 blueprint-grid overflow-hidden">
+  <canvas id="hero-particles"></canvas>
   <div class="absolute inset-0 bg-gradient-to-b from-transparent via-background/30 to-background pointer-events-none"></div>
   <div class="relative w-full max-w-7xl mx-auto px-margin grid grid-cols-1 md:grid-cols-12 gap-gutter items-center py-xl">
 
@@ -432,7 +449,18 @@
       </div>
     </div>
   </div>
+
+  <!-- Scroll cue -->
+  <div id="scroll-cue">
+    <span>Scroll</span>
+    <span class="chev">▼</span>
+  </div>
 </section>
+
+<!-- Tech marquee ticker -->
+<div class="marquee-wrap" aria-hidden="true">
+  <div class="marquee-track" id="marquee-track"></div>
+</div>
 
 <!-- ════════════════════════════════════
      00. PLATFORM ARCHITECTURE (nav layer)
@@ -441,7 +469,7 @@
   <div class="max-w-7xl mx-auto px-margin">
 
     <div class="text-center mb-6">
-      <span class="font-label-caps text-label-caps uppercase tracking-widest" style="color:#fbbc00">
+      <span class="font-label-caps scramble text-label-caps uppercase tracking-widest" style="color:#fbbc00">
         PLATFORM ARCHITECTURE
       </span>
       <h2 class="font-headline-xl text-headline-xl text-on-surface mt-2">End-to-End Pipeline</h2>
@@ -490,7 +518,7 @@
     <div class="grid grid-cols-1 md:grid-cols-12 gap-gutter items-start">
 
       <div class="md:col-span-5 space-y-md">
-        <span class="font-label-caps text-label-caps uppercase tracking-widest" style="color:#fbbc00">
+        <span class="font-label-caps scramble text-label-caps uppercase tracking-widest" style="color:#fbbc00">
           01. EVOLUTION_LOG
         </span>
         <h2 class="font-headline-xl text-headline-xl text-on-surface leading-none">
@@ -534,7 +562,7 @@
     <!-- Header -->
     <div class="mb-lg flex flex-col md:flex-row md:items-end justify-between gap-md">
       <div>
-        <span class="font-label-caps text-label-caps uppercase tracking-widest" style="color:#fbbc00">02. VERIFIED_CERTS</span>
+        <span class="font-label-caps scramble text-label-caps uppercase tracking-widest" style="color:#fbbc00">02. VERIFIED_CERTS</span>
         <h2 class="font-headline-xl text-headline-xl text-on-surface mt-2">Certifications &amp; Credentials</h2>
         <p class="font-body-lg text-on-surface-variant mt-2 max-w-xl" data-s="certsDescription">Verified credentials across data engineering, AI platforms, and product management.</p>
       </div>
@@ -556,7 +584,7 @@
     <!-- Header -->
     <div class="mb-lg flex flex-col md:flex-row md:items-end justify-between gap-md">
       <div>
-        <span class="font-label-caps text-label-caps uppercase tracking-widest" style="color:#fbbc00">03. CAPABILITY_MATRIX</span>
+        <span class="font-label-caps scramble text-label-caps uppercase tracking-widest" style="color:#fbbc00">03. CAPABILITY_MATRIX</span>
         <h2 class="font-headline-xl text-headline-xl text-on-surface mt-2" data-s="skillsHeadline">SKILL_MATRIX_V4.0</h2>
         <p class="font-body-lg text-on-surface-variant mt-2 max-w-xl" data-s="skillsDescription">A multi-dimensional mapping of engineering competencies, algorithmic depth, and product delivery.</p>
       </div>
@@ -620,7 +648,7 @@
   <div class="max-w-7xl mx-auto px-margin">
     <div class="mb-lg flex justify-between items-end">
       <div>
-        <span class="font-label-caps text-label-caps uppercase tracking-widest" style="color:#fbbc00">04. ACTIVE_DEPLOYMENTS</span>
+        <span class="font-label-caps scramble text-label-caps uppercase tracking-widest" style="color:#fbbc00">04. ACTIVE_DEPLOYMENTS</span>
         <h2 class="font-headline-xl text-headline-xl text-on-surface mt-2">Selected Works</h2>
       </div>
     </div>
@@ -645,7 +673,7 @@
 <section id="timeline" class="py-xl blueprint-grid border-t border-amber-500/10">
   <div class="max-w-7xl mx-auto px-margin">
     <div class="text-center mb-xl">
-      <span class="font-label-caps text-label-caps uppercase tracking-widest" style="color:#fbbc00">05. TEMPORAL_LOGS</span>
+      <span class="font-label-caps scramble text-label-caps uppercase tracking-widest" style="color:#fbbc00">05. TEMPORAL_LOGS</span>
       <h2 class="font-headline-xl text-headline-xl text-on-surface mt-2">The Evolution Path</h2>
     </div>
 
@@ -661,7 +689,7 @@
   <div class="max-w-7xl mx-auto px-margin">
     <div class="flex items-center justify-between mb-lg flex-wrap gap-md">
       <div>
-        <span class="font-label-caps text-label-caps uppercase tracking-widest" style="color:#fbbc00">06. CURRENTLY_PROCESSING</span>
+        <span class="font-label-caps scramble text-label-caps uppercase tracking-widest" style="color:#fbbc00">06. CURRENTLY_PROCESSING</span>
         <h2 class="font-headline-xl text-headline-xl text-on-surface mt-2">Active Learning</h2>
       </div>
       <div class="flex items-center gap-2">
@@ -683,7 +711,7 @@
   <div class="max-w-7xl mx-auto px-margin text-center">
     <div class="max-w-3xl mx-auto" style="display:flex;flex-direction:column;gap:24px;align-items:center">
       <span class="material-symbols-outlined text-5xl animate-pulse" style="color:#fbbc00;display:block;font-size:56px">terminal</span>
-      <span class="font-label-caps uppercase tracking-widest" style="color:#fbbc00;font-size:12px;letter-spacing:0.1em;font-weight:600">07. OPEN_PROTOCOL</span>
+      <span class="font-label-caps scramble uppercase tracking-widest" style="color:#fbbc00;font-size:12px;letter-spacing:0.1em;font-weight:600">07. OPEN_PROTOCOL</span>
       <h2 class="font-headline-xl" style="color:#d9e2ff;font-size:clamp(32px,5vw,48px);font-weight:700;line-height:1.1;letter-spacing:-0.02em">
         Let's Build the<br/><span style="color:#ff5625">Next System</span>
       </h2>
@@ -947,7 +975,12 @@
           }
         }, 14);
       }
-      setTimeout(typeLine, 650);
+      // If the boot overlay is running, start typing once it slides away
+      if (document.documentElement.classList.contains('booting')) {
+        window.addEventListener('boot-done', function () { setTimeout(typeLine, 350); }, { once: true });
+      } else {
+        setTimeout(typeLine, 650);
+      }
     }
   }
 
@@ -2000,6 +2033,219 @@
     if (!ticking) { ticking = true; requestAnimationFrame(onScroll); }
   }, { passive: true });
   onScroll();
+})();
+</script>
+
+<!-- Wow layer: boot sequence, particle network, card spotlight, label scramble, marquee, scroll cue -->
+<script>
+(function () {
+  const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const canHover     = window.matchMedia('(hover: hover)').matches;
+
+  // ── Boot sequence ────────────────────────────────────────────────────
+  (function boot() {
+    const overlay = document.getElementById('boot-overlay');
+    const booting = document.documentElement.classList.contains('booting');
+    if (!overlay) return;
+    if (!booting) { overlay.remove(); return; }
+
+    const linesEl = document.getElementById('boot-lines');
+    const barEl   = document.querySelector('#boot-bar > div');
+    const LINES = [
+      { text: '> DARREN.CWJ // PORTFOLIO_OS v2.0', ok: false },
+      { text: '> loading modules ............ OK',  ok: true  },
+      { text: '> verifying credentials ...... 10 FOUND', ok: true },
+      { text: '> SYSTEM_READY', ok: true },
+    ];
+    let finished = false;
+    function finish() {
+      if (finished) return;
+      finished = true;
+      try { sessionStorage.setItem('booted', '1'); } catch (e) {}
+      overlay.classList.add('done');
+      document.documentElement.classList.remove('booting');
+      window.dispatchEvent(new Event('boot-done'));
+      setTimeout(() => overlay.remove(), 600);
+    }
+    // Any interaction skips the boot instantly
+    ['click', 'keydown', 'wheel', 'touchstart'].forEach(ev =>
+      window.addEventListener(ev, finish, { once: true, passive: true }));
+
+    requestAnimationFrame(() => { barEl.style.width = '100%'; });
+    let i = 0;
+    (function nextLine() {
+      if (finished) return;
+      if (i >= LINES.length) { setTimeout(finish, 320); return; }
+      const l = LINES[i];
+      const div = document.createElement('div');
+      div.textContent = l.text;
+      if (l.ok) {
+        const idx = l.text.lastIndexOf(' ');
+        div.textContent = l.text.slice(0, idx + 1);
+        const ok = document.createElement('span');
+        ok.className = 'ok';
+        ok.textContent = l.text.slice(idx + 1);
+        div.appendChild(ok);
+      }
+      linesEl.appendChild(div);
+      i++;
+      setTimeout(nextLine, i === LINES.length ? 300 : 270);
+    })();
+    // Hard cap so the overlay can never strand the page
+    setTimeout(finish, 2600);
+  })();
+
+  // ── Hero particle network ────────────────────────────────────────────
+  (function particles() {
+    const canvas = document.getElementById('hero-particles');
+    const hero   = document.getElementById('hero');
+    if (!canvas || !hero || reduceMotion) return;
+    const ctx = canvas.getContext('2d');
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    let w = 0, h = 0, parts = [];
+    const COLORS = ['251,188,0', '255,86,37', '219,230,255'];
+
+    function resize() {
+      const r = hero.getBoundingClientRect();
+      w = r.width; h = r.height;
+      canvas.width = w * dpr; canvas.height = h * dpr;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    }
+    resize();
+    window.addEventListener('resize', resize);
+
+    const N = Math.max(36, Math.min(85, Math.round(w * h / 22000)));
+    for (let i = 0; i < N; i++) {
+      parts.push({
+        x: Math.random() * w, y: Math.random() * h,
+        vx: (Math.random() - 0.5) * 0.28, vy: (Math.random() - 0.5) * 0.28,
+        r: Math.random() * 1.5 + 0.7,
+        c: COLORS[i % 3 === 0 ? 1 : i % 3 === 1 ? 2 : 0],
+      });
+    }
+
+    const mouse = { x: -1e4, y: -1e4 };
+    hero.addEventListener('mousemove', e => {
+      const r = hero.getBoundingClientRect();
+      mouse.x = e.clientX - r.left; mouse.y = e.clientY - r.top;
+    });
+    hero.addEventListener('mouseleave', () => { mouse.x = -1e4; mouse.y = -1e4; });
+
+    let running = true;
+    new IntersectionObserver(es => { running = es[0].isIntersecting; }).observe(hero);
+    document.addEventListener('visibilitychange', () => { running = running && !document.hidden; });
+
+    const LINK = 110;
+    (function tick() {
+      if (running && w > 0) {
+        ctx.clearRect(0, 0, w, h);
+        for (const p of parts) {
+          // gentle drift + soft mouse repulsion
+          const dx = p.x - mouse.x, dy = p.y - mouse.y;
+          const md = dx * dx + dy * dy;
+          if (md < 14400) { p.vx += dx / md * 6; p.vy += dy / md * 6; }
+          p.vx = Math.max(-0.5, Math.min(0.5, p.vx));
+          p.vy = Math.max(-0.5, Math.min(0.5, p.vy));
+          p.x += p.vx; p.y += p.vy;
+          if (p.x < -10) p.x = w + 10; if (p.x > w + 10) p.x = -10;
+          if (p.y < -10) p.y = h + 10; if (p.y > h + 10) p.y = -10;
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.r, 0, 6.2832);
+          ctx.fillStyle = 'rgba(' + p.c + ',0.55)';
+          ctx.fill();
+        }
+        for (let a = 0; a < parts.length; a++) {
+          for (let b = a + 1; b < parts.length; b++) {
+            const dx = parts[a].x - parts[b].x, dy = parts[a].y - parts[b].y;
+            const d = Math.sqrt(dx * dx + dy * dy);
+            if (d < LINK) {
+              ctx.beginPath();
+              ctx.moveTo(parts[a].x, parts[a].y);
+              ctx.lineTo(parts[b].x, parts[b].y);
+              ctx.strokeStyle = 'rgba(251,188,0,' + ((1 - d / LINK) * 0.14).toFixed(3) + ')';
+              ctx.lineWidth = 1;
+              ctx.stroke();
+            }
+          }
+        }
+      }
+      requestAnimationFrame(tick);
+    })();
+  })();
+
+  // ── Cursor spotlight on cards ────────────────────────────────────────
+  if (canHover && !reduceMotion) {
+    document.querySelectorAll('.glass-card, .glass-card-bright, .project-card').forEach(card => {
+      card.classList.add('spot');
+      card.addEventListener('mousemove', e => {
+        const r = card.getBoundingClientRect();
+        card.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+        card.style.setProperty('--my', (e.clientY - r.top) + 'px');
+      });
+    });
+  }
+
+  // ── Section label decrypt/scramble ───────────────────────────────────
+  (function scramble() {
+    const els = document.querySelectorAll('.scramble');
+    if (!els.length || reduceMotion) return;
+    const GLYPHS = '█▓▒░<>/\\|=+*#01';
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (!e.isIntersecting) return;
+        obs.unobserve(e.target);
+        const el = e.target;
+        const final = el.textContent.trim();
+        const start = performance.now(), DUR = 750;
+        (function frame(now) {
+          const t = Math.min(1, (now - start) / DUR);
+          const solved = Math.floor(t * final.length);
+          let out = final.slice(0, solved);
+          for (let i = solved; i < final.length; i++) {
+            out += final[i] === ' ' ? ' ' : GLYPHS[(Math.random() * GLYPHS.length) | 0];
+          }
+          el.textContent = out;
+          if (t < 1) requestAnimationFrame(frame);
+          else el.textContent = final;
+        })(start);
+      });
+    }, { threshold: 0.6 });
+    els.forEach(el => obs.observe(el));
+  })();
+
+  // ── Marquee population ───────────────────────────────────────────────
+  (function marquee() {
+    const track = document.getElementById('marquee-track');
+    if (!track) return;
+    const ITEMS = ['Python', 'PySpark', 'Databricks', 'SQL', 'Snowflake', 'TypeScript', 'React',
+                   'LLM Eval', 'RAG', 'Agentic Systems', 'Whisper', 'ClickHouse', 'Grafana', 'Workato', 'Glean'];
+    const half = ITEMS.map(t => '<span>' + t + '</span><span class="sep">◆</span>').join('');
+    track.innerHTML = half + half; // duplicated for the seamless -50% loop
+  })();
+
+  // ── Scroll cue + hero grid parallax + terminal tilt ─────────────────
+  const cue  = document.getElementById('scroll-cue');
+  const hero = document.getElementById('hero');
+  window.addEventListener('scroll', () => {
+    if (cue) cue.classList.toggle('hidden', window.scrollY > 60);
+    if (hero && !reduceMotion && window.scrollY < window.innerHeight) {
+      hero.style.backgroundPosition = '0px ' + (window.scrollY * 0.18).toFixed(1) + 'px';
+    }
+  }, { passive: true });
+
+  if (canHover && !reduceMotion && hero) {
+    const termInner = document.querySelector('.hero-terminal-wrap > div');
+    if (termInner) {
+      termInner.style.transition = 'transform 0.25s ease-out';
+      hero.addEventListener('mousemove', e => {
+        const r = hero.getBoundingClientRect();
+        const px = (e.clientX - r.left) / r.width - 0.5;
+        const py = (e.clientY - r.top) / r.height - 0.5;
+        termInner.style.transform = 'translate(' + (px * -10).toFixed(1) + 'px,' + (py * -8).toFixed(1) + 'px)';
+      });
+      hero.addEventListener('mouseleave', () => { termInner.style.transform = ''; });
+    }
+  }
 })();
 </script>
 

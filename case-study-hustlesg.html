@@ -17,76 +17,10 @@
 <meta name="twitter:description" content="Case study: Hustle SG — a Singapore-first gig platform with Singpass verification, AI semantic matching via OpenAI embeddings and Pinecone, async video interviews, and a business registration guide."/>
 <meta name="twitter:image" content="https://darrencwj.github.io/images/hustlesg-hero.png"/>
 <script src="case-study-hustlesg.js"></script>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link rel="stylesheet" href="tailwind.css"/>
+<style id="theme-vars">:root { --c-background: 7 18 42; --c-surface: 7 18 42; --c-surface-dim: 7 18 42; --c-surface-bright: 47 57 82; --c-surface-container-lowest: 3 13 37; --c-surface-container-low: 16 27 51; --c-surface-container: 21 31 55; --c-surface-container-high: 31 41 66; --c-surface-container-highest: 42 52 78; --c-on-surface: 252 231 243; --c-on-surface-variant: 201 184 208; --c-outline: 139 122 149; --c-outline-variant: 74 36 96; --c-primary: 255 214 231; --c-on-primary: 92 0 38; --c-primary-container: 219 39 119; --c-on-primary-container: 122 0 53; --c-primary-fixed-dim: 244 114 182; --c-secondary-container: 168 85 247; --c-on-secondary-container: 30 0 53; --c-tertiary: 219 230 255; --c-on-tertiary: 35 49 72; --c-on-background: 252 231 243; --c-surface-variant: 42 52 78; --c-surface-tint: 219 39 119; }</style>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
-<script id="tailwind-config">
-  tailwind.config = {
-    darkMode: "class",
-    theme: {
-      extend: {
-        colors: {
-          "background":               "#07122a",
-          "surface":                  "#07122a",
-          "surface-dim":              "#07122a",
-          "surface-bright":           "#2f3952",
-          "surface-container-lowest": "#030d25",
-          "surface-container-low":    "#101b33",
-          "surface-container":        "#151f37",
-          "surface-container-high":   "#1f2942",
-          "surface-container-highest":"#2a344e",
-          "on-surface":               "#fce7f3",
-          "on-surface-variant":       "#c9b8d0",
-          "outline":                  "#8b7a95",
-          "outline-variant":          "#4a2460",
-          "primary":                  "#ffd6e7",
-          "on-primary":               "#5c0026",
-          "primary-container":        "#db2777",
-          "on-primary-container":     "#7a0035",
-          "primary-fixed-dim":        "#f472b6",
-          "secondary-container":      "#a855f7",
-          "on-secondary-container":   "#1e0035",
-          "tertiary":                 "#dbe6ff",
-          "on-tertiary":              "#233148",
-          "on-background":            "#fce7f3",
-          "surface-variant":          "#2a344e",
-          "surface-tint":             "#db2777",
-        },
-        borderRadius: {
-          DEFAULT: "0.125rem",
-          lg:      "0.25rem",
-          xl:      "0.5rem",
-          full:    "9999px",
-        },
-        spacing: {
-          base:   "8px",
-          xs:     "4px",
-          sm:     "12px",
-          md:     "24px",
-          lg:     "48px",
-          xl:     "80px",
-          gutter: "24px",
-          margin: "32px",
-        },
-        fontFamily: {
-          "headline-xl": ["Space Grotesk"],
-          "headline-md": ["Space Grotesk"],
-          "label-caps":  ["Space Grotesk"],
-          "body-lg":     ["Inter"],
-          "body-md":     ["Inter"],
-          "mono":        ["JetBrains Mono"],
-        },
-        fontSize: {
-          "headline-xl": ["48px", { lineHeight:"1.1", letterSpacing:"-0.02em", fontWeight:"700" }],
-          "headline-md": ["24px", { lineHeight:"1.2", fontWeight:"600" }],
-          "label-caps":  ["12px", { lineHeight:"1",   letterSpacing:"0.1em",  fontWeight:"600" }],
-          "body-lg":     ["18px", { lineHeight:"1.6", fontWeight:"400" }],
-          "body-md":     ["16px", { lineHeight:"1.5", fontWeight:"400" }],
-        },
-      },
-    },
-  }
-</script>
 <style>
   .material-symbols-outlined { font-variation-settings: 'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24; }
 
