@@ -294,6 +294,15 @@ window.SITE = {
       featured: true,
     },
     {
+      title:  "McKinsey.org Forward Program",
+      issuer: "McKinsey.org",
+      issued: "JUN 2026",
+      url:    "https://www.credly.com/badges/1010d3b8-6fed-4b73-881a-47cbd2168810/public_url",
+      badge:  "McKINSEY.ORG",
+      accent: "blue",
+      icon:   "rocket_launch",
+    },
+    {
       title:  "Claude Code in Action",
       issuer: "Anthropic",
       issued: "MAR 2026",
