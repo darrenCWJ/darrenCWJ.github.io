@@ -15,7 +15,7 @@ so every click pays off the teaser.
 - `content.js` — rewrite the 7 entries in `pipelineNodes` (label, title, body, tools).
   Click `target` and `section` values are unchanged.
 - `index.html` — section heading only: kicker `PLATFORM ARCHITECTURE` → `MY JOURNEY`,
-  heading `End-to-End Pipeline` → `The Builder's Pipeline`.
+  heading `End-to-End Pipeline` → `Darren's Pipeline`.
 
 ## Not Changing
 
@@ -52,4 +52,4 @@ Tool chips per node:
 1. Serve locally, load `index.html`, zero console errors.
 2. Hover each of the 7 nodes — card shows new title/body/chips, typewriter intact.
 3. Click each node — scrolls to the correct section.
-4. Section heading shows `MY JOURNEY` / `The Builder's Pipeline`.
+4. Section heading shows `MY JOURNEY` / `Darren's Pipeline`.
