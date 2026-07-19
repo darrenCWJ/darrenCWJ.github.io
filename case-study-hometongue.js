@@ -55,7 +55,7 @@ window.CASE_STUDY = {
   // Row 1 uses amber styling, row 2 uses tertiary (blue-white) styling.
   archPipelineRow1: [
     { icon: "mic",          label: "LISTEN",       sublabel: "Capture the senior live" },
-    { icon: "hearing",      label: "DIALECT_STT",  sublabel: "Transcribe Cantonese" },
+    { icon: "hearing",      label: "DIALECT_STT",  sublabel: "Transcribe Dialect" },
     { icon: "psychology",   label: "EXPLAIN",      sublabel: "English meaning + intent" },
   ],
   archPipelineRow2: [
@@ -82,17 +82,17 @@ window.CASE_STUDY = {
 export async function POST(req: Request) {
   const { audioBlob, mode, userIntent, context } = await req.json();
 
-  // 1. UNDERSTAND — transcribe the senior's Cantonese, explain in English
-  const transcript = await transcribeCantonese(audioBlob);
+  // 1. UNDERSTAND — transcribe the senior's Dialect, explain in English
+  const transcript = await transcribeDialect(audioBlob);
   const meaning    = await explainInEnglish(transcript, context);
 
   // 2. RESPOND — two first-class paths, validated by user testing
   const reply = mode === 'say-something-else'
-    ? await englishToCantonese(userIntent)        // user knows what to say
+    ? await englishToDialect(userIntent)        // user knows what to say
     : await suggestReplies(transcript, context);  // user wants options
 
-  // 3. SPEAK — Cantonese audio the user can play or imitate
-  const replyAudio = await synthesiseCantonese(reply);
+  // 3. SPEAK — The Dialect's audio the user can play or imitate
+  const replyAudio = await synthesiseDialect(reply);
 
   // 4. SAVE — useful moments become Learn Mode practice material
   return Response.json({ transcript, meaning, reply, replyAudio });
